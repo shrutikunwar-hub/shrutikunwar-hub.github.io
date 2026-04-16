@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales &amp; Territory — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#051341;--deepblue:#1501A1;--purple:#4A00AE;--lavender:#BD84E2;--yellow:#FEDE24;--light:#F8F8F8;--magenta:#FC1577;--bg:#F8F8F8;--surface:#ffffff;--border:rgba(5,19,65,0.08);--border-hover:rgba(74,0,174,0.2);--text:#1a1a2e;--text-dim:rgba(26,26,46,0.5);--text-mid:rgba(26,26,46,0.7)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(rgba(74,0,174,0.03) 1px,transparent 1px);background-size:28px 28px;z-index:-1}
+.container{max-width:1000px;margin:0 auto;padding:0 2rem}
+.back{display:inline-flex;align-items:center;gap:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--purple);text-decoration:none;padding:1.5rem 0;letter-spacing:1px;transition:gap 0.3s}.back:hover{gap:0.8rem}
+.page-hero{padding:2rem 0 3rem;border-bottom:1px solid var(--border);margin-bottom:3rem}
+.page-hero h1{font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3rem);color:var(--navy);margin-bottom:0.8rem}
+.page-hero p{font-size:1rem;color:var(--text-mid);max-width:700px;line-height:1.8}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:3rem}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.03)}
+.kv{font-family:'Outfit',sans-serif;font-weight:900;font-size:1.8rem;color:var(--purple)}
+.kpi:nth-child(2) .kv{color:var(--magenta)}
+.kpi:nth-child(3) .kv{color:var(--deepblue)}
+.kpi:nth-child(4) .kv{color:var(--navy)}
+.kl{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-top:0.3rem}
+.story{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2.5rem;margin-bottom:2rem;position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.03)}
+.story::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--magenta))}
+.story h3{font-family:'Outfit',sans-serif;font-weight:700;font-size:1.3rem;color:var(--navy);margin-bottom:1rem}
+.story p{color:var(--text-mid);font-size:0.92rem;line-height:1.9;margin-bottom:1rem}
+.hl{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--purple);font-weight:700}
+.sub{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:1.5rem}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+.ph{border-radius:20px;overflow:hidden;border:1px solid var(--border);transition:all 0.3s;box-shadow:0 2px 12px rgba(0,0,0,0.03)}
+.ph:hover{border-color:var(--border-hover);transform:translateY(-4px);box-shadow:0 12px 40px rgba(74,0,174,0.08)}
+.ph img{width:100%;height:280px;object-fit:cover;display:block}
+.ph .cap{padding:1rem 1.2rem;background:var(--surface)}
+.ph .cap p{font-size:0.82rem;color:var(--text-dim);line-height:1.5}
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}
+.hcard{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.8rem;box-shadow:0 2px 12px rgba(0,0,0,0.03)}
+.hcard h4{font-size:0.95rem;color:var(--navy);margin-bottom:0.5rem}
+.hcard p{font-size:0.85rem;color:var(--text-dim);line-height:1.7}
+footer{text-align:center;padding:3rem 2rem;font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-dim);letter-spacing:1px;border-top:1px solid var(--border);margin-top:3rem}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}.photos,.hgrid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="index.html" class="back">&#8592; Back to Home</a>
+  <div class="page-hero"><h1>&#128176; Sales &amp; Territory Management</h1><p>Led a high-performing sales team at BASF, managing 150+ distributor accounts across territories in India — exceeding targets by 120% for 3 consecutive years.</p></div>
+  <div class="kpis">
+    <div class="kpi"><div class="kv">$1.5M</div><div class="kl">Cumulative Revenue</div></div>
+    <div class="kpi"><div class="kv">120%</div><div class="kl">Target Achievement</div></div>
+    <div class="kpi"><div class="kv">150+</div><div class="kl">Accounts Managed</div></div>
+    <div class="kpi"><div class="kv">60%</div><div class="kl">Trial-to-Adoption</div></div>
+  </div>
+  <div class="story"><h3>The Role</h3><p>As Territory Manager (Senior Sales Executive) at BASF from July 2020 to December 2022, I led a team of <span class="hl">10 associates</span> and managed a portfolio of <span class="hl">150+ distributor and retail accounts</span>. Over three consecutive years, I exceeded annual sales targets by <span class="hl">120%</span>, generating <span class="hl">$1.5M in cumulative revenue growth</span>.</p></div>
+  <div class="story"><h3>Data-Driven Sales Strategy</h3><p>Built a <span class="hl">multi-factor dealer segmentation model in Python</span>, scoring 250 accounts across three dimensions: historical sales performance, current purchase patterns, and market potential. This classified dealers into A/B/C/D priority tiers, enabling targeted resource allocation.</p></div>
+  <div class="story"><h3>Field Activations</h3><p>Led <span class="hl">100+ field activation events</span> including farmer meetings, demo plot visits, and product launch events — achieving a <span class="hl">60% trial-to-adoption conversion rate</span> for new product launches.</p></div>
+  <div class="sub">From the Field</div>
+  <div class="photos">
+    <div class="ph"><img src="assets/sales_field1.jpg" alt="BASF field activation"><div class="cap"><p>BASF field activation event — product demonstration with farmer community</p></div></div>
+    <div class="ph"><img src="assets/sales_field2.jpg" alt="Field visit"><div class="cap"><p>On-ground farmer visit — building relationships that drive adoption</p></div></div>
+  </div>
+  <div class="hgrid">
+    <div class="hcard"><h4>Team Leadership</h4><p>Managed and mentored a team of 10 field associates, coordinating daily routes, targets, and performance reviews.</p></div>
+    <div class="hcard"><h4>Dealer Segmentation</h4><p>Built Python model scoring 250 dealers across 3 factors to prioritize high-potential accounts.</p></div>
+    <div class="hcard"><h4>Revenue Growth</h4><p>Consistently exceeded annual targets by 120%, generating $1.5M cumulative revenue over 3 years.</p></div>
+    <div class="hcard"><h4>New Product Launches</h4><p>Achieved 60% trial-to-adoption rate through 100+ field events, demo plots, and farmer meetings.</p></div>
+  </div>
+</div>
+<footer><p>Shruti Kunwar — &#169; 2026</p></footer>
+</body>
+</html>
