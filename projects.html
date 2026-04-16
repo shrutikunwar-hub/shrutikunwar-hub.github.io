@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selected Projects — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#050226;
+  --deepblue:#1501A1;
+  --purple:#4A00AE;
+  --lavender:#BD84E2;
+  --yellow:#FEDE24;
+  --magenta:#FC1577;
+  --cream:#F5F0E6;
+  --paper:#FAF7F0;
+  --ink-soft:rgba(10,5,64,0.72);
+  --ink-mute:rgba(10,5,64,0.5);
+  --rule:rgba(10,5,64,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(rgba(10,5,64,0.04) 1px,transparent 1px);background-size:3px 3px;z-index:-1;pointer-events:none;opacity:0.6}
+
+.container{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+
+.topnav{display:flex;justify-content:flex-end;align-items:center;padding:1.5rem 0;border-bottom:1px solid var(--rule)}
+.brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;letter-spacing:-0.01em}
+.brand span{color:var(--magenta)}
+.back{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--ink);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1rem;border:1px solid var(--ink);border-radius:100px;transition:all 0.25s}
+.back:hover{background:var(--ink);color:var(--paper)}
+
+.hero{padding:3rem 0 3rem;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--magenta);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.8rem}
+.eyebrow::before{content:'';width:30px;height:1px;background:var(--magenta)}
+.hero h1{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(3rem,7vw,5.5rem);line-height:0.95;letter-spacing:-0.03em;margin-bottom:2rem;color:var(--ink)}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--purple)}
+.hero-lede{font-family:'Fraunces',serif;font-weight:400;font-size:1.25rem;line-height:1.5;color:var(--ink-soft);max-width:640px}
+
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--rule);padding:2rem 0;margin-bottom:5rem}
+.meta-item{padding:0 1.5rem;border-left:1px solid var(--rule)}
+.meta-item:first-child{padding-left:0;border-left:none}
+.meta-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:0.5rem}
+.meta-val{font-family:'Fraunces',serif;font-weight:600;font-size:0.95rem;color:var(--ink)}
+.meta-link{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink-mute);transition:all 0.2s}
+.meta-link:hover{color:var(--magenta);border-color:var(--magenta)}
+
+/* PROJECT CONTAINER — each case study */
+.project{padding-top:2rem}
+.project + .project{
+  padding-top:6rem;
+  margin-top:6rem;
+  border-top:2px solid var(--ink);
+  position:relative;
+}
+.project + .project::before{
+  content:'';
+  position:absolute;
+  top:-6px;left:0;
+  width:60px;height:10px;
+  background:var(--magenta);
+}
+
+/* PROJECT MARKER — label above each case study */
+.project-marker{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin-bottom:2rem;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+}
+.pm-num{
+  color:var(--magenta);
+  font-weight:700;
+}
+.pm-line{
+  flex:1;
+  height:1px;
+  background:var(--rule);
+}
+.pm-name{
+  color:var(--ink-mute);
+  font-weight:500;
+}
+
+.case-title{max-width:900px;margin-bottom:3rem}
+.case-title h2{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.05;letter-spacing:-0.025em;color:var(--ink)}
+.case-title h2 em{font-style:italic;font-weight:400;color:var(--magenta)}
+
+.case-intro{display:grid;grid-template-columns:1fr 2fr;gap:4rem;padding-bottom:5rem;border-bottom:1px solid var(--rule);margin-bottom:5rem}
+.case-intro-label{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-mute)}
+.case-intro p{font-family:'Fraunces',serif;font-size:1.2rem;line-height:1.55;color:var(--ink);margin-bottom:1.2rem}
+.case-intro p:last-child{margin-bottom:0}
+.case-intro .credit{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--ink-mute);letter-spacing:0.08em;margin-top:1rem}
+
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:3rem;padding-bottom:1rem;border-bottom:1px solid var(--rule)}
+.section-head h3{font-family:'Fraunces',serif;font-weight:700;font-size:2rem;letter-spacing:-0.02em}
+.section-head h3 em{font-style:italic;font-weight:400;color:var(--purple)}
+.section-num{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--ink-mute);letter-spacing:0.15em}
+
+.results{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:6rem;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.result{padding:2.5rem 1.5rem;border-right:1px solid var(--rule);position:relative}
+.result:last-child{border-right:none}
+.result-num{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.5rem,5vw,3.8rem);line-height:1;letter-spacing:-0.03em;color:var(--ink);margin-bottom:0.8rem}
+.result:nth-child(1) .result-num{color:var(--magenta)}
+.result:nth-child(3) .result-num{color:var(--purple)}
+.result-label{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft)}
+
+.method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-bottom:6rem;border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.method{padding:2.5rem;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--paper);transition:background 0.3s}
+.method:hover{background:var(--cream)}
+.method-num{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--magenta);letter-spacing:0.15em;margin-bottom:1rem}
+.method h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.35rem;letter-spacing:-0.01em;margin-bottom:0.8rem;color:var(--ink)}
+.method p{font-size:0.95rem;line-height:1.65;color:var(--ink-soft)}
+
+.insight{padding:5rem 0;margin-bottom:6rem;background:var(--ink);color:var(--paper);border-radius:4px;position:relative;overflow:hidden}
+.insight::before{content:'"';position:absolute;top:-3rem;left:2rem;font-family:'Fraunces',serif;font-size:18rem;color:var(--magenta);opacity:0.15;line-height:1}
+.insight-inner{max-width:800px;margin:0 auto;padding:0 3rem;position:relative;z-index:1}
+.insight-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--yellow);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem}
+.insight-body{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.2rem,2vw,1.55rem);line-height:1.5;color:var(--paper);margin-bottom:1.2rem}
+.insight-body em{font-style:italic;color:var(--yellow)}
+.insight-body strong{color:var(--magenta);font-weight:600;font-style:italic}
+
+.delivs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:6rem}
+.deliv{padding:1.8rem 1.5rem;background:var(--paper);border:1px solid var(--rule);border-radius:4px;transition:all 0.25s}
+.deliv:hover{background:var(--ink);border-color:var(--ink);transform:translateY(-2px)}
+.deliv:hover .deliv-num{color:var(--yellow)}
+.deliv:hover .deliv-label{color:var(--paper)}
+.deliv-num{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--magenta);letter-spacing:0.1em;margin-bottom:0.8rem;transition:color 0.25s}
+.deliv-label{font-family:'Fraunces',serif;font-weight:600;font-size:1rem;letter-spacing:-0.01em;line-height:1.3;color:var(--ink);transition:color 0.25s}
+
+.toolkit{margin-bottom:5rem}
+.tag-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.2rem;align-items:center}
+.tag-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--ink-mute);letter-spacing:0.15em;text-transform:uppercase;width:100%;margin-bottom:0.4rem}
+.tag{font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;padding:0.5rem 1rem;border:1px solid var(--ink);border-radius:100px;color:var(--ink);background:transparent;transition:all 0.2s}
+.tag:hover{background:var(--ink);color:var(--paper)}
+.tag.accent{background:var(--ink);color:var(--yellow);border-color:var(--ink)}
+.tag.pop{background:var(--magenta);color:var(--paper);border-color:var(--magenta)}
+
+footer{padding:4rem 0 3rem;border-top:1px solid var(--ink);margin-top:4rem}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.foot-brand{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;letter-spacing:-0.02em;line-height:1.1}
+.foot-brand em{font-style:italic;color:var(--magenta);font-weight:400}
+.foot-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:0.8rem}
+.foot-val{font-family:'Fraunces',serif;font-size:0.95rem;color:var(--ink)}
+.foot-val a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+.foot-val a:hover{color:var(--magenta);border-color:var(--magenta)}
+.foot-bottom{display:flex;justify-content:space-between;padding-top:2rem;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--ink-mute);letter-spacing:0.08em}
+
+@media(max-width:800px){
+  .container{padding:0 1.5rem}
+  .meta{grid-template-columns:repeat(2,1fr);gap:1.5rem 0}
+  .meta-item{border-left:none;padding:0;padding-right:1rem}
+  .results{grid-template-columns:repeat(2,1fr)}
+  .result{border-bottom:1px solid var(--rule)}
+  .result:nth-child(even){border-right:none}
+  .method-grid{grid-template-columns:1fr}
+  .case-intro{grid-template-columns:1fr;gap:1.5rem}
+  .delivs{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr;gap:2rem}
+  .insight-inner{padding:0 1.5rem}
+  .insight::before{font-size:12rem;left:0.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="topnav">
+    <a href="index.html" class="back">← Index</a>
+  </nav>
+
+  <section class="hero">
+    <div class="eyebrow">Case Study / 2019</div>
+    <h1>Selected <em>Projects.</em></h1>
+    <p class="hero-lede">End-to-end market assessments where data, fieldwork, and strategy converge into decisions clients can actually use.</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PROJECT 01 — Mahyco · Hybrid Rice Haryana                    -->
+  <!-- To add more projects, duplicate this <article class="project"> block -->
+  <!-- Update: project-marker number, meta, title, brief, numbers, method, -->
+  <!-- insight, data, deliverables, toolkit                                -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
+  <article class="project">
+
+    <div class="project-marker">
+      <span class="pm-num">Project 01</span>
+      <span class="pm-line"></span>
+      <span class="pm-name">Mahyco · Hybrid Rice Haryana</span>
+    </div>
+
+    <div class="meta">
+      <div class="meta-item"><div class="meta-label">Client</div><div class="meta-val"><a href="https://www.mahyco.com/" target="_blank" class="meta-link">Mahyco Pvt. Ltd.</a></div></div>
+      <div class="meta-item"><div class="meta-label">Category</div><div class="meta-val">Market Entry Strategy</div></div>
+      <div class="meta-item"><div class="meta-label">Region</div><div class="meta-val">Haryana, India</div></div>
+      <div class="meta-item"><div class="meta-label">Timeline</div><div class="meta-val">12 weeks</div></div>
+    </div>
+
+    <section class="case-title">
+      <h2>A 4-district <em>reading</em> of the hybrid rice opportunity in Haryana — from farmgate to <em>boardroom</em>.</h2>
+    </section>
+
+    <section class="case-intro">
+      <div class="case-intro-label">The Brief</div>
+      <div>
+        <p>Quantify the hybrid paddy opportunity across Ambala, Kurukshetra, Yamunanagar, and Kaithal. Translate 300 field interviews and state-level datasets into a district-by-district entry strategy.</p>
+        <p>Delivered primary research, competitive benchmarking, and a full 4P marketing mix — with recommendations specific enough to act on the following season.</p>
+        <div class="credit">MBA Research · MANAGE, Hyderabad · 2019</div>
+      </div>
+    </section>
+
+    <div class="section-head"><h3>The <em>Numbers</em></h3><div class="section-num">01 / RESULTS</div></div>
+    <div class="results">
+      <div class="result"><div class="result-num">300</div><div class="result-label">Respondents<br>Interviewed</div></div>
+      <div class="result"><div class="result-num">4</div><div class="result-label">Districts<br>Studied</div></div>
+      <div class="result"><div class="result-num">240</div><div class="result-label">Farmers<br>Surveyed</div></div>
+      <div class="result"><div class="result-num">60</div><div class="result-label">Dealers<br>Surveyed</div></div>
+    </div>
+
+    <div class="section-head"><h3>The <em>Method</em></h3><div class="section-num">02 / APPROACH</div></div>
+    <div class="method-grid">
+      <div class="method"><div class="method-num">01</div><h4>Primary Research</h4><p>Farmer surveys — 60 per district — using stratified judgmental sampling. Dealer surveys — 15 per district — using cluster analysis across key retail hubs.</p></div>
+      <div class="method"><div class="method-num">02</div><h4>Secondary Research</h4><p>Triangulated against Kisan Bhawan Panchkula records, Haryana Government agriculture data, and Indiastat / Agristat national databases.</p></div>
+      <div class="method"><div class="method-num">03</div><h4>Sampling Design</h4><p>Stratified farmers by land-holding size — marginal, small, medium, large. Clustered dealers by geography. Random village selection within each stratum.</p></div>
+      <div class="method"><div class="method-num">04</div><h4>Analytical Framework</h4><p>Market sizing, adoption curves, competitive mapping, SWOT, channel analysis, and a 4P marketing mix recommendation tailored for each of the four districts.</p></div>
+    </div>
+
+    <div class="section-head"><h3>The <em>Insight</em></h3><div class="section-num">03 / FINDINGS</div></div>
+    <section class="insight">
+      <div class="insight-inner">
+        <div class="insight-label">Key Finding</div>
+        <p class="insight-body">Ambala was <strong>nearly saturated</strong> at <em>64.5%</em> hybridization. Kaithal — the district with the <strong>largest paddy acreage</strong> at 166,300 hectares — sat at just <em>7.9%</em>.</p>
+        <p class="insight-body">The biggest opportunity wasn't where the market was loudest. It was where the market hadn't started yet.</p>
+      </div>
+    </section>
+
+    <div class="case-intro" style="border-bottom:none;padding-bottom:0;margin-bottom:6rem">
+      <div class="case-intro-label">Supporting Data</div>
+      <div>
+        <p>High yield drove <em>63–81%</em> of adoption decisions across districts. Lodging was the #1 barrier in every market surveyed.</p>
+        <p>Company-driven initiatives — demos, field days, influencer networks — drove <em>62–70%</em> of farmers' shift to hybrids. Market leaders held <em>60%+ share</em> in each district, creating clear competitive moats to navigate.</p>
+      </div>
+    </div>
+
+    <div class="section-head"><h3>The <em>Output</em></h3><div class="section-num">04 / DELIVERABLES</div></div>
+    <div class="delivs">
+      <div class="deliv"><div class="deliv-num">D.01</div><div class="deliv-label">Market Sizing &amp; Acreage Model</div></div>
+      <div class="deliv"><div class="deliv-num">D.02</div><div class="deliv-label">Customer Segmentation</div></div>
+      <div class="deliv"><div class="deliv-num">D.03</div><div class="deliv-label">Adoption Curve Analysis</div></div>
+      <div class="deliv"><div class="deliv-num">D.04</div><div class="deliv-label">Competitive Mapping</div></div>
+      <div class="deliv"><div class="deliv-num">D.05</div><div class="deliv-label">Channel &amp; Margin Analysis</div></div>
+      <div class="deliv"><div class="deliv-num">D.06</div><div class="deliv-label">4P Strategy per District</div></div>
+      <div class="deliv"><div class="deliv-num">D.07</div><div class="deliv-label">SWOT Analysis</div></div>
+      <div class="deliv"><div class="deliv-num">D.08</div><div class="deliv-label">STP Recommendation</div></div>
+      <div class="deliv"><div class="deliv-num">D.09</div><div class="deliv-label">Entry Strategy &amp; Roadmap</div></div>
+    </div>
+
+    <div class="section-head"><h3>The <em>Toolkit</em></h3><div class="section-num">05 / METHODS</div></div>
+    <div class="toolkit">
+      <div class="tag-row">
+        <div class="tag-label">Research</div>
+        <span class="tag accent">Primary Survey</span>
+        <span class="tag">Stratified Sampling</span>
+        <span class="tag">Cluster Analysis</span>
+      </div>
+      <div class="tag-row">
+        <div class="tag-label">Strategy</div>
+        <span class="tag pop">Market Sizing</span>
+        <span class="tag">SWOT Analysis</span>
+        <span class="tag">4P Marketing Mix</span>
+      </div>
+      <div class="tag-row">
+        <div class="tag-label">Frameworks</div>
+        <span class="tag">STP Framework</span>
+        <span class="tag">NPS Analysis</span>
+        <span class="tag">Channel Analysis</span>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- TO ADD A NEW PROJECT:                                         -->
+  <!-- Copy the entire <article class="project">...</article> above   -->
+  <!-- and paste it here. Update Project 02, meta fields, and all    -->
+  <!-- content. The divider between projects renders automatically.  -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">Let's build something <em>measurable.</em></div>
+      <div>
+        <div class="foot-label">Get in touch</div>
+        <div class="foot-val"><a href="mailto:shrutikunwar029@gmail.com">shrutikunwar029@gmail.com</a></div>
+      </div>
+      <div>
+        <div class="foot-label">LinkedIn</div>
+        <div class="foot-val"><a href="https://www.linkedin.com/in/shrutikunwar" target="_blank">www.linkedin.com/in/shrutikunwar</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Shruti Kunwar</span>
+      <span>© 2026 — All rights reserved</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
