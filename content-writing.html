@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Writing — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#C83232;
+  --red-deep:#9E1B1B;
+  --red-dark:#6B1111;
+  --coral:#E8574A;
+  --blush:#F5E0D8;
+  --cream:#FBF6F2;
+  --ink:#1A0A0A;
+  --ink-soft:rgba(26,10,10,0.7);
+  --ink-mute:rgba(26,10,10,0.45);
+  --white:#FFFFFF;
+  --rule:rgba(26,10,10,0.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;line-height:1.55;-webkit-font-smoothing:antialiased}
+
+/* ═══ HERO — bold red ═══ */
+.hero{
+  background:var(--red);
+  color:var(--white);
+  padding:2rem 2.5rem 4rem;
+  position:relative;
+  overflow:hidden;
+  min-height:55vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 60px,
+      rgba(255,255,255,0.018) 60px,
+      rgba(255,255,255,0.018) 61px
+    );
+  pointer-events:none;
+}
+.hero::after{display:none}
+
+.hero-nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+.back{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--white);
+  text-decoration:none;
+  padding:0.6rem 1.2rem;
+  border:1px solid rgba(255,255,255,0.4);
+  border-radius:100px;
+  transition:all 0.25s;
+}
+.back:hover{background:var(--white);color:var(--red)}
+
+.hero-center{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  margin:0 auto;
+  text-align:center;
+  padding:3rem 0;
+}
+
+/* SVG pen icon */
+.hero-icon{
+  margin:0 auto 2rem;
+  width:80px;height:80px;
+}
+.hero-icon svg{
+  width:100%;height:100%;
+}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-weight:900;
+  font-size:clamp(3rem,10vw,7rem);
+  line-height:0.9;
+  letter-spacing:-0.04em;
+  margin-bottom:1.5rem;
+}
+.hero h1 em{
+  font-style:italic;
+  font-weight:400;
+  display:block;
+  font-size:0.85em;
+}
+.hero-sub{
+  font-family:'Playfair Display',serif;
+  font-weight:400;
+  font-style:italic;
+  font-size:clamp(1.1rem,2.2vw,1.6rem);
+  line-height:1.4;
+  color:rgba(255,255,255,0.88);
+  max-width:600px;
+  margin:0 auto 2rem;
+}
+.hero-meta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.55);
+}
+
+.hero-bottom{
+  position:relative;z-index:2;
+  display:flex;
+  justify-content:center;
+  gap:4rem;
+  padding-top:2rem;
+}
+.hero-stat{text-align:center}
+.hero-stat-val{
+  font-family:'Playfair Display',serif;
+  font-weight:800;
+  font-size:2.2rem;
+  line-height:1;
+  color:var(--white);
+}
+.hero-stat-lbl{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,255,255,0.55);
+  margin-top:0.5rem;
+}
+
+/* ═══ WHAT I WRITE — three pillars ═══ */
+.pillars{
+  padding:5rem 2.5rem;
+  max-width:1100px;
+  margin:0 auto;
+  text-align:center;
+}
+.pillars-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:0.5rem;
+}
+.pillars-title{
+  font-family:'Playfair Display',serif;
+  font-weight:800;
+  font-size:2rem;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+  margin-bottom:3.5rem;
+}
+.pillars-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:3rem;
+  text-align:center;
+}
+.pillar{}
+.pillar-icon{
+  width:48px;height:48px;
+  margin:0 auto 1.2rem;
+}
+.pillar-icon svg{
+  width:100%;height:100%;
+  stroke:var(--red);
+  stroke-width:1.5;
+  fill:none;
+}
+.pillar h3{
+  font-family:'Playfair Display',serif;
+  font-weight:700;
+  font-size:1.2rem;
+  letter-spacing:-0.01em;
+  color:var(--ink);
+  margin-bottom:0.6rem;
+}
+.pillar p{
+  font-size:0.9rem;
+  line-height:1.6;
+  color:var(--ink-soft);
+}
+
+/* ═══ PUBLISHED WORK — article cards ═══ */
+.published{
+  padding:4rem 2.5rem 5rem;
+  max-width:1100px;
+  margin:0 auto;
+}
+.pub-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  margin-bottom:2.5rem;
+  padding-bottom:1rem;
+  border-bottom:1px solid var(--rule);
+}
+.pub-head h2{
+  font-family:'Playfair Display',serif;
+  font-weight:800;
+  font-size:2rem;
+  letter-spacing:-0.02em;
+  color:var(--ink);
+}
+.pub-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--ink-mute);
+}
+
+.articles{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:0;
+  border-top:1px solid var(--rule);
+  border-left:1px solid var(--rule);
+}
+.article{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:2rem 2rem 1.8rem;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  text-decoration:none;
+  color:var(--ink);
+  transition:background 0.3s, transform 0.2s;
+  min-height:200px;
+  position:relative;
+}
+.article:hover{
+  background:var(--red);
+  color:var(--white);
+}
+.article-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:1rem;
+}
+.article-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.65rem;letter-spacing:0.18em;
+  color:var(--red);
+  transition:color 0.3s;
+}
+.article:hover .article-num{color:rgba(255,255,255,0.6)}
+.article-arrow{
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;
+  color:var(--red);
+  transition:color 0.3s, transform 0.2s;
+}
+.article:hover .article-arrow{color:var(--white);transform:translate(3px,-3px)}
+
+.article-title{
+  font-family:'Playfair Display',serif;
+  font-weight:700;
+  font-size:1.25rem;
+  line-height:1.2;
+  letter-spacing:-0.015em;
+  margin-bottom:0.8rem;
+}
+.article-type{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--ink-mute);
+  transition:color 0.3s;
+}
+.article:hover .article-type{color:rgba(255,255,255,0.5)}
+.article-pub{
+  font-family:'DM Sans',sans-serif;
+  font-size:0.82rem;
+  color:var(--ink-soft);
+  margin-top:auto;
+  padding-top:1rem;
+  transition:color 0.3s;
+}
+.article:hover .article-pub{color:rgba(255,255,255,0.7)}
+
+/* ═══ CONTACT STRIP ═══ */
+.contact-strip{
+  background:var(--red);
+  color:var(--white);
+  padding:4rem 2.5rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.contact-strip::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,transparent 80px,
+      rgba(255,255,255,0.015) 80px,rgba(255,255,255,0.015) 81px
+    );
+  pointer-events:none;
+}
+.contact-inner{
+  position:relative;z-index:1;
+  max-width:700px;
+  margin:0 auto;
+}
+.contact-headline{
+  font-family:'Playfair Display',serif;
+  font-weight:800;
+  font-size:clamp(1.6rem,3.5vw,2.5rem);
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  margin-bottom:2rem;
+}
+.contact-headline em{
+  font-style:italic;font-weight:400;
+}
+.contact-links{
+  display:flex;
+  justify-content:center;
+  gap:2rem;
+  flex-wrap:wrap;
+}
+.contact-links a{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--white);
+  text-decoration:none;
+  padding:0.7rem 1.5rem;
+  border:1px solid rgba(255,255,255,0.4);
+  border-radius:100px;
+  transition:all 0.25s;
+}
+.contact-links a:hover{
+  background:var(--white);
+  color:var(--red);
+}
+
+/* ═══ FOOTER ═══ */
+footer{
+  padding:2.5rem;
+  text-align:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;
+  color:var(--ink-mute);
+  letter-spacing:0.08em;
+  border-top:1px solid var(--rule);
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:800px){
+  .pillars-grid{grid-template-columns:1fr;gap:2.5rem}
+  .articles{grid-template-columns:1fr}
+  .hero-bottom{gap:2rem;flex-wrap:wrap}
+  .hero h1{font-size:clamp(2.5rem,12vw,4.5rem)}
+}
+@media(max-width:500px){
+  .hero{padding:1.5rem 1.25rem 3rem}
+  .pillars{padding:3rem 1.25rem}
+  .published{padding:0 1.25rem 3rem}
+  .contact-strip{padding:3rem 1.25rem}
+  .contact-links{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <nav class="hero-nav">
+    <a href="index.html" class="back">← Back to Portfolio</a>
+  </nav>
+
+  <div class="hero-center">
+    <div class="hero-icon">
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M48 8l8 8"/>
+        <path d="M16 40L48 8l8 8L24 48H16V40z"/>
+        <line x1="12" y1="56" x2="36" y2="56"/>
+      </svg>
+    </div>
+    <h1>Content<em>Writing</em></h1>
+    <p class="hero-sub">Every dataset has a human story waiting to be told. I find it, shape it, and make sure people actually want to read it.</p>
+    <p class="hero-meta">Content Writing Intern · Daniels School of Business · Purdue University · Nov 2025 – Apr 2026</p>
+  </div>
+
+</section>
+
+<!-- ═══ PUBLISHED WORK ═══ -->
+<section class="published">
+  <div class="pub-head">
+    <h2>Published Work</h2>
+    <div class="pub-num">6 Articles</div>
+  </div>
+
+  <div class="articles">
+    <a href="https://business.purdue.edu/graduate-programs/blog/posts/is-the-one-year-mba-right-for-you.php" target="_blank" class="article">
+      <div class="article-top">
+        <span class="article-num">01</span>
+        <span class="article-arrow">↗</span>
+      </div>
+      <div>
+        <h3 class="article-title">Is the One-Year MBA Right For You?</h3>
+        <div class="article-type">Program Guide</div>
+      </div>
+      <div class="article-pub">Purdue Daniels School Blog</div>
+    </a>
+
+    <a href="https://business.purdue.edu/graduate-programs/blog/posts/find-and-navigate-tuition-assistance.php" target="_blank" class="article">
+      <div class="article-top">
+        <span class="article-num">02</span>
+        <span class="article-arrow">↗</span>
+      </div>
+      <div>
+        <h3 class="article-title">Strategic Guide to Tuition Reimbursement</h3>
+        <div class="article-type">Decision Support</div>
+      </div>
+      <div class="article-pub">Purdue Daniels School Blog</div>
+    </a>
+
+    <a href="https://business.purdue.edu/graduate-programs/blog/posts/from-phd-student-to-lecturer.php" target="_blank" class="article">
+      <div class="article-top">
+        <span class="article-num">03</span>
+        <span class="article-arrow">↗</span>
+      </div>
+      <div>
+        <h3 class="article-title">From PhD Student to Lecturer: Abi Banan's Journey</h3>
+        <div class="article-type">Student Profile</div>
+      </div>
+      <div class="article-pub">Purdue Daniels School Blog</div>
+    </a>
+
+    <a href="https://business.purdue.edu/graduate-programs/blog/posts/sisters-in-business-hr-marketing-daniels-school-of-business.php" target="_blank" class="article">
+      <div class="article-top">
+        <span class="article-num">04</span>
+        <span class="article-arrow">↗</span>
+      </div>
+      <div>
+        <h3 class="article-title">Sisters in Business: HR &amp; Marketing at Daniels</h3>
+        <div class="article-type">Student Profile</div>
+      </div>
+      <div class="article-pub">Purdue Daniels School Blog</div>
+    </a>
+
+    <a href="https://business.purdue.edu/graduate-programs/blog/posts/what-makes-a-good-marketer.php" target="_blank" class="article">
+      <div class="article-top">
+        <span class="article-num">05</span>
+        <span class="article-arrow">↗</span>
+      </div>
+      <div>
+        <h3 class="article-title">What Makes a Good Marketer?</h3>
+        <div class="article-type">Long-Form Story</div>
+      </div>
+      <div class="article-pub">Purdue Daniels School Blog</div>
+    </a>
+
+    <a href="https://business.purdue.edu/graduate-programs/blog/posts/human-capital-consulting-experience.php" target="_blank" class="article">
+      <div class="article-top">
+        <span class="article-num">06</span>
+        <span class="article-arrow">↗</span>
+      </div>
+      <div>
+        <h3 class="article-title">Human Capital Consulting Experience</h3>
+        <div class="article-type">Student Profile</div>
+      </div>
+      <div class="article-pub">Purdue Daniels School Blog</div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact-strip">
+  <div class="contact-inner">
+    <h3 class="contact-headline">Need a storyteller who turns <em>data into narratives</em> and <em>insights into impact?</em></h3>
+    <div class="contact-links">
+      <a href="mailto:shrutikunwar029@gmail.com">Email Me</a>
+      <a href="https://www.linkedin.com/in/shrutikunwar" target="_blank">LinkedIn</a>
+      <a href="index.html">Full Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Shruti Kunwar — © 2026</p>
+</footer>
+
+</body>
+</html>
