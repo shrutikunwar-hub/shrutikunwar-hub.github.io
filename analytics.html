@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --terra:#9A3412;
+  --terra-deep:#7C2D12;
+  --terra-dark:#5C1D0C;
+  --burnt:#431407;
+  --warm-cream:#FFF7ED;
+  --peach:#FDBA74;
+  --sand:#FED7AA;
+  --ink:#3B1106;
+  --ink-soft:rgba(59,17,6,0.7);
+  --ink-mute:rgba(59,17,6,0.45);
+  --rule:rgba(255,247,237,0.15);
+  --rule-dark:rgba(59,17,6,0.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--terra);color:var(--warm-cream);overflow-x:hidden;line-height:1.55;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+
+/* ═══ NAV ═══ */
+.top-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 2.5rem;
+}
+.back{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--warm-cream);text-decoration:none;
+  padding:0.6rem 1.2rem;
+  border:1px solid rgba(255,247,237,0.3);
+  border-radius:100px;
+  transition:all 0.25s;
+}
+.back:hover{background:var(--warm-cream);color:var(--terra)}
+.nav-right{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(255,247,237,0.4);
+}
+
+/* ═══ HERO ═══ */
+.hero{
+  padding:4rem 0 3rem;
+  position:relative;
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--peach);
+  margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--peach)}
+.hero h1{
+  font-family:'Fraunces',serif;
+  font-weight:900;
+  font-size:clamp(3.5rem,10vw,7rem);
+  line-height:0.9;
+  letter-spacing:-0.04em;
+  margin-bottom:1.5rem;
+}
+.hero h1 em{
+  font-style:italic;font-weight:400;
+  color:var(--sand);
+}
+.hero-sub{
+  font-family:'Fraunces',serif;
+  font-weight:400;
+  font-size:clamp(1rem,2vw,1.35rem);
+  line-height:1.5;
+  color:rgba(255,247,237,0.75);
+  max-width:620px;
+  margin-bottom:1rem;
+}
+.hero-personal{
+  font-family:'Fraunces',serif;
+  font-weight:400;
+  font-style:italic;
+  font-size:clamp(0.95rem,1.8vw,1.15rem);
+  line-height:1.5;
+  color:var(--peach);
+  max-width:580px;
+  margin-bottom:3rem;
+}
+
+/* ═══ PROJECT TILES ═══ */
+.tiles-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0.6rem;
+}
+.tile{
+  padding:2.2rem 2rem 1.8rem;
+  min-height:320px;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+  transition:transform 0.25s cubic-bezier(0.16,1,0.3,1),box-shadow 0.25s;
+}
+.tile:hover{
+  transform:translateY(-5px);
+  box-shadow:0 20px 50px rgba(67,20,7,0.3);
+}
+.tile-top{
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.tile-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;letter-spacing:0.18em;font-weight:700;
+}
+.tile-arrow{
+  font-family:'Fraunces',serif;
+  font-size:1.4rem;line-height:1;
+  transition:transform 0.25s;
+  opacity:0.6;
+}
+.tile:hover .tile-arrow{transform:translate(4px,-4px);opacity:1}
+
+.tile-body{margin-top:auto}
+.tile-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;
+  opacity:0.55;
+  margin-bottom:0.8rem;
+}
+.tile-name{
+  font-family:'Fraunces',serif;
+  font-weight:700;
+  font-size:1.65rem;
+  line-height:1.05;
+  letter-spacing:-0.02em;
+  margin-bottom:0.6rem;
+}
+.tile-desc{
+  font-family:'DM Sans',sans-serif;
+  font-size:0.88rem;
+  line-height:1.55;
+  opacity:0.75;
+  margin-bottom:1rem;
+}
+.tile-tags{display:flex;flex-wrap:wrap;gap:0.35rem}
+.tile-tag{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;
+  padding:0.3rem 0.7rem;
+  border-radius:100px;
+  border:0.5px solid currentColor;
+  opacity:0.65;
+}
+.tile-cta{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;
+  display:flex;align-items:center;gap:0.5rem;
+  margin-top:1.2rem;
+  transition:gap 0.2s;
+  font-weight:700;
+}
+.tile:hover .tile-cta{gap:0.8rem}
+
+/* Tile 1 — darkest */
+.tile-01{background:var(--terra-deep);color:var(--warm-cream)}
+.tile-01 .tile-num{color:var(--peach)}
+.tile-01 .tile-arrow{color:var(--peach)}
+.tile-01 .tile-cta{color:var(--peach)}
+
+/* Tile 2 — mid (warm peach, distinct from bg) */
+.tile-02{background:#C2410C;color:var(--warm-cream)}
+.tile-02 .tile-num{color:var(--sand)}
+.tile-02 .tile-arrow{color:var(--sand)}
+.tile-02 .tile-cta{color:var(--sand)}
+
+/* Tile 3 — lightest */
+.tile-03{background:var(--sand);color:var(--terra-deep)}
+.tile-03 .tile-num{color:var(--terra)}
+.tile-03 .tile-arrow{color:var(--terra)}
+.tile-03 .tile-cta{color:var(--terra)}
+
+/* ═══ METRICS BAR ═══ */
+.metrics-bar{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  padding:2.5rem 0;
+  margin:4rem 0;
+}
+.metric{text-align:center}
+.metric-val{
+  font-family:'Fraunces',serif;
+  font-weight:800;
+  font-size:clamp(2rem,4vw,3rem);
+  letter-spacing:-0.03em;
+  line-height:1;
+  color:var(--warm-cream);
+}
+.metric:nth-child(2) .metric-val{color:var(--peach)}
+.metric-lbl{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,247,237,0.4);
+  margin-top:0.5rem;
+}
+
+/* ═══ WHAT DRIVES ME — personal section ═══ */
+.personal-section{
+  padding:0 0 4rem;
+  max-width:750px;
+}
+.personal-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--peach);
+  margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.personal-label::before{content:'';width:20px;height:1px;background:var(--peach)}
+.personal-quote{
+  font-family:'Fraunces',serif;
+  font-weight:700;
+  font-size:clamp(1.4rem,3vw,2.2rem);
+  line-height:1.2;
+  letter-spacing:-0.02em;
+  color:var(--warm-cream);
+  margin-bottom:1.2rem;
+}
+.personal-quote em{
+  font-style:italic;font-weight:400;
+  color:var(--peach);
+}
+.personal-body{
+  font-family:'DM Sans',sans-serif;
+  font-size:1rem;
+  line-height:1.75;
+  color:rgba(255,247,237,0.65);
+}
+
+/* ═══ FOOTER ═══ */
+footer{
+  padding:3rem 0 2.5rem;
+  border-top:1px solid var(--rule);
+  text-align:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;
+  color:rgba(255,247,237,0.3);
+  letter-spacing:0.08em;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:800px){
+  .tiles-grid{grid-template-columns:1fr}
+  .tile{min-height:auto;padding:1.8rem}
+  .metrics-bar{grid-template-columns:1fr;gap:1.5rem}
+}
+@media(max-width:500px){
+  .container{padding:0 1.25rem}
+  .top-nav{padding:1.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="index.html" class="back">← Portfolio</a>
+  <div class="nav-right">3 Projects</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Python · R · Statistical Modeling</div>
+    <h1>Ana<em>lytics</em></h1>
+    <p class="hero-sub">Data-driven projects spanning survey research, conjoint analysis, and reinforcement learning — built with Python, R, and rigorous statistical methods.</p>
+    <p class="hero-personal">I believe every dataset is a puzzle waiting to be cracked. These are some of the problems I loved solving.</p>
+  </div>
+</section>
+
+<!-- PROJECT TILES -->
+<section>
+  <div class="container">
+    <div class="tiles-grid">
+
+      <a href="analytics-citybus.html" class="tile tile-01">
+        <div class="tile-top">
+          <span class="tile-num">01</span>
+          <span class="tile-arrow">↗</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-label">Survey Research &amp; Statistical Analysis</div>
+          <h3 class="tile-name">CityBus Customer Satisfaction</h3>
+          <p class="tile-desc">End-to-end survey research using Qualtrics — chi-square tests, ANOVA, factor analysis, and ordinal regression to evaluate student satisfaction.</p>
+          <div class="tile-tags">
+            <span class="tile-tag">Python</span>
+            <span class="tile-tag">Qualtrics</span>
+            <span class="tile-tag">ANOVA</span>
+            <span class="tile-tag">Factor Analysis</span>
+          </div>
+          <div class="tile-cta">Read case study →</div>
+        </div>
+      </a>
+
+      <a href="analytics-conjoint.html" class="tile tile-02">
+        <div class="tile-top">
+          <span class="tile-num">02</span>
+          <span class="tile-arrow">↗</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-label">Choice Modeling</div>
+          <h3 class="tile-name">Amazon Membership Conjoint</h3>
+          <p class="tile-desc">Conjoint analysis evaluating consumer preferences for Amazon membership tiers — part-worth utilities, price sensitivity, market share simulation.</p>
+          <div class="tile-tags">
+            <span class="tile-tag">Python</span>
+            <span class="tile-tag">Conjoint</span>
+            <span class="tile-tag">WTP</span>
+            <span class="tile-tag">Simulation</span>
+          </div>
+          <div class="tile-cta">Read case study →</div>
+        </div>
+      </a>
+
+      <a href="analytics-mab.html" class="tile tile-03">
+        <div class="tile-top">
+          <span class="tile-num">03</span>
+          <span class="tile-arrow">↗</span>
+        </div>
+        <div class="tile-body">
+          <div class="tile-label">Reinforcement Learning</div>
+          <h3 class="tile-name">Pricing Optimization (MAB)</h3>
+          <p class="tile-desc">Multi-Armed Bandit algorithms for dynamic pricing — Thompson Sampling, UCB, and Epsilon-Greedy to maximize revenue.</p>
+          <div class="tile-tags">
+            <span class="tile-tag">Python</span>
+            <span class="tile-tag">RL</span>
+            <span class="tile-tag">Thompson</span>
+            <span class="tile-tag">UCB</span>
+          </div>
+          <div class="tile-cta">Read case study →</div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- METRICS -->
+    <div class="metrics-bar">
+      <div class="metric"><div class="metric-val">6+</div><div class="metric-lbl">Statistical Methods</div></div>
+      <div class="metric"><div class="metric-val">3</div><div class="metric-lbl">RL Algorithms</div></div>
+      <div class="metric"><div class="metric-val">E2E</div><div class="metric-lbl">Research Design</div></div>
+    </div>
+
+    <!-- PERSONAL TOUCH -->
+    <div class="personal-section">
+      <div class="personal-label">Why Analytics</div>
+      <p class="personal-quote">For me, data isn't numbers on a screen — it's the <em>unspoken story</em> behind every business decision.</p>
+      <p class="personal-body">I'm drawn to the moment when a messy dataset starts revealing patterns you didn't expect. Whether it's finding that bus frequency matters more than route coverage, or that a Thompson Sampler outperforms your gut — that's the work I find most rewarding. Each project here is a problem I genuinely enjoyed cracking.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Shruti Kunwar — © 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
