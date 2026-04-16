@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales &amp; Territory — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#111111;
+  --charcoal:#1C1C1C;
+  --warm:#2A2A28;
+  --sand:#E8E0D0;
+  --cream:#F5F1EB;
+  --gold:#C9A84C;
+  --gold-dim:rgba(201,168,76,0.5);
+  --rule-light:rgba(255,255,255,0.08);
+  --text-dim:rgba(245,241,235,0.6);
+  --text-mute:rgba(245,241,235,0.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--cream);overflow-x:hidden;line-height:1.55;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:0 2.5rem}
+
+/* ═══ NAV ═══ */
+.top-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 2.5rem;
+}
+.back{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--cream);text-decoration:none;
+  padding:0.6rem 1.2rem;
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:100px;
+  transition:all 0.25s;
+}
+.back:hover{background:var(--cream);color:var(--black)}
+.nav-counter{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.75rem;letter-spacing:0.15em;
+  color:var(--text-mute);
+}
+.nav-counter .curr{color:var(--gold)}
+
+/* ═══ HERO SECTION ═══ */
+.hero{
+  padding:3rem 0 0;
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:1rem;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold)}
+.hero h1{
+  font-family:'Fraunces',serif;
+  font-weight:900;
+  font-size:clamp(3rem,8vw,5.5rem);
+  line-height:0.92;
+  letter-spacing:-0.04em;
+  margin-bottom:1.5rem;
+}
+.hero h1 em{
+  font-style:italic;font-weight:400;
+  color:var(--gold);
+  display:block;
+}
+.hero-sub{
+  font-family:'Fraunces',serif;
+  font-weight:400;
+  font-size:clamp(1rem,2vw,1.35rem);
+  line-height:1.5;
+  color:var(--text-dim);
+  max-width:650px;
+  margin-bottom:3rem;
+}
+
+/* ═══ SLIDESHOW ═══ */
+.slideshow{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/8;
+  background:var(--charcoal);
+  overflow:hidden;
+  margin-bottom:1.5rem;
+}
+.slideshow img{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity 0.8s ease-in-out;
+}
+.slideshow img.active{opacity:1}
+
+.slide-controls{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1.5rem;
+  margin-bottom:1rem;
+}
+.slide-dots{
+  display:flex;gap:6px;
+}
+.slide-dot{
+  width:24px;height:3px;
+  background:rgba(255,255,255,0.18);
+  border-radius:2px;
+  cursor:pointer;
+  transition:all 0.3s;
+}
+.slide-dot.active{
+  background:var(--gold);
+  width:40px;
+}
+.slide-counter{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.75rem;letter-spacing:0.15em;
+  color:var(--text-mute);
+}
+.slide-counter .curr{color:var(--gold)}
+
+/* ═══ STATS ROW ═══ */
+.stats-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border-top:1px solid var(--rule-light);
+  border-bottom:1px solid var(--rule-light);
+  padding:2rem 0;
+  margin:2rem 0 0;
+}
+.stat{text-align:center}
+.stat-val{
+  font-family:'Fraunces',serif;
+  font-weight:800;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  letter-spacing:-0.03em;
+  line-height:1;
+  color:var(--cream);
+}
+.stat:nth-child(1) .stat-val,.stat:nth-child(3) .stat-val{color:var(--gold)}
+.stat-lbl{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--text-mute);
+  margin-top:0.5rem;
+}
+
+/* ═══ SECTION LABELS ═══ */
+.section-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);
+  margin:4rem 0 1.5rem;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.section-label::before{content:'';width:20px;height:1px;background:var(--gold)}
+
+/* ═══ MAP ═══ */
+.map-wrap{
+  width:100%;
+  aspect-ratio:16/7;
+  overflow:hidden;
+  position:relative;
+  margin-bottom:0.5rem;
+}
+.map-wrap iframe{
+  width:100%;height:100%;
+  border:none;
+  filter:saturate(0.6) brightness(0.85) contrast(1.1);
+}
+.map-caption{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;letter-spacing:0.12em;
+  color:var(--text-mute);
+  margin-bottom:3rem;
+}
+
+/* ═══ STORY BLOCKS ═══ */
+.story{
+  padding:2rem 0;
+  border-top:1px solid var(--rule-light);
+}
+.story:last-child{border-bottom:1px solid var(--rule-light)}
+.story h3{
+  font-family:'Fraunces',serif;
+  font-weight:700;font-size:1.5rem;
+  letter-spacing:-0.02em;
+  color:var(--cream);
+  margin-bottom:0.8rem;
+}
+.story p{
+  font-size:0.95rem;line-height:1.85;
+  color:var(--text-dim);
+  max-width:800px;
+}
+.hl{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.9rem;
+  color:var(--gold);
+  font-weight:700;
+}
+
+/* ═══ CAPABILITY TILES ═══ */
+.cap-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:3px;
+  margin-top:1.5rem;
+}
+.cap{
+  padding:2.2rem 2rem;
+  min-height:180px;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  transition:transform 0.2s;
+}
+.cap:hover{transform:translateY(-2px)}
+.cap-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;letter-spacing:0.18em;
+  margin-bottom:1.2rem;
+}
+.cap h4{
+  font-family:'Fraunces',serif;
+  font-weight:700;font-size:1.25rem;
+  letter-spacing:-0.015em;
+  margin-bottom:0.5rem;
+}
+.cap p{
+  font-size:0.9rem;line-height:1.6;
+  opacity:0.78;
+}
+
+.cap-a{background:var(--gold);color:var(--black)}
+.cap-a .cap-num{color:var(--black);opacity:0.4}
+.cap-b{background:var(--sand);color:var(--black)}
+.cap-b .cap-num{color:var(--gold)}
+.cap-c{background:var(--warm);color:var(--cream)}
+.cap-c .cap-num{color:var(--gold)}
+.cap-d{background:var(--black);color:var(--cream);border:1px solid var(--rule-light)}
+.cap-d .cap-num{color:var(--gold)}
+
+/* ═══ FOOTER ═══ */
+footer{
+  padding:3rem 0 2.5rem;
+  margin-top:5rem;
+  border-top:1px solid var(--rule-light);
+  text-align:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;color:var(--text-mute);
+  letter-spacing:0.08em;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:800px){
+  .stats-row{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+  .cap-grid{grid-template-columns:1fr}
+  .slideshow{aspect-ratio:16/9}
+  .slide-dots{display:none}
+}
+@media(max-width:500px){
+  .container{padding:0 1.25rem}
+  .top-nav{padding:1.25rem}
+  .hero h1{font-size:clamp(2.5rem,10vw,4rem)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="index.html" class="back">← Portfolio</a>
+  <div class="nav-counter"><span class="curr" id="navCounter">01</span> / 10</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">BASF · 2020 – 2022</div>
+    <h1>Sales &amp;<br><em>Territory</em></h1>
+    <p class="hero-sub">Led a high-performing sales team managing 150+ distributor accounts across India — exceeding targets by 120% for three consecutive years.</p>
+
+    <!-- SLIDESHOW — images cycle here -->
+    <div class="slideshow" id="slideshow">
+      <img src="assets/sales_field1.jpg" alt="Field activation 1" class="active">
+      <img src="assets/sales_field2.jpg" alt="Field activation 2">
+      <img src="assets/sales_field3.jpg" alt="Field activation 3">
+      <img src="assets/sales_field4.jpg" alt="Field activation 4">
+      <img src="assets/sales_field5.jpg" alt="Field activation 5">
+      <img src="assets/sales_field6.jpg" alt="Field activation 6">
+      <img src="assets/sales_field7.jpg" alt="Field activation 7">
+      <img src="assets/sales_field8.jpg" alt="Field activation 8">
+      <img src="assets/sales_field9.jpg" alt="Field activation 9">
+      <img src="assets/sales_field10.jpg" alt="Field activation 10">
+    </div>
+
+    <div class="slide-controls">
+      <div class="slide-dots" id="slideDots">
+        <div class="slide-dot active" data-i="0"></div>
+        <div class="slide-dot" data-i="1"></div>
+        <div class="slide-dot" data-i="2"></div>
+        <div class="slide-dot" data-i="3"></div>
+        <div class="slide-dot" data-i="4"></div>
+        <div class="slide-dot" data-i="5"></div>
+        <div class="slide-dot" data-i="6"></div>
+        <div class="slide-dot" data-i="7"></div>
+        <div class="slide-dot" data-i="8"></div>
+        <div class="slide-dot" data-i="9"></div>
+      </div>
+      <div class="slide-counter"><span class="curr" id="slideNum">01</span> / 10</div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val">$1.5M</div><div class="stat-lbl">Cumulative Revenue</div></div>
+      <div class="stat"><div class="stat-val">120%</div><div class="stat-lbl">Target Achievement</div></div>
+      <div class="stat"><div class="stat-val">150+</div><div class="stat-lbl">Accounts Managed</div></div>
+      <div class="stat"><div class="stat-val">60%</div><div class="stat-lbl">Trial-to-Adoption</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TERRITORY MAP -->
+<section>
+  <div class="container">
+    <div class="section-label">01 / Territory</div>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118147.25703972569!2d70.7307965!3d22.2734719!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959ca248c83df2d%3A0x1627e30a54e4b90c!2sRajkot%2C%20Gujarat%2C%20India!5e1!1m3!1e3!2b0!3a0&maptype=satellite" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <p class="map-caption">Territory base — Rajkot, Gujarat, India</p>
+  </div>
+</section>
+
+<!-- THE STORY -->
+<section>
+  <div class="container">
+    <div class="section-label">02 / The Story</div>
+
+    <div class="story">
+      <h3>The Role</h3>
+      <p>As Territory Manager (Senior Sales Executive) at BASF from July 2020 to December 2022, I led a team of <span class="hl">10 associates</span> and managed a portfolio of <span class="hl">150+ distributor and retail accounts</span>. Over three consecutive years, I exceeded annual sales targets by <span class="hl">120%</span>, generating <span class="hl">$1.5M in cumulative revenue growth</span>.</p>
+    </div>
+
+    <div class="story">
+      <h3>Data-Driven Sales Strategy</h3>
+      <p>Built a <span class="hl">multi-factor dealer segmentation model in Python</span>, scoring 250 accounts across three dimensions: historical sales performance, current purchase patterns, and market potential. This classified dealers into A/B/C/D priority tiers, enabling targeted resource allocation.</p>
+    </div>
+
+    <div class="story">
+      <h3>Field Activations</h3>
+      <p>Led <span class="hl">100+ field activation events</span> including farmer meetings, demo plot visits, and product launch events — achieving a <span class="hl">60% trial-to-adoption conversion rate</span> for new product launches.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section>
+  <div class="container">
+    <div class="section-label">03 / Capabilities</div>
+
+    <div class="cap-grid">
+      <div class="cap cap-a">
+        <div class="cap-num">01</div>
+        <div><h4>Team Leadership</h4><p>Managed and mentored a team of 10 field associates, coordinating daily routes, targets, and performance reviews.</p></div>
+      </div>
+      <div class="cap cap-b">
+        <div class="cap-num">02</div>
+        <div><h4>Dealer Segmentation</h4><p>Built Python model scoring 250 dealers across 3 factors to prioritize high-potential accounts.</p></div>
+      </div>
+      <div class="cap cap-c">
+        <div class="cap-num">03</div>
+        <div><h4>Revenue Growth</h4><p>Consistently exceeded annual targets by 120%, generating $1.5M cumulative revenue over 3 years.</p></div>
+      </div>
+      <div class="cap cap-d">
+        <div class="cap-num">04</div>
+        <div><h4>New Product Launches</h4><p>Achieved 60% trial-to-adoption rate through 100+ field events, demo plots, and farmer meetings.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Shruti Kunwar — © 2026</p>
+  </div>
+</footer>
+
+<script>
+const slides = document.querySelectorAll('#slideshow img');
+const dots = document.querySelectorAll('.slide-dot');
+const slideNum = document.getElementById('slideNum');
+const navCounter = document.getElementById('navCounter');
+let current = 0;
+const total = slides.length;
+
+function goTo(i) {
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = i;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+  const num = String(current + 1).padStart(2, '0');
+  slideNum.textContent = num;
+  navCounter.textContent = num;
+}
+
+// Auto-advance: hold 5 seconds, quick fade to next
+let timer = setInterval(() => goTo((current + 1) % total), 5000);
+
+// Click dots to jump
+dots.forEach(d => {
+  d.addEventListener('click', () => {
+    clearInterval(timer);
+    goTo(parseInt(d.dataset.i));
+    timer = setInterval(() => goTo((current + 1) % total), 5000);
+  });
+});
+</script>
+</body>
+</html>
