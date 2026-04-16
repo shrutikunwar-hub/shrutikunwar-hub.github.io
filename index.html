@@ -89,6 +89,238 @@
   .kpi-spark{display:flex;align-items:flex-end;gap:3px;height:28px;margin-top:0.7rem}
   .kpi-spark-bar{width:5px;border-radius:3px;animation:growBar 1.5s ease-out forwards;transform-origin:bottom;transform:scaleY(0)}
   @keyframes growBar{to{transform:scaleY(1)}}
+
+  /* ═══ SECTION HEADERS ═══ */
+  .section-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:3rem}
+  .section-tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--magenta);white-space:nowrap}
+  .section-header h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--pink)}
+  .section-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+
+  /* ═══ EXPERIENCE TIMELINE ═══ */
+  .timeline{position:relative;padding-left:2.5rem}
+  .timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--magenta),var(--pink),var(--orange),transparent)}
+  .tl-item{position:relative;margin-bottom:2.5rem}
+  .tl-item:last-child{margin-bottom:0}
+  .tl-dot{position:absolute;left:-2.5rem;top:8px;width:18px;height:18px;border-radius:50%;border:2.5px solid;display:flex;align-items:center;justify-content:center;background:var(--bg)}
+  .tl-dot::after{content:'';width:6px;height:6px;border-radius:50%}
+  .tl-item:nth-child(1) .tl-dot{border-color:var(--magenta)}.tl-item:nth-child(1) .tl-dot::after{background:var(--magenta)}
+  .tl-item:nth-child(2) .tl-dot{border-color:var(--pink)}.tl-item:nth-child(2) .tl-dot::after{background:var(--pink)}
+  .tl-item:nth-child(3) .tl-dot{border-color:var(--orange)}.tl-item:nth-child(3) .tl-dot::after{background:var(--orange)}
+  .tl-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;transition:all 0.35s}
+  .tl-card:hover{border-color:var(--border-hover);box-shadow:0 12px 40px rgba(252,21,119,0.06)}
+  .tl-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.6rem}
+  .tl-role{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;color:var(--pink)}
+  .tl-date{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:1px;color:var(--magenta);padding:0.3rem 0.8rem;background:var(--magenta-glow);border-radius:20px;white-space:nowrap}
+  .tl-company{font-size:0.9rem;color:var(--orange);font-weight:700;margin-bottom:0.8rem}
+  .tl-highlights{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+  .tl-highlights li{font-size:0.88rem;color:var(--text-mid);line-height:1.7;padding-left:1.2rem;position:relative}
+  .tl-highlights li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--pink)}
+  .tl-metric{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.78rem;font-weight:700;color:var(--magenta)}
+
+  /* ═══ SKILLS TAGS ═══ */
+  .skills-section{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem}
+  .skill-group{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;transition:all 0.35s;position:relative;overflow:hidden}
+  .skill-group:hover{border-color:var(--border-hover);transform:translateY(-3px);box-shadow:0 12px 30px rgba(252,21,119,0.06)}
+  .skill-group::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+  .skill-group:nth-child(1)::before{background:linear-gradient(90deg,var(--magenta),var(--orange))}
+  .skill-group:nth-child(2)::before{background:var(--pink)}
+  .skill-group:nth-child(3)::before{background:linear-gradient(90deg,var(--orange),var(--magenta))}
+  .skill-group-title{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.5rem}
+  .skill-group-icon{font-size:1.1rem}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+  .skill-tag{font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.5px;padding:0.45rem 1rem;border-radius:10px;transition:all 0.3s;cursor:default;font-weight:500}
+  .tag-magenta{background:var(--magenta-glow);color:var(--magenta);border:1.5px solid rgba(252,21,119,0.2)}
+  .tag-magenta:hover{background:rgba(252,21,119,0.18);border-color:var(--magenta);transform:translateY(-1px)}
+  .tag-blue{background:var(--pink-glow);color:var(--pink);border:1.5px solid rgba(245,176,194,0.15)}
+  .tag-blue:hover{background:rgba(245,176,194,0.15);border-color:var(--pink);transform:translateY(-1px)}
+  .tag-orange{background:var(--orange-glow);color:var(--orange);border:1.5px solid rgba(235,52,2,0.15)}
+  .tag-orange:hover{background:rgba(235,52,2,0.18);border-color:var(--orange);transform:translateY(-1px)}
+
+  /* ═══ PROJECTS ═══ */
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem}
+  .project-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.4s}
+  .project-card:hover{transform:translateY(-5px);border-color:var(--border-hover);box-shadow:0 20px 50px rgba(252,21,119,0.08)}
+  .project-visual{height:180px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .project-visual svg{width:100%;height:100%}
+  .project-body{padding:1.8rem}
+  .project-meta{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem}
+  .project-type{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:1.5px;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:6px;font-weight:700}
+  .type-marketing{background:var(--magenta-glow);color:var(--magenta)}
+  .type-ml{background:var(--pink-glow);color:var(--pink)}
+  .type-research{background:var(--orange-glow);color:var(--orange)}
+  .project-metric{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-dim)}
+  .project-body h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;margin-bottom:0.6rem;color:var(--pink)}
+  .project-body p{font-size:0.88rem;color:var(--text-dim);line-height:1.7;margin-bottom:1.2rem}
+  .project-stack{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem}
+  .stack-tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.5px;background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:0.28rem 0.65rem;border-radius:6px;color:var(--text-dim)}
+  .project-links{display:flex;gap:0.6rem}
+  .project-link{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.5px;color:var(--magenta);text-decoration:none;padding:0.4rem 1rem;border:1.5px solid rgba(252,21,119,0.25);border-radius:8px;transition:all 0.3s}
+  .project-link:hover{border-color:var(--magenta);background:var(--magenta-glow)}
+
+  /* ═══ EDUCATION ═══ */
+  .edu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .edu-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;transition:all 0.35s;position:relative;overflow:hidden}
+  .edu-card:hover{border-color:var(--border-hover);transform:translateY(-3px)}
+  .edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+  .edu-card:nth-child(1)::before{background:linear-gradient(90deg,var(--magenta),var(--orange))}
+  .edu-card:nth-child(2)::before{background:var(--pink)}
+  .edu-card:nth-child(3)::before{background:var(--orange)}
+  .edu-icon{font-size:2rem;margin-bottom:1rem}
+  .edu-degree{font-family:'Playfair Display',serif;font-weight:700;font-size:1.15rem;color:var(--pink);margin-bottom:0.3rem}
+  .edu-school{font-size:0.85rem;color:var(--text-mid);margin-bottom:0.3rem}
+  .edu-detail{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--text-dim);letter-spacing:1px}
+  .edu-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:1px;padding:0.25rem 0.7rem;border-radius:20px;margin-top:0.6rem;font-weight:700}
+
+  /* ═══ CONTACT TERMINAL ═══ */
+  .contact-terminal{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;max-width:720px;margin:0 auto}
+  .terminal-bar{display:flex;align-items:center;gap:8px;padding:1rem 1.5rem;background:var(--surface2);border-bottom:1px solid var(--border)}
+  .terminal-dot{width:11px;height:11px;border-radius:50%}
+  .terminal-dot:nth-child(1){background:var(--orange)}
+  .terminal-dot:nth-child(2){background:var(--pink)}
+  .terminal-dot:nth-child(3){background:var(--magenta)}
+  .terminal-title{flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-dim);letter-spacing:1px}
+  .terminal-body{padding:2rem;font-family:'JetBrains Mono',monospace;font-size:0.82rem;line-height:2.4}
+  .terminal-line{color:var(--text-mid)}
+  .terminal-line .cmd{color:var(--magenta);font-weight:700}
+  .terminal-line .str{color:var(--orange)}
+  .terminal-line .comment{color:var(--pink)}
+  .terminal-line a{color:var(--pink);text-decoration:none;border-bottom:1.5px dashed var(--pink);transition:all 0.3s}
+  .terminal-line a:hover{color:var(--magenta);border-color:var(--magenta)}
+  .cursor-blink{display:inline-block;width:8px;height:16px;background:var(--magenta);animation:cursorBlink 1s step-end infinite;vertical-align:middle;margin-left:4px}
+  @keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
+
+  /* ═══ FOOTER ═══ */
+  footer{text-align:center;padding:3rem 2rem;font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-dim);letter-spacing:1px;border-top:1px solid var(--border)}
+  footer span{color:var(--magenta)}
+
+  /* ═══ ANIMATIONS ═══ */
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  .reveal{opacity:0;transform:translateY(40px);transition:all 0.9s cubic-bezier(0.16,1,0.3,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  /* ═══ RESPONSIVE ═══ */
+  @media(max-width:900px){
+    .hero-inner{grid-template-columns:1fr;gap:2.5rem}
+    .skills-section{grid-template-columns:1fr}
+    .edu-grid{grid-template-columns:1fr}
+    .projects-grid{grid-template-columns:1fr}
+    .timeline{padding-left:2rem}
+    .tl-dot{left:-2rem}
+  }
+  @media(max-width:600px){
+    .container{padding:0 1rem}
+    nav{padding:0 1rem}
+    .nav-links a{padding:0.4rem 0.5rem;font-size:0.6rem}
+    .hero-dashboard{grid-template-columns:1fr 1fr}
+    .hero-cta{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<div class="glow-wrap">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="glow glow-3"></div>
+  <div class="glow glow-4"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <div class="status-dot"></div>
+    <div class="nav-label"><span>SHRUTI</span>.DASHBOARD</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Connect</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-query">SELECT * FROM shruti WHERE impact = 'high'</p>
+        <h1>Marketing Meets <em>Machine Learning</em></h1>
+        <p class="hero-desc">
+          MS Marketing &amp; MBA with 4+ years turning data into growth.
+          From launching a loyalty program that acquired 500K+ users to
+          segmenting 20M+ customers — I make numbers drive revenue.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-accent">&#9654; View My Work</a>
+          <a href="https://linkedin.com/in/shrutikunwar" target="_blank" class="btn btn-ghost">&#9741; LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="hero-dashboard">
+        <div class="kpi-card">
+          <div class="kpi-label">Users Acquired</div>
+          <div class="kpi-value" data-target="500" data-suffix="K+">0</div>
+          <div class="kpi-sub">Loyalty program, Year 1</div>
+          <div class="kpi-spark">
+            <div class="kpi-spark-bar" style="height:20%;background:var(--magenta);animation-delay:0.1s"></div>
+            <div class="kpi-spark-bar" style="height:35%;background:var(--magenta);animation-delay:0.2s"></div>
+            <div class="kpi-spark-bar" style="height:50%;background:var(--magenta);animation-delay:0.3s"></div>
+            <div class="kpi-spark-bar" style="height:45%;background:var(--magenta);animation-delay:0.4s"></div>
+            <div class="kpi-spark-bar" style="height:65%;background:var(--magenta);animation-delay:0.5s"></div>
+            <div class="kpi-spark-bar" style="height:80%;background:var(--magenta);animation-delay:0.6s"></div>
+            <div class="kpi-spark-bar" style="height:100%;background:var(--magenta);animation-delay:0.7s"></div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Customers Segmented</div>
+          <div class="kpi-value" data-target="20" data-suffix="M+">0</div>
+          <div class="kpi-sub">RFM modeling, SQL + Python</div>
+          <div class="kpi-spark">
+            <div class="kpi-spark-bar" style="height:40%;background:var(--pink);animation-delay:0.15s"></div>
+            <div class="kpi-spark-bar" style="height:55%;background:var(--pink);animation-delay:0.25s"></div>
+            <div class="kpi-spark-bar" style="height:70%;background:var(--pink);animation-delay:0.35s"></div>
+            <div class="kpi-spark-bar" style="height:60%;background:var(--pink);animation-delay:0.45s"></div>
+            <div class="kpi-spark-bar" style="height:85%;background:var(--pink);animation-delay:0.55s"></div>
+            <div class="kpi-spark-bar" style="height:75%;background:var(--pink);animation-delay:0.65s"></div>
+            <div class="kpi-spark-bar" style="height:95%;background:var(--pink);animation-delay:0.75s"></div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Revenue Generated</div>
+          <div class="kpi-value" data-prefix="$" data-target="1.5" data-suffix="M" data-decimals="1">0</div>
+          <div class="kpi-sub">3 yrs, 120% of target</div>
+          <div class="kpi-spark">
+            <div class="kpi-spark-bar" style="height:50%;background:var(--orange);animation-delay:0.2s"></div>
+            <div class="kpi-spark-bar" style="height:65%;background:var(--orange);animation-delay:0.3s"></div>
+            <div class="kpi-spark-bar" style="height:55%;background:var(--orange);animation-delay:0.4s"></div>
+            <div class="kpi-spark-bar" style="height:80%;background:var(--orange);animation-delay:0.5s"></div>
+            <div class="kpi-spark-bar" style="height:90%;background:var(--orange);animation-delay:0.6s"></div>
+            <div class="kpi-spark-bar" style="height:85%;background:var(--orange);animation-delay:0.7s"></div>
+            <div class="kpi-spark-bar" style="height:100%;background:var(--orange);animation-delay:0.8s"></div>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Engagement Uplift</div>
+          <div class="kpi-value" data-target="60" data-suffix="%">0</div>
+          <div class="kpi-sub">Targeted campaigns</div>
+          <div class="kpi-spark">
+            <div class="kpi-spark-bar" style="height:30%;background:var(--magenta);animation-delay:0.1s"></div>
+            <div class="kpi-spark-bar" style="height:25%;background:var(--pink);animation-delay:0.2s"></div>
+            <div class="kpi-spark-bar" style="height:45%;background:var(--magenta);animation-delay:0.3s"></div>
+            <div class="kpi-spark-bar" style="height:60%;background:var(--magenta);animation-delay:0.4s"></div>
+            <div class="kpi-spark-bar" style="height:55%;background:var(--pink);animation-delay:0.5s"></div>
+            <div class="kpi-spark-bar" style="height:80%;background:var(--magenta);animation-delay:0.6s"></div>
+            <div class="kpi-spark-bar" style="height:100%;background:var(--magenta);animation-delay:0.7s"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
 /* Cards */
 .cards-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem}
 .cards-row-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:820px;margin:0 auto}
