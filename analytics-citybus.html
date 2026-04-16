@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CityBus Survey — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --terra:#9A3412;
+  --terra-deep:#7C2D12;
+  --burnt:#431407;
+  --warm-cream:#FFF7ED;
+  --peach:#FDBA74;
+  --sand:#FED7AA;
+  --ink:#3B1106;
+  --ink-soft:rgba(59,17,6,0.72);
+  --ink-mute:rgba(59,17,6,0.45);
+  --rule:rgba(59,17,6,0.1);
+  --paper:#FFFCF8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;line-height:1.55;-webkit-font-smoothing:antialiased}
+.container{max-width:900px;margin:0 auto;padding:0 2.5rem}
+
+/* ═══ HERO ═══ */
+.hero{
+  background:var(--terra);color:var(--warm-cream);
+  padding:1.5rem 2.5rem 4rem;
+}
+.hero-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:3rem;
+}
+.back{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--warm-cream);text-decoration:none;
+  padding:0.6rem 1.2rem;
+  border:1px solid rgba(255,247,237,0.3);
+  border-radius:100px;
+  transition:all 0.25s;
+}
+.back:hover{background:var(--warm-cream);color:var(--terra)}
+.hero-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.15em;
+  color:rgba(255,247,237,0.4);
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--peach);margin-bottom:1rem;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--peach)}
+.hero h1{
+  font-family:'Fraunces',serif;
+  font-weight:900;
+  font-size:clamp(2.5rem,7vw,4.5rem);
+  line-height:0.95;letter-spacing:-0.04em;
+  margin-bottom:1.5rem;
+}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--sand)}
+.hero-sub{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:clamp(1rem,2vw,1.3rem);
+  line-height:1.5;
+  color:rgba(255,247,237,0.8);
+  max-width:650px;
+}
+
+/* ═══ META BAR ═══ */
+.meta-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border-bottom:1px solid var(--rule);
+  padding:1.8rem 0;
+  margin-bottom:4rem;
+}
+.meta-item{padding:0 1.5rem;border-left:1px solid var(--rule)}
+.meta-item:first-child{padding-left:0;border-left:none}
+.meta-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--ink-mute);margin-bottom:0.4rem;
+}
+.meta-val{
+  font-family:'Fraunces',serif;
+  font-weight:600;font-size:0.95rem;
+  color:var(--ink);
+}
+.meta-val a{
+  color:var(--terra);text-decoration:none;
+  border-bottom:1px solid var(--terra);
+  transition:all 0.2s;
+}
+.meta-val a:hover{color:var(--terra-deep)}
+
+/* ═══ SECTION SYSTEM ═══ */
+.section{margin-bottom:4rem}
+.section-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--terra);
+  margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.section-label::before{content:'';width:20px;height:1px;background:var(--terra)}
+.section h2{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:1.8rem;letter-spacing:-0.02em;
+  color:var(--ink);margin-bottom:1rem;
+  line-height:1.1;
+}
+.section h2 em{font-style:italic;font-weight:400;color:var(--terra)}
+.section p{
+  font-size:0.95rem;line-height:1.85;
+  color:var(--ink-soft);margin-bottom:1rem;
+  max-width:750px;
+}
+.section p:last-child{margin-bottom:0}
+
+/* Highlighted stat inline */
+.hl{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.9rem;color:var(--terra);
+  font-weight:700;
+}
+
+/* ═══ METHODOLOGY STEPS ═══ */
+.steps{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0.5rem;margin-top:1.5rem;
+}
+.step{
+  padding:1.8rem 1.5rem;
+  min-height:160px;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+}
+.step-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.65rem;letter-spacing:0.18em;
+  margin-bottom:1rem;
+}
+.step h4{
+  font-family:'Fraunces',serif;
+  font-weight:700;font-size:1.1rem;
+  letter-spacing:-0.01em;margin-bottom:0.4rem;
+}
+.step p{
+  font-size:0.85rem;line-height:1.55;
+  opacity:0.8;margin-bottom:0;
+}
+.step-a{background:var(--terra-deep);color:var(--warm-cream)}
+.step-a .step-num{color:var(--peach)}
+.step-b{background:var(--terra);color:var(--warm-cream)}
+.step-b .step-num{color:var(--sand)}
+.step-c{background:var(--sand);color:var(--ink)}
+.step-c .step-num{color:var(--terra)}
+
+/* ═══ CHART DISPLAY ═══ */
+.chart-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.5rem;margin:2rem 0;
+}
+.chart-full{margin:2rem 0}
+.chart-card{
+  background:var(--warm-cream);
+  border:1px solid var(--rule);
+  padding:1.5rem;
+  text-align:center;
+}
+.chart-card img{
+  width:100%;max-width:100%;
+  height:auto;
+  margin-bottom:1rem;
+}
+.chart-caption{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;letter-spacing:0.08em;
+  color:var(--ink-mute);
+  text-align:center;
+}
+
+/* ═══ FINDINGS ═══ */
+.finding{
+  padding:1.5rem 0;
+  border-top:1px solid var(--rule);
+}
+.finding:last-child{border-bottom:1px solid var(--rule)}
+.finding h4{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:1.15rem;color:var(--ink);
+  margin-bottom:0.5rem;
+}
+.finding-result{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.78rem;
+  padding:0.4rem 0.9rem;
+  border-radius:100px;
+  display:inline-block;
+  margin-bottom:0.6rem;
+  font-weight:700;
+}
+.result-sig{background:var(--terra);color:var(--warm-cream)}
+.result-nosig{background:var(--sand);color:var(--terra-deep)}
+.finding p{
+  font-size:0.92rem;line-height:1.75;
+  color:var(--ink-soft);max-width:700px;
+}
+
+/* ═══ NOTEBOOK LINK ═══ */
+.notebook-link{
+  display:flex;align-items:center;gap:1rem;
+  background:var(--burnt);color:var(--warm-cream);
+  padding:1.5rem 2rem;
+  margin:2rem 0;
+  text-decoration:none;
+  transition:transform 0.2s;
+}
+.notebook-link:hover{transform:translateY(-2px)}
+.nb-icon{
+  width:40px;height:40px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.nb-icon svg{width:28px;height:28px}
+.nb-text{flex:1}
+.nb-title{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:1.1rem;margin-bottom:0.2rem;
+}
+.nb-sub{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;letter-spacing:0.1em;
+  color:rgba(255,247,237,0.5);
+}
+.nb-arrow{
+  font-family:'Fraunces',serif;font-size:1.3rem;
+  color:var(--peach);
+}
+
+/* ═══ RECOMMENDATIONS ═══ */
+.recs{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:0.5rem;margin-top:1.5rem;
+}
+.rec{
+  padding:1.8rem 1.5rem;
+  background:var(--warm-cream);
+  border:1px solid var(--rule);
+}
+.rec-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.65rem;letter-spacing:0.18em;
+  color:var(--terra);margin-bottom:0.8rem;
+}
+.rec h4{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:1.1rem;color:var(--ink);
+  margin-bottom:0.5rem;
+}
+.rec p{
+  font-size:0.88rem;line-height:1.6;
+  color:var(--ink-soft);margin-bottom:0;
+}
+
+/* ═══ FOOTER ═══ */
+footer{
+  padding:3rem 0 2.5rem;
+  border-top:1px solid var(--rule);
+  margin-top:4rem;
+  text-align:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;color:var(--ink-mute);
+  letter-spacing:0.08em;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:800px){
+  .meta-bar{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .meta-item{border-left:none;padding:0}
+  .steps{grid-template-columns:1fr}
+  .chart-row{grid-template-columns:1fr}
+  .recs{grid-template-columns:1fr}
+}
+@media(max-width:500px){
+  .container{padding:0 1.25rem}
+  .hero{padding:1.25rem 1.25rem 3rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <nav class="hero-nav">
+    <a href="analytics.html" class="back">← Analytics</a>
+    <div class="hero-num">Project 01 / 03</div>
+  </nav>
+  <div class="hero-eyebrow">Survey Research &amp; Statistical Analysis</div>
+  <h1>CityBus Customer<br><em>Satisfaction Survey</em></h1>
+  <p class="hero-sub">How satisfied are Purdue students with CityBus services — and what actually drives that satisfaction? An end-to-end research project from questionnaire design to statistical modeling.</p>
+</section>
+
+<!-- ═══ META BAR ═══ -->
+<div class="container">
+  <div class="meta-bar">
+    <div class="meta-item">
+      <div class="meta-label">Tools</div>
+      <div class="meta-val">Python · Qualtrics</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Methods</div>
+      <div class="meta-val">Chi-Square · ANOVA · Factor Analysis</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Survey</div>
+      <div class="meta-val"><a href="#" target="_blank">View in Qualtrics ↗</a></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Notebook</div>
+      <div class="meta-val"><a href="#" target="_blank">View in Colab ↗</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROBLEM STATEMENT ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">01 / Problem Statement</div>
+    <h2>The <em>Question</em></h2>
+    <p>CityBus is the primary public transit system serving Purdue University students in West Lafayette, Indiana. Despite being a critical service, student satisfaction data was fragmented and anecdotal.</p>
+    <p>This project aimed to quantify: <span class="hl">How do service reliability, frequency, route coverage, and student demographics shape overall satisfaction with CityBus?</span> And more specifically — do domestic and international students experience the service differently?</p>
+  </div>
+</section>
+
+<!-- ═══ METHODOLOGY ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">02 / Methodology</div>
+    <h2>The <em>Approach</em></h2>
+    <p>A three-stage research design combining primary survey collection, data cleaning, and multi-method statistical analysis.</p>
+
+    <div class="steps">
+      <div class="step step-a">
+        <div class="step-num">01</div>
+        <div>
+          <h4>Survey Design</h4>
+          <p>Built a structured questionnaire in Qualtrics capturing demographics, usage patterns, satisfaction ratings (0–4 scale), and open-ended feedback.</p>
+        </div>
+      </div>
+      <div class="step step-b">
+        <div class="step-num">02</div>
+        <div>
+          <h4>Data Cleaning</h4>
+          <p>Recoded variables, mapped categorical labels (domestic/international, vehicle ownership), handled missing values, and prepared analysis-ready datasets in Python.</p>
+        </div>
+      </div>
+      <div class="step step-c">
+        <div class="step-num">03</div>
+        <div>
+          <h4>Statistical Analysis</h4>
+          <p>Applied chi-square tests, one-way ANOVA, factor analysis, and ordinal regression to test hypotheses about satisfaction drivers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ANALYSIS & CHARTS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">03 / Analysis</div>
+    <h2>The <em>Data</em></h2>
+
+    <div class="chart-row">
+      <div class="chart-card">
+        <img src="assets/citybus_chart1.png" alt="Boxplot: Overall satisfaction by student type">
+        <div class="chart-caption">Boxplot — Satisfaction distribution by student type (0–4 scale)</div>
+      </div>
+      <div class="chart-card">
+        <img src="assets/citybus_chart2.png" alt="Bar chart: Mean satisfaction by student type">
+        <div class="chart-caption">Mean satisfaction — Domestic (2.33) vs International (1.97)</div>
+      </div>
+    </div>
+
+    <div class="chart-full">
+      <div class="chart-card">
+        <img src="assets/citybus_chart3.png" alt="Grouped bar: Bus usage by vehicle ownership">
+        <div class="chart-caption">Bus usage in last 30 days by vehicle ownership — 80.5% of non-vehicle owners used the bus vs 73.3% of vehicle owners</div>
+      </div>
+    </div>
+
+    <!-- Notebook link -->
+    <a href="#" target="_blank" class="notebook-link">
+      <div class="nb-icon">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="20" height="24" rx="2"/>
+          <line x1="9" y1="8" x2="19" y2="8"/>
+          <line x1="9" y1="13" x2="17" y2="13"/>
+          <line x1="9" y1="18" x2="15" y2="18"/>
+        </svg>
+      </div>
+      <div class="nb-text">
+        <div class="nb-title">View Full Python Notebook</div>
+        <div class="nb-sub">All code, outputs, and statistical tests — Google Colab</div>
+      </div>
+      <div class="nb-arrow">↗</div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ KEY FINDINGS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">04 / Key Findings</div>
+    <h2>What the Data <em>Revealed</em></h2>
+
+    <div class="finding">
+      <h4>Student Status vs Overall Satisfaction</h4>
+      <span class="finding-result result-nosig">Not Significant · p = 0.872</span>
+      <p>No evidence that domestic and international students differ in satisfaction. The distribution of ratings appears similar for both groups, suggesting the service experience is consistent regardless of student origin.</p>
+    </div>
+
+    <div class="finding">
+      <h4>Vehicle Ownership vs Bus Usage</h4>
+      <span class="finding-result result-nosig">Not Significant · p = 0.834</span>
+      <p>Owning a personal vehicle does not significantly influence whether a student uses the bus. Both groups showed similar usage patterns (80.5% vs 73.3%), indicating CityBus serves a need beyond just lack of car access.</p>
+    </div>
+
+    <div class="finding">
+      <h4>Usage Frequency vs Overall Satisfaction</h4>
+      <span class="finding-result result-sig">Significant · p &lt; 0.001</span>
+      <p>The frequency of bus usage is strongly associated with satisfaction levels. More frequent riders report significantly different satisfaction — suggesting that the experience of using CityBus regularly (reliability, wait times, crowding) directly shapes how students feel about the service.</p>
+    </div>
+
+    <div class="finding">
+      <h4>Student Status vs Usage Frequency</h4>
+      <span class="finding-result result-nosig">Not Significant · p = 0.478</span>
+      <p>No significant difference in how often domestic and international students use the bus. Both groups ride at similar frequencies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RECOMMENDATIONS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">05 / Recommendations</div>
+    <h2>What to <em>Do About It</em></h2>
+    <p>Based on the finding that usage frequency is the primary driver of satisfaction, CityBus should focus on improving the experience for regular riders.</p>
+
+    <div class="recs">
+      <div class="rec">
+        <div class="rec-num">R.01</div>
+        <h4>Improve Service Reliability</h4>
+        <p>Since frequent riders are the most satisfaction-sensitive group, reducing delays and improving on-time performance would have the highest impact on overall ratings.</p>
+      </div>
+      <div class="rec">
+        <div class="rec-num">R.02</div>
+        <h4>Increase Peak Frequency</h4>
+        <p>Crowding during peak hours likely degrades the regular rider experience. Adding buses during high-demand windows can directly improve satisfaction for the most engaged users.</p>
+      </div>
+      <div class="rec">
+        <div class="rec-num">R.03</div>
+        <h4>Retain the Car-Owner Segment</h4>
+        <p>Vehicle owners still use CityBus at similar rates — this is a voluntary ridership segment worth retaining through convenience, not necessity.</p>
+      </div>
+      <div class="rec">
+        <div class="rec-num">R.04</div>
+        <h4>Uniform Service Quality</h4>
+        <p>Since domestic and international students show no satisfaction gap, CityBus can maintain its current approach without needing demographic-specific interventions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Shruti Kunwar — © 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
