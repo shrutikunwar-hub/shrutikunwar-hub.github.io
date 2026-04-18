@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Media — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cobalt:#1803A5; --cobalt-deep:#120382;
+    --cream:#F5F0DC; --butter:#F2EC9B; --mint:#96FFBD; --green-dark:#1F6B4A;
+    --rule-on-cream:rgba(24,3,165,.14); --rule-on-cobalt:rgba(242,236,155,.18);
+    --dim-on-cobalt:rgba(242,236,155,.72); --dim-on-cream:rgba(24,3,165,.62);
+    --body:'Inter',system-ui,sans-serif; --display:'Fraunces',serif; --mono:'JetBrains Mono',monospace;
+    --eyebrow:2.2px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--cream);color:var(--cobalt);line-height:1.55;min-height:100vh}
+  a{color:inherit;text-decoration:none}
+
+  /* HERO */
+  .hero{background:var(--cobalt);color:var(--butter);padding:2rem 2rem 6rem;position:relative;overflow:hidden}
+  .hero-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.05fr 1fr;gap:3rem;align-items:start}
+
+  .back{display:inline-flex;align-items:center;gap:.5rem;background:var(--butter);color:var(--cobalt);padding:.55rem 1.1rem;border-radius:50px;font-family:var(--mono);font-size:.68rem;letter-spacing:var(--eyebrow);text-transform:uppercase;font-weight:600;transition:transform .2s}
+  .back:hover{transform:translateX(-3px)}
+
+  .hero-left{padding-top:.5rem}
+  .eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:var(--eyebrow);text-transform:uppercase;color:var(--dim-on-cobalt);margin:2.2rem 0 1.1rem}
+  .hero-title{font-family:var(--display);font-weight:700;font-size:clamp(3rem,6.2vw,5rem);line-height:.95;letter-spacing:-.02em;color:var(--butter)}
+  .hero-title .ital{display:block;font-style:italic;font-weight:500;color:var(--mint)}
+  .hero-dek{margin-top:1.6rem;max-width:560px;font-size:.98rem;line-height:1.75;color:var(--dim-on-cobalt)}
+
+  .wordcloud-band{max-width:1280px;margin:4.5rem auto 0;padding:0 1rem}
+  .chip-label{font-family:var(--mono);font-size:.66rem;letter-spacing:var(--eyebrow);text-transform:uppercase;color:var(--mint);margin-bottom:1.8rem;text-align:center}
+
+  /* WORDCLOUD — centered full-width, bold serif, bullet separators */
+  .wordcloud{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;gap:.3rem .7rem;max-width:1100px;margin:0 auto;line-height:1.3;font-family:var(--display);text-align:center}
+  .wc{font-family:var(--display);font-weight:700;color:var(--butter);transition:color .2s,transform .2s;cursor:default;display:inline-block;letter-spacing:-.01em}
+  .wc:hover{transform:translateY(-2px)}
+  .wc.s1{font-size:2.4rem}
+  .wc.s2{font-size:1.4rem;color:var(--mint)}
+  .wc.s3{font-size:1.9rem;color:var(--dim-on-cobalt);font-weight:500}
+  .wc.s4{font-size:1.1rem;color:var(--mint);font-weight:500}
+  .wc.s5{font-size:1.7rem}
+  .wc.s6{font-size:1.25rem;color:var(--butter);font-weight:500}
+  .wordcloud .dot{color:var(--mint);font-size:.9rem;opacity:.7;align-self:center;font-weight:400}
+
+  /* HERO COLLAGE */
+  .collage{position:relative;min-height:460px}
+  .ph{position:absolute;border-radius:4px;overflow:hidden;background:var(--cobalt-deep);box-shadow:0 20px 50px rgba(0,0,0,.35);transition:transform .4s}
+  .ph:hover{transform:translateY(-6px)}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .ph-fallback{position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(242,236,155,.06) 0 14px,rgba(242,236,155,.11) 14px 28px);display:flex;align-items:center;justify-content:center;padding:1rem;text-align:center}
+  .ph-fallback span{font-family:var(--mono);font-size:.6rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--butter);opacity:.8}
+  .ph img{opacity:1}
+  .ph img[src=""],.ph img:not([src]){opacity:0}
+  .ph1{top:10px;left:0;width:58%;aspect-ratio:4/5;transform:rotate(-4deg)}
+  .ph2{top:50px;left:35%;width:48%;aspect-ratio:4/5;transform:rotate(2deg);z-index:3}
+  .ph3{top:0;right:0;width:32%;aspect-ratio:3/4;transform:rotate(5deg)}
+
+  .kpi-overlay{position:absolute;bottom:-24px;right:30px;width:220px;background:var(--mint);color:var(--cobalt);border-radius:4px;padding:.9rem 1rem 1rem;box-shadow:0 16px 40px rgba(0,0,0,.35);z-index:5}
+  .kpi-overlay .l{font-family:var(--mono);font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;opacity:.7}
+  .kpi-overlay .v{font-family:var(--display);font-weight:800;font-size:2rem;line-height:1;margin-top:.2rem;letter-spacing:-.02em}
+  .kpi-overlay svg{width:100%;height:40px;margin-top:.5rem;display:block}
+  .kpi-overlay .axis{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.52rem;opacity:.65;margin-top:.2rem}
+
+  /* SNAPSHOT */
+  .snapshot{background:var(--butter);color:var(--cobalt);padding:1.8rem 2rem}
+  .snapshot-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:auto repeat(4,1fr);gap:2rem;align-items:center}
+  .snapshot-label{font-family:var(--mono);font-size:.72rem;letter-spacing:var(--eyebrow);text-transform:uppercase;font-weight:600}
+  .snap-item .v{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,2.6vw,2.2rem);line-height:1;letter-spacing:-.02em}
+  .snap-item .l{font-family:var(--mono);font-size:.62rem;letter-spacing:var(--eyebrow);text-transform:uppercase;opacity:.7;margin-top:.4rem}
+
+  /* CHANNELS */
+  .wrap{max-width:1280px;margin:0 auto;padding:0 2rem}
+  .channels{padding:3.2rem 0 2.2rem;display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:center}
+  .section-label{font-family:var(--mono);font-size:.7rem;letter-spacing:var(--eyebrow);text-transform:uppercase;color:var(--cobalt);white-space:nowrap}
+  .chan-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem}
+  .chan{display:flex;align-items:center;gap:.8rem;padding:.9rem 1.2rem;border:1.5px solid var(--cobalt);border-radius:50px;color:var(--cobalt);font-family:var(--mono);font-size:.72rem;letter-spacing:var(--eyebrow);text-transform:uppercase;font-weight:600;transition:all .2s}
+  .chan:hover{background:var(--cobalt);color:var(--butter)}
+  .chan .ic{width:26px;height:26px;background:var(--cobalt);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--butter);flex-shrink:0;transition:all .2s}
+  .chan:hover .ic{background:var(--butter);color:var(--cobalt)}
+  .chan .ic svg{width:14px;height:14px;fill:currentColor}
+
+  /* SELECTED WORK */
+  .selected{padding:1rem 0 5rem}
+  .selected-head{display:flex;align-items:baseline;gap:2rem;margin-bottom:1.4rem}
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  .work{display:grid;grid-template-columns:1fr 1.05fr;background:var(--cobalt);border-radius:4px;overflow:hidden;min-height:360px;color:var(--butter);transition:transform .3s}
+  .work:hover{transform:translateY(-4px)}
+  .work.reverse{grid-template-columns:1.05fr 1fr}
+
+  .work-img{position:relative;overflow:hidden;background:var(--cobalt-deep)}
+  .work-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .work-img .stripe{position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(242,236,155,.06) 0 12px,rgba(242,236,155,.10) 12px 24px);z-index:1}
+  .work-img img[src]+.stripe{display:none}
+  .work-img .tag{position:absolute;top:.7rem;left:.7rem;font-family:var(--mono);font-size:.55rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--butter);opacity:.85;z-index:2}
+
+  .work-body{padding:1.6rem 1.4rem;display:flex;flex-direction:column;justify-content:space-between;gap:1rem}
+  .work-kicker{font-family:var(--mono);font-size:.58rem;letter-spacing:var(--eyebrow);text-transform:uppercase;color:var(--mint);margin-bottom:.9rem}
+  .work-title{font-family:var(--display);font-weight:700;font-size:1.45rem;line-height:1.05;letter-spacing:-.015em;color:var(--butter)}
+  .work-title .ital{display:block;font-style:italic;font-weight:500;color:var(--mint)}
+  .work-desc{font-size:.82rem;line-height:1.65;color:var(--dim-on-cobalt);margin-top:.8rem}
+  .work-foot{font-family:var(--mono);font-size:.54rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--dim-on-cobalt);padding-top:1rem;border-top:1px solid var(--rule-on-cobalt)}
+  .work-foot span{margin-right:.7rem}
+  .work-foot span::after{content:"·";margin-left:.7rem}
+  .work-foot span:last-child::after{display:none}
+
+  /* FLAGSHIP */
+  .flagship{background:var(--cobalt);color:var(--butter);padding:5rem 2rem;text-align:center;border-radius:4px;margin:0 auto 4rem;max-width:1280px}
+  .flag-kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:var(--eyebrow);text-transform:uppercase;color:var(--mint);margin-bottom:1.4rem}
+  .flag-title{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,5vw,4.2rem);line-height:1;letter-spacing:-.02em;color:var(--mint);max-width:900px;margin:0 auto}
+  .flag-title .ital{display:block;font-style:italic;font-weight:500}
+  .flag-dek{font-family:var(--display);font-style:italic;font-size:clamp(1rem,1.4vw,1.15rem);max-width:620px;margin:1.6rem auto 0;line-height:1.7;color:var(--dim-on-cobalt)}
+  .flag-meta{margin-top:2.4rem;font-family:var(--mono);font-size:.66rem;letter-spacing:var(--eyebrow);text-transform:uppercase;color:var(--dim-on-cobalt)}
+  .flag-meta span{margin:0 .7rem}
+  .flag-cta{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.7rem;letter-spacing:var(--eyebrow);text-transform:uppercase;margin-top:2.2rem;padding:.9rem 1.8rem;border:1.5px solid var(--mint);color:var(--mint);border-radius:50px;transition:all .2s;font-weight:600}
+  .flag-cta:hover{background:var(--mint);color:var(--cobalt)}
+
+  footer{padding:3rem 2rem;text-align:center;font-family:var(--mono);font-size:.66rem;letter-spacing:var(--eyebrow);text-transform:uppercase;color:var(--dim-on-cream);border-top:1px solid var(--rule-on-cream);margin:0 2rem}
+
+  @media(max-width:980px){
+    .hero-inner{grid-template-columns:1fr;gap:4rem}
+    .collage{min-height:480px}
+    .snapshot-inner{grid-template-columns:repeat(2,1fr);gap:1.5rem}
+    .snapshot-label{grid-column:1/-1}
+    .channels{grid-template-columns:1fr}
+    .chan-row{grid-template-columns:repeat(2,1fr)}
+    .work-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:640px){
+    .work-grid{grid-template-columns:1fr}
+    .work{grid-template-columns:1fr}
+    .work.reverse{grid-template-columns:1fr}
+    .work-img{min-height:220px}
+    .chan-row{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <a href="index.html" class="back">← Back to Portfolio</a>
+      <div class="eyebrow">Social Media Management</div>
+      <h1 class="hero-title">Social Media<span class="ital">Management.</span></h1>
+      <p class="hero-dek">Managed BASF's digital presence across Facebook, Instagram, YouTube and LinkedIn. From content strategy, paid and organic campaigns, KPI tracking and influencer collaborations to SEO, social listening and publishing, I built a connected ecosystem that informed, engaged and grew.</p>
+    </div>
+
+    <div class="collage">
+      <div class="ph ph1">
+        <img src="hero-field-sunset.jpg" alt="Farmer in field at sunset" onerror="this.remove()">
+        <div class="ph-fallback"><span>hero-field-sunset.jpg</span></div>
+      </div>
+      <div class="ph ph2">
+        <img src="hero-ig-post.jpg" alt="Instagram post" onerror="this.remove()">
+        <div class="ph-fallback"><span>hero-ig-post.jpg</span></div>
+      </div>
+      <div class="ph ph3">
+        <img src="hero-campaign-card.jpg" alt="Harvest. Growth. campaign card" onerror="this.remove()">
+        <div class="ph-fallback"><span>hero-campaign-card.jpg</span></div>
+      </div>
+      <div class="kpi-overlay">
+        <div class="l">YouTube Growth</div>
+        <div class="v">4,200%</div>
+        <svg viewBox="0 0 200 40" preserveAspectRatio="none" fill="none" stroke="#1803A5" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M0 36 L28 33 L55 30 L85 27 L115 22 L145 15 L175 8 L200 2"/>
+        </svg>
+        <div class="axis"><span>2023</span><span>2024</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wordcloud-band">
+    <div class="chip-label">My Role &amp; Ownership</div>
+    <div class="wordcloud">
+      <span class="wc s1">Content Strategy</span><span class="dot">·</span>
+      <span class="wc s2">SEO</span><span class="dot">·</span>
+      <span class="wc s5">Influencer Collaborations</span><span class="dot">·</span>
+      <span class="wc s4">SEM</span><span class="dot">·</span>
+      <span class="wc s1">Branding</span><span class="dot">·</span>
+      <span class="wc s3">Channel Growth</span><span class="dot">·</span>
+      <span class="wc s4">Paid Ads</span><span class="dot">·</span>
+      <span class="wc s5">Publishing</span><span class="dot">·</span>
+      <span class="wc s6">KPI Tracking</span><span class="dot">·</span>
+      <span class="wc s2">Search Ads</span><span class="dot">·</span>
+      <span class="wc s3">Engagement</span><span class="dot">·</span>
+      <span class="wc s4">Social Listening</span><span class="dot">·</span>
+      <span class="wc s6">Organic Campaigns</span>
+    </div>
+  </div>
+</section>
+
+<!-- SNAPSHOT -->
+<section class="snapshot">
+  <div class="snapshot-inner">
+    <div class="snapshot-label">Impact<br>Snapshot</div>
+    <div class="snap-item"><div class="v">4,200%</div><div class="l">YouTube Growth</div></div>
+    <div class="snap-item"><div class="v">4</div><div class="l">Channels Managed</div></div>
+    <div class="snap-item"><div class="v">20M+</div><div class="l">Audience Reached</div></div>
+    <div class="snap-item"><div class="v">60%</div><div class="l">Engagement Uplift</div></div>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<div class="wrap">
+  <section class="channels">
+    <div class="section-label">Channels<br>Managed</div>
+    <div class="chan-row">
+      <a href="https://www.youtube.com/@BASF_Agro_IN" target="_blank" class="chan">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M23 7a3 3 0 0 0-2-2c-2-.5-9-.5-11-.5s-9 0-11 .5A3 3 0 0 0-3 7c-.5 2-.5 5-.5 5s0 3 .5 5a3 3 0 0 0 2 2c2 .5 9 .5 11 .5s9 0 11-.5a3 3 0 0 0 2-2c.5-2 .5-5 .5-5s0-3-.5-5z" transform="translate(2 0)"/><path d="M10 15V9l5 3z" fill="#1803A5"/></svg></span>
+        YouTube
+      </a>
+      <a href="https://www.facebook.com/BASFAgriculturalSolutionsUSA/?brand_redir=840684779401431" target="_blank" class="chan">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5A3.5 3.5 0 0 1 14 6h2v3h-1.5A1 1 0 0 0 13.5 10v2H16l-.5 3H13.5v7A10 10 0 0 0 22 12z"/></svg></span>
+        Facebook
+      </a>
+      <a href="https://www.instagram.com/BASF_Agro_IN/" target="_blank" class="chan">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></span>
+        Instagram
+      </a>
+      <div class="chan">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></span>
+        LinkedIn
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SELECTED WORK -->
+<div class="wrap">
+  <section class="selected">
+    <div class="selected-head">
+      <div class="section-label">Selected Work</div>
+    </div>
+    <div class="work-grid">
+
+      <a href="#" class="work">
+        <div class="work-img">
+          <img src="work-content-strategy.jpg" alt="Content strategy" onerror="this.remove()">
+          <div class="stripe"></div>
+          <span class="tag">work-content-strategy.jpg</span>
+        </div>
+        <div class="work-body">
+          <div>
+            <div class="work-kicker">Content Strategy</div>
+            <div class="work-title">Plan,<span class="ital">Publish, Perform.</span></div>
+            <p class="work-desc">Mapped audience, calendar and message pillars into a system that kept every post on brand and on brief.</p>
+          </div>
+          <div class="work-foot"><span>Facebook</span><span>Instagram</span><span>LinkedIn</span></div>
+        </div>
+      </a>
+
+      <a href="#" class="work reverse">
+        <div class="work-body">
+          <div>
+            <div class="work-kicker">SEO</div>
+            <div class="work-title">Found First.<span class="ital">Read Longer.</span></div>
+            <p class="work-desc">Rebuilt keyword structure, tags and on-page copy so growers discovered content when they needed it most.</p>
+          </div>
+          <div class="work-foot"><span>YouTube</span><span>Web</span></div>
+        </div>
+        <div class="work-img">
+          <img src="work-seo.jpg" alt="SEO work" onerror="this.remove()">
+          <div class="stripe"></div>
+          <span class="tag">work-seo.jpg</span>
+        </div>
+      </a>
+
+      <a href="#" class="work">
+        <div class="work-img">
+          <img src="work-sem.jpg" alt="Paid search and SEM" onerror="this.remove()">
+          <div class="stripe"></div>
+          <span class="tag">work-sem.jpg</span>
+        </div>
+        <div class="work-body">
+          <div>
+            <div class="work-kicker">SEM &amp; Paid Campaigns</div>
+            <div class="work-title">Spend<span class="ital">that shows up.</span></div>
+            <p class="work-desc">Ran paid search and social with tight targeting, creative testing and weekly reporting on cost per real conversation.</p>
+          </div>
+          <div class="work-foot"><span>Google Ads</span><span>Meta</span></div>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=gh9nxJtUYUo" target="_blank" class="work reverse">
+        <div class="work-body">
+          <div>
+            <div class="work-kicker">Influencer Collaboration</div>
+            <div class="work-title">Real Voices.<span class="ital">Stronger Trust.</span></div>
+            <p class="work-desc">Partnered with agri creators to showcase real farmer stories and the impact of solutions in the field.</p>
+          </div>
+          <div class="work-foot"><span>Instagram</span><span>YouTube</span></div>
+        </div>
+        <div class="work-img">
+          <img src="work-influencer.jpg" alt="Influencer collaboration" onerror="this.remove()">
+          <div class="stripe"></div>
+          <span class="tag">work-influencer.jpg</span>
+        </div>
+      </a>
+
+      <a href="https://www.youtube.com/@BASF_Agro_IN" target="_blank" class="work">
+        <div class="work-img">
+          <img src="work-channel-growth.jpg" alt="Channel growth" onerror="this.remove()">
+          <div class="stripe"></div>
+          <span class="tag">work-channel-growth.jpg</span>
+        </div>
+        <div class="work-body">
+          <div>
+            <div class="work-kicker">Channel Growth</div>
+            <div class="work-title">Content That<span class="ital">Performs.</span></div>
+            <p class="work-desc">Built a content engine that educated, inspired and delivered exponential subscriber growth.</p>
+          </div>
+          <div class="work-foot"><span>YouTube</span><span>Analytics</span></div>
+        </div>
+      </a>
+
+      <a href="https://youtube.com/playlist?list=PLin54LyimmSkROyWEBeKydm9oXy4hiS2e" target="_blank" class="work reverse">
+        <div class="work-body">
+          <div>
+            <div class="work-kicker">Branding Campaign</div>
+            <div class="work-title">Harvest.<span class="ital">Growth.</span></div>
+            <p class="work-desc">A season long campaign celebrating farmer resilience and smart agriculture across every channel.</p>
+          </div>
+          <div class="work-foot"><span>Facebook</span><span>Instagram</span><span>LinkedIn</span></div>
+        </div>
+        <div class="work-img">
+          <img src="work-branding.jpg" alt="Branding campaign" onerror="this.remove()">
+          <div class="stripe"></div>
+          <span class="tag">work-branding.jpg</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+</div>
+
+<!-- FLAGSHIP -->
+<section class="flagship">
+  <div class="flag-kicker">Branding Campaign · Flagship</div>
+  <h3 class="flag-title">Farming,<span class="ital">the biggest job on earth.</span></h3>
+  <p class="flag-dek">Led the digital rollout of a flagship branding campaign celebrating farmers across India. A dedicated YouTube playlist, social assets, and creator partnerships working as one.</p>
+  <div class="flag-meta"><span>MULTI-PLATFORM</span>·<span>PAN-INDIA</span></div>
+  <a href="https://youtube.com/playlist?list=PLin54LyimmSkROyWEBeKydm9oXy4hiS2e" target="_blank" class="flag-cta">Watch the Campaign →</a>
+</section>
+
+<footer>Shruti Kunwar · © 2026 · Back to <a href="index.html" style="text-decoration:underline">Home</a></footer>
+
+</body>
+</html>
