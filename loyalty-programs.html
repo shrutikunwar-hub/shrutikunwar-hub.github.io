@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loyalty Programs — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#120382;
+  --bg2:#1803A5;
+  --panel:rgba(245,240,220,0.08);
+  --panel2:#F5F0DC;
+  --text:#F5F0DC;
+  --text-dim:rgba(245,240,220,0.78);
+  --muted:rgba(245,240,220,0.56);
+  --paper:#FBF7E8;
+  --ink:#120382;
+  --ink-dim:rgba(18,3,130,0.72);
+  --rule:rgba(18,3,130,0.12);
+  --accent:#F2EC9B;
+  --accent2:#96FFBD;
+  --accent3:#FC1577;
+  --hero-grad:linear-gradient(180deg,#120382 0%,#1803A5 100%);
+  --button-text:#120382;
+  --body:'DM Sans',sans-serif;
+  --display:'Fraunces',serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.58;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.container{max-width:1240px;margin:0 auto;padding:0 2rem}
+
+.hero{background:var(--hero-grad);color:var(--text);min-height:100vh;position:relative;overflow:hidden}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 14% 82%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 28%),
+    linear-gradient(90deg, color-mix(in srgb, var(--text) 3%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--text) 2%, transparent) 1px, transparent 1px);
+  background-size:auto,42px 42px,42px 42px;
+  opacity:.95;pointer-events:none
+}
+.topbar{position:relative;z-index:4;display:flex;justify-content:flex-start;align-items:center;padding:1.6rem 0}
+.back{display:inline-flex;align-items:center;gap:.55rem;padding:.68rem 1rem;border-radius:999px;border:1px solid color-mix(in srgb, var(--text) 26%, transparent);font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;transition:all .25s}
+.back:hover{background:var(--text);color:var(--bg)}
+.hero-grid{position:relative;z-index:3;display:grid;grid-template-columns:.92fr 1.08fr;gap:3rem;align-items:center;padding:3rem 0 4rem}
+.eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);display:flex;gap:.8rem;align-items:center;margin-bottom:1.15rem}
+.eyebrow::before{content:'';width:34px;height:1px;background:var(--accent)}
+.hero h1{font-family:var(--display);font-size:clamp(3.2rem,6.8vw,6rem);line-height:.9;letter-spacing:-.05em}
+.hero h1 em{display:block;font-style:italic;font-weight:400;color:var(--accent2)}
+.dek{margin-top:1.35rem;max-width:560px;color:var(--text-dim);font-family:var(--display);font-size:clamp(1rem,1.8vw,1.28rem);line-height:1.48}
+.hero-actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:1.8rem}
+.btn{display:inline-flex;align-items:center;gap:.6rem;border-radius:999px;padding:.92rem 1.35rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;transition:transform .2s,box-shadow .2s,border-color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:var(--button-text);box-shadow:0 12px 28px color-mix(in srgb, var(--accent) 28%, transparent)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem}
+.hstat{padding:1rem 1rem 1.1rem;border-radius:18px;border:1px solid color-mix(in srgb, var(--text) 10%, transparent);background:var(--panel);backdrop-filter:blur(14px)}
+.hstat .v{font-family:var(--display);font-size:clamp(1.55rem,2.6vw,2.2rem);line-height:1;font-weight:800;color:var(--text)}
+.hstat:nth-child(2) .v,.hstat:nth-child(4) .v{color:var(--accent)}
+.hstat .l{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:.45rem}
+
+.stage{position:relative;min-height:670px}
+.phone{position:absolute;left:22%;top:5%;width:44%;aspect-ratio:9/18;border-radius:38px;background:#0f0f11;border:10px solid #111;box-shadow:0 34px 84px rgba(0,0,0,.38);transform:rotate(-6deg) translateY(calc(var(--scrollY,0px) * -0.03));animation:phoneFloat 5.8s ease-in-out infinite;overflow:hidden}
+.phone::before{content:'';position:absolute;top:12px;left:50%;transform:translateX(-50%);width:34%;height:24px;background:#1d1d1f;border-radius:999px;z-index:3}
+@keyframes phoneFloat{0%,100%{margin-top:0}50%{margin-top:-12px}}
+.screen{position:absolute;inset:0;background:linear-gradient(180deg,#f5f4ee 0%, var(--paper) 100%);color:var(--ink);padding:3.2rem 1rem 1rem;display:flex;flex-direction:column;gap:.85rem}
+.ui-row{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(0,0,0,.52)}
+.ui-card{background:#fff;border:1px solid var(--rule);border-radius:20px;padding:1rem;box-shadow:0 12px 30px rgba(20,20,20,.08)}
+.ui-card h4{font-family:var(--display);font-size:1.1rem;letter-spacing:-.02em;line-height:1.05;color:var(--ink)}
+.ui-card p{font-size:.78rem;color:var(--ink-dim);margin-top:.25rem}
+.points{display:grid;grid-template-columns:repeat(2,1fr);gap:.6rem}
+.pbox{padding:.8rem;border-radius:16px;background:color-mix(in srgb, var(--accent) 13%, #fff);border:1px solid color-mix(in srgb, var(--accent) 28%, transparent)}
+.pbox .n{font-family:var(--display);font-size:1.28rem;line-height:1;font-weight:800;color:var(--ink)}
+.pbox .t{font-family:var(--mono);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(0,0,0,.56);margin-top:.25rem}
+.progress{height:10px;border-radius:999px;background:rgba(0,0,0,.08);overflow:hidden;margin-top:.4rem}
+.progress span{display:block;height:100%;width:74%;border-radius:999px;background:var(--bg2)}
+
+.marquee{background:var(--panel2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:2.4rem;align-items:center;padding:1rem 0;min-width:200%;animation:marq 24s linear infinite}
+.marquee-item{font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim)}
+.marquee-item b{font-family:var(--display);font-size:1rem;letter-spacing:-.02em;margin-right:.6rem;color:var(--ink)}
+@keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.main{padding:5rem 0 0}
+.section{padding-bottom:5rem}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;padding-bottom:1rem;margin-bottom:2rem;border-bottom:1px solid var(--rule)}
+.section-head h2{font-family:var(--display);font-size:clamp(2rem,4vw,3rem);line-height:1;letter-spacing:-.03em;color:var(--ink)}
+.section-head h2 em{font-style:italic;font-weight:400;color:var(--ink)}
+.section-num{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(0,0,0,.48)}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.card{background:#fff;border:1px solid var(--rule);border-radius:28px;padding:1.6rem;box-shadow:0 10px 30px rgba(20,20,20,.04);transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(20,20,20,.08)}
+.card .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:.8rem}
+.card h3{font-family:var(--display);font-size:1.32rem;line-height:1.05;letter-spacing:-.025em;color:var(--ink);margin-bottom:.7rem}
+.card p{font-size:.94rem;color:var(--ink-dim);line-height:1.72}
+.mini-strip{margin-top:1rem;padding:.85rem 1rem;border-radius:18px;background:var(--panel2);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.mini-strip span{font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,0,0,.48)}
+.mini-strip b{font-family:var(--display);font-size:1rem;letter-spacing:-.02em;color:var(--ink)}
+
+.product{display:grid;grid-template-columns:.95fr 1.05fr;gap:1rem;align-items:stretch}
+.product-left{background:var(--bg);color:var(--text);border-radius:30px;padding:1.8rem;position:relative;overflow:hidden}
+.product-left::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 18%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 20%);opacity:.9;pointer-events:none}
+.product-left .app-tag{position:relative;z-index:1;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.product-left h3{position:relative;z-index:1;font-family:var(--display);font-size:clamp(2rem,4vw,3.1rem);line-height:.95;letter-spacing:-.04em;margin-top:.8rem}
+.product-left h3 em{display:block;font-style:italic;font-weight:400;color:var(--accent2)}
+.product-left p{position:relative;z-index:1;margin-top:1rem;color:var(--text-dim);max-width:520px}
+.feature-list{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin-top:1.4rem}
+.fitem{padding:1rem;border-radius:18px;border:1px solid color-mix(in srgb, var(--text) 10%, transparent);background:rgba(255,255,255,.05)}
+.fitem .t{font-family:var(--mono);font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.fitem .b{font-family:var(--display);font-size:1rem;letter-spacing:-.02em;color:var(--text);margin-top:.35rem}
+.product-right{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.ticket{background:#fff;border:1px solid var(--rule);border-radius:26px;padding:1.4rem;position:relative;overflow:hidden}
+.ticket::before,.ticket::after{content:'';position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:var(--paper);border:1px solid var(--rule);transform:translateY(-50%)}
+.ticket::before{left:-10px}
+.ticket::after{right:-10px}
+.ticket .num{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.ticket h4{font-family:var(--display);font-size:1.2rem;line-height:1.08;letter-spacing:-.025em;color:var(--ink);margin-top:.55rem}
+.ticket p{font-size:.86rem;line-height:1.68;color:var(--ink-dim);margin-top:.5rem}
+
+.proof-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+.proof{padding:1.25rem;border-radius:22px;background:#fff;border:1px solid var(--rule);min-height:180px}
+.proof .n{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.proof h4{font-family:var(--display);font-size:1.05rem;line-height:1.1;letter-spacing:-.02em;margin-top:.65rem;color:var(--ink)}
+.proof p{font-size:.84rem;line-height:1.68;color:var(--ink-dim);margin-top:.55rem}
+
+.image-band{padding:0 0 4.5rem}
+.single-shot{background:#fff;border:1px solid var(--rule);border-radius:30px;padding:1rem;box-shadow:0 10px 30px rgba(20,20,20,.04)}
+.single-shot-frame{aspect-ratio:16/8;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,#ede8ff 0%, #f5f0dc 100%)}
+.single-shot-frame img{width:100%;height:100%;object-fit:cover}
+.single-shot-frame.empty{background:linear-gradient(135deg,#ede8ff 0%, #f5f0dc 100%)}
+
+.footer{padding:2.5rem 0 3rem;border-top:1px solid var(--rule);font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,0,0,.5)}
+.footer-row{display:flex;justify-content:flex-start;gap:1rem}
+.reveal{opacity:0;transform:translateY(24px);transition:all .85s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:1080px){
+  .hero-grid,.product,.product-right,.grid-3{grid-template-columns:1fr 1fr}
+  .proof-grid{grid-template-columns:repeat(3,1fr)}
+  .stage{min-height:580px}
+}
+@media(max-width:760px){
+  .container{padding:0 1.25rem}
+  .hero-grid,.grid-3,.product,.product-right,.proof-grid,.hero-stats,.feature-list{grid-template-columns:1fr}
+  .hero-stats{display:grid}
+  .stage{min-height:560px}
+  .phone{left:18%;width:64%}
+  .marquee-track{gap:1.2rem}
+}
+</style>
+</head>
+<body>
+<section class="hero">
+  <div class="container">
+    <div class="topbar">
+      <a href="index.html" class="back">← Back to Portfolio</a>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">BASF Agricultural Solutions / Best Project Award 2024</div>
+        <h1>Loyalty Programs <em>built for repeat behavior.</em></h1>
+        <p class="dek">Designed, launched, and scaled BASF's first digital loyalty program from concept to <strong>500K+ users</strong>. I defined reward mechanics, shaped the app roadmap, wrote feature requirements, and built a system that moved retention from field relationships into a measurable digital engine.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.basf.genie&amp;hl=en-US&amp;pli=1" target="_blank" rel="noopener">View AgGenie →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat"><div class="v">500K+</div><div class="l">Users Acquired</div></div>
+          <div class="hstat"><div class="v">550K</div><div class="l">App Downloads</div></div>
+          <div class="hstat"><div class="v">40%</div><div class="l">Repeat Participation</div></div>
+          <div class="hstat"><div class="v">$50K</div><div class="l">Annual Savings</div></div>
+        </div>
+      </div>
+      <div class="stage" aria-hidden="true">
+        <div class="phone">
+          <div class="screen">
+            <div class="ui-row"><span>BASF AgGenie</span><span>Rewards live</span></div>
+            <div class="ui-card">
+              <h4>Season Rewards</h4>
+              <p>Earn points on repeat participation across five structured schemes.</p>
+              <div class="progress"><span></span></div>
+            </div>
+            <div class="points">
+              <div class="pbox"><div class="n">5</div><div class="t">Reward Schemes</div></div>
+              <div class="pbox"><div class="n">12K→550K</div><div class="t">Download Growth</div></div>
+              <div class="pbox"><div class="n">20M+</div><div class="t">Consent Records</div></div>
+              <div class="pbox"><div class="n">40%</div><div class="t">Repeat Rate</div></div>
+            </div>
+            <div class="ui-card">
+              <h4>Redeem. Return. Repeat.</h4>
+              <p>Rewards, crop advisory, and BASF's product ecosystem inside one app experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-item"><b>500K+</b> users acquired in year one</div>
+    <div class="marquee-item"><b>5</b> participation schemes designed</div>
+    <div class="marquee-item"><b>12K → 550K</b> app download growth</div>
+    <div class="marquee-item"><b>40%</b> repeat participation</div>
+    <div class="marquee-item"><b>$50K</b> annual savings from loophole fix</div>
+    <div class="marquee-item"><b>20M+</b> consent-ready records</div>
+    <div class="marquee-item"><b>500K+</b> users acquired in year one</div>
+    <div class="marquee-item"><b>5</b> participation schemes designed</div>
+    <div class="marquee-item"><b>12K → 550K</b> app download growth</div>
+    <div class="marquee-item"><b>40%</b> repeat participation</div>
+    <div class="marquee-item"><b>$50K</b> annual savings from loophole fix</div>
+    <div class="marquee-item"><b>20M+</b> consent-ready records</div>
+  </div>
+</div>
+
+<main class="main">
+  <div class="container">
+    <section class="section">
+      <div class="section-head reveal"><h2>From field relationships to digital <em>retention</em></h2><div class="section-num">01 / Story</div></div>
+      <div class="grid-3">
+        <div class="card reveal"><div class="k">The Challenge</div><h3>No infrastructure. No scalable reward loop.</h3><p>BASF had no digital loyalty infrastructure for its farmer customer base. Repeat purchase behavior existed in the field, but there was no structured system to reward it, track it, or scale it.</p><div class="mini-strip"><span>Baseline</span><b>Offline retention</b></div></div>
+        <div class="card reveal"><div class="k">What I Built</div><h3>An end-to-end loyalty system with clear ownership.</h3><p>I scoped, designed, and launched the program end to end — defining reward mechanics, designing five participation schemes, writing feature requirements, and building a five-year product roadmap.</p><div class="mini-strip"><span>Build</span><b>Mechanics + roadmap</b></div></div>
+        <div class="card reveal"><div class="k">Business Impact</div><h3>Adoption growth with better economics.</h3><p>The program helped take downloads from 12K to 550K, achieved 40% repeat participation, and surfaced a structural reward loophole that I flagged and fixed through SQL-based pattern detection.</p><div class="mini-strip"><span>Outcome</span><b>$50K protected annually</b></div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head reveal"><h2>The app and the system behind <em>it</em></h2><div class="section-num">02 / Product</div></div>
+      <div class="product">
+        <div class="product-left reveal">
+          <div class="app-tag">BASF AgGenie</div>
+          <h3>The app I managed <em>from mechanics to roadmap.</em></h3>
+          <p>AgGenie connected farmers with rewards, crop advisory, and BASF's product ecosystem. My work sat behind the behavior design — what users earned, how they returned, and how the program scaled responsibly.</p>
+          <div class="feature-list">
+            <div class="fitem"><div class="t">Mechanics</div><div class="b">Points, thresholds, redemption logic</div></div>
+            <div class="fitem"><div class="t">Roadmap</div><div class="b">Phased feature rollout over 5 years</div></div>
+            <div class="fitem"><div class="t">Data</div><div class="b">Consent architecture for 20M+ records</div></div>
+            <div class="fitem"><div class="t">Reporting</div><div class="b">NPS and insights dashboard visibility</div></div>
+          </div>
+        </div>
+        <div class="product-right">
+          <div class="ticket reveal"><div class="num">01 / Reward Design</div><h4>Reward Mechanics Design</h4><p>Defined the five reward schemes with point structures, tier thresholds, and redemption rules.</p></div>
+          <div class="ticket reveal"><div class="num">02 / Planning</div><h4>5-Year App Roadmap</h4><p>Created a phased roadmap for scale, feature release, and deeper CRM integration.</p></div>
+          <div class="ticket reveal"><div class="num">03 / Risk Control</div><h4>Data Consent Architecture</h4><p>Designed a multi-channel consent system that reduced legal exposure and improved data usability.</p></div>
+          <div class="ticket reveal"><div class="num">04 / Measurement</div><h4>NPS Dashboard</h4><p>Automated leadership visibility through a live dashboard for NPS and program insights.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head reveal"><h2>Key contributions that made the program <em>work</em></h2><div class="section-num">03 / Proof</div></div>
+      <div class="proof-grid">
+        <div class="proof reveal"><div class="n">01 / Design</div><h4>Reward mechanics</h4><p>Made participation clear, structured, and motivating across multiple farmer journeys.</p></div>
+        <div class="proof reveal"><div class="n">02 / Growth</div><h4>Download expansion</h4><p>Helped move the program from early traction to mass adoption.</p></div>
+        <div class="proof reveal"><div class="n">03 / Fraud Detection</div><h4>Loophole fix</h4><p>Detected abnormal reward patterns and recommended the structural correction.</p></div>
+        <div class="proof reveal"><div class="n">04 / Governance</div><h4>Consent architecture</h4><p>Built the foundation for compliant engagement and future CRM activation.</p></div>
+        <div class="proof reveal"><div class="n">05 / Visibility</div><h4>Leadership dashboard</h4><p>Turned program health into a live reporting layer instead of periodic manual updates.</p></div>
+      </div>
+    </section>
+
+    <section class="image-band reveal" id="final-shot">
+      <div class="single-shot">
+        <div class="single-shot-frame empty">
+          <img src="assets/loyalty-final-shot.jpg" alt="Loyalty programs visual" onerror="this.style.display='none';this.parentElement.classList.add('empty');">
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div class="footer-row">
+        <span>Shruti Kunwar — © 2026</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('visible'); });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function setScrollVars(){ document.documentElement.style.setProperty('--scrollY', `${window.scrollY}px`); }
+setScrollVars();
+window.addEventListener('scroll', setScrollVars, {passive:true});
+</script>
+</body>
+</html>
