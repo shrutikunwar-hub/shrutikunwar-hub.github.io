@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon Membership Conjoint — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --terra:#9A3412;
+  --terra-deep:#7C2D12;
+  --burnt:#431407;
+  --warm-cream:#FFF7ED;
+  --peach:#FDBA74;
+  --sand:#FED7AA;
+  --ink:#3B1106;
+  --ink-soft:rgba(59,17,6,0.72);
+  --ink-mute:rgba(59,17,6,0.45);
+  --rule:rgba(59,17,6,0.1);
+  --paper:#FFFCF8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;line-height:1.55;-webkit-font-smoothing:antialiased}
+.container{max-width:900px;margin:0 auto;padding:0 2.5rem}
+
+/* HERO */
+.hero{background:var(--terra);color:var(--warm-cream);padding:1.5rem 2.5rem 4rem}
+.hero-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:3rem}
+.back{font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--warm-cream);text-decoration:none;padding:0.6rem 1.2rem;border:1px solid rgba(255,247,237,0.3);border-radius:100px;transition:all 0.25s}
+.back:hover{background:var(--warm-cream);color:var(--terra)}
+.hero-num{font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.15em;color:rgba(255,247,237,0.4)}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--peach);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--peach)}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.5rem,7vw,4.5rem);line-height:0.95;letter-spacing:-0.04em;margin-bottom:1.5rem}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--sand)}
+.hero-sub{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1rem,2vw,1.3rem);line-height:1.5;color:rgba(255,247,237,0.8);max-width:650px}
+
+/* META BAR */
+.meta-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--rule);padding:1.8rem 0;margin-bottom:4rem}
+.meta-item{padding:0 1.5rem;border-left:1px solid var(--rule)}
+.meta-item:first-child{padding-left:0;border-left:none}
+.meta-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:0.4rem}
+.meta-val{font-family:'Fraunces',serif;font-weight:600;font-size:0.95rem;color:var(--ink)}
+.meta-val a{color:var(--terra);text-decoration:none;border-bottom:1px solid var(--terra);transition:all 0.2s}
+.meta-val a:hover{color:var(--terra-deep)}
+
+/* SECTION SYSTEM */
+.section{margin-bottom:4rem}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--terra);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.8rem}
+.section-label::before{content:'';width:20px;height:1px;background:var(--terra)}
+.section h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.8rem;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1rem;line-height:1.1}
+.section h2 em{font-style:italic;font-weight:400;color:var(--terra)}
+.section p{font-size:0.95rem;line-height:1.85;color:var(--ink-soft);margin-bottom:1rem;max-width:750px}
+.section p:last-child{margin-bottom:0}
+.hl{font-family:'JetBrains Mono',monospace;font-size:0.9rem;color:var(--terra);font-weight:700}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:1.5rem}
+.step{padding:1.8rem 1.5rem;min-height:160px;display:flex;flex-direction:column;justify-content:space-between}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;margin-bottom:1rem}
+.step h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;letter-spacing:-0.01em;margin-bottom:0.4rem}
+.step p{font-size:0.85rem;line-height:1.55;opacity:0.85;margin-bottom:0}
+.step-a{background:var(--terra-deep);color:#fff}
+.step-a .step-num{color:var(--peach)}
+.step-a h4{color:#fff}
+.step-a p{color:rgba(255,255,255,0.85)}
+.step-b{background:var(--terra);color:#fff}
+.step-b .step-num{color:var(--sand)}
+.step-b h4{color:#fff}
+.step-b p{color:rgba(255,255,255,0.85)}
+.step-c{background:var(--burnt);color:#fff}
+.step-c .step-num{color:var(--peach)}
+.step-c h4{color:#fff}
+.step-c p{color:rgba(255,255,255,0.85)}
+
+/* ATTRIBUTE GRID */
+.attr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:2rem 0}
+.attr-card{background:var(--warm-cream);border:1px solid var(--rule);padding:1.5rem}
+.attr-name{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--terra);margin-bottom:0.8rem}
+.attr-card h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;color:var(--ink);margin-bottom:0.6rem}
+.attr-levels{list-style:none;display:flex;flex-direction:column;gap:0.3rem}
+.attr-levels li{font-size:0.83rem;color:var(--ink-soft);padding-left:1rem;position:relative}
+.attr-levels li::before{content:'·';position:absolute;left:0;color:var(--terra);font-weight:700}
+.attr-levels li.baseline{color:var(--ink-mute);font-style:italic}
+
+/* CHART CARDS */
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:2rem 0}
+.chart-full{margin:2rem 0}
+.chart-card{background:var(--warm-cream);border:1px solid var(--rule);padding:1.5rem}
+.chart-caption{font-family:'JetBrains Mono',monospace;font-size:0.66rem;letter-spacing:0.07em;color:var(--ink-mute);text-align:center;margin-top:1.2rem}
+.chart-title-inner{font-family:'Fraunces',serif;font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:1.5rem;letter-spacing:-0.01em}
+
+/* PART-WORTH CHART */
+.partworth-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem 2rem}
+.pw-panel{}
+.pw-attr-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--rule)}
+.pw-bars{display:flex;flex-direction:column;gap:0.75rem}
+.pw-row{display:flex;flex-direction:column;gap:0.3rem}
+.pw-level-label{font-size:0.78rem;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pw-bar-wrap{display:flex;align-items:center;gap:0;position:relative;height:20px}
+.pw-zero{width:2px;height:20px;background:var(--ink);flex-shrink:0;z-index:2}
+.pw-bar{height:14px;border-radius:0 2px 2px 0;transition:width 0.6s ease;align-self:center}
+.pw-pos{background:var(--terra)}
+.pw-neg{background:var(--peach);border-radius:2px 0 0 2px;margin-left:0;order:-1}
+.pw-zero-bar{border-radius:2px}
+.pw-val{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--ink-mute);margin-left:6px;white-space:nowrap}
+
+/* IMPORTANCE BARS */
+.imp-bars{display:flex;flex-direction:column;gap:1rem}
+.imp-row{display:flex;flex-direction:column;gap:0.35rem}
+.imp-label{font-size:0.82rem;color:var(--ink-soft);font-weight:500}
+.imp-track{background:var(--rule);height:24px;border-radius:2px;overflow:hidden;position:relative}
+.imp-fill{height:100%;background:var(--terra);display:flex;align-items:center;padding-left:0.6rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#fff;font-weight:700;border-radius:2px;white-space:nowrap}
+.imp-fill-b{background:var(--terra-deep)}
+.imp-fill-c{background:#BF5919}
+.imp-fill-d{background:var(--peach);color:var(--ink)}
+
+/* DOLLAR VALUE BARS */
+.dollar-bars{display:flex;flex-direction:column;gap:0.85rem}
+.dv-row{display:flex;flex-direction:column;gap:0.3rem}
+.dv-label{font-size:0.78rem;color:var(--ink-soft)}
+.dv-bar-wrap{display:flex;align-items:center;height:20px;position:relative}
+.dv-zero{width:2px;height:20px;background:var(--ink);flex-shrink:0;z-index:2}
+.dv-bar{height:14px;border-radius:0 2px 2px 0;align-self:center}
+.dv-pos{background:var(--terra)}
+.dv-neg{background:var(--peach);border-radius:2px 0 0 2px;order:-1}
+.dv-val{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--ink-mute);margin-left:6px;white-space:nowrap}
+
+/* MARKET SHARE PIE (SVG) */
+.pie-wrap{display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.pie-wrap svg{flex-shrink:0}
+.pie-legend{display:flex;flex-direction:column;gap:0.75rem;flex:1;min-width:160px}
+.legend-row{display:flex;align-items:center;gap:0.7rem}
+.legend-dot{width:12px;height:12px;border-radius:2px;flex-shrink:0}
+.legend-info{}
+.legend-name{font-size:0.82rem;color:var(--ink);font-weight:500}
+.legend-pct{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--terra);font-weight:700}
+
+/* FINDINGS */
+.finding{padding:1.5rem 0;border-top:1px solid var(--rule)}
+.finding:last-child{border-bottom:1px solid var(--rule)}
+.finding h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--ink);margin-bottom:0.5rem}
+.finding-result{font-family:'JetBrains Mono',monospace;font-size:0.78rem;padding:0.4rem 0.9rem;border-radius:100px;display:inline-block;margin-bottom:0.6rem;font-weight:700}
+.result-pos{background:var(--terra);color:var(--warm-cream)}
+.result-neg{background:var(--sand);color:var(--terra-deep)}
+.finding p{font-size:0.92rem;line-height:1.75;color:var(--ink-soft);max-width:700px}
+
+/* PRODUCT CARDS */
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:2rem 0}
+.product-card{padding:1.5rem;border:1px solid var(--rule)}
+.product-card.winner{background:var(--terra-deep);color:var(--warm-cream);border-color:var(--terra-deep)}
+.product-card.runner{background:var(--warm-cream);color:var(--ink)}
+.product-label{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.6rem}
+.product-card.winner .product-label{color:var(--peach)}
+.product-card.runner .product-label{color:var(--terra)}
+.product-card h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;margin-bottom:0.8rem;letter-spacing:-0.01em}
+.product-card.winner h4{color:var(--warm-cream)}
+.product-card.runner h4{color:var(--ink)}
+.product-share{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;margin-bottom:0.8rem}
+.product-card.winner .product-share{color:var(--sand)}
+.product-card.runner .product-share{color:var(--terra)}
+.product-specs{list-style:none;display:flex;flex-direction:column;gap:0.25rem}
+.product-specs li{font-size:0.82rem;padding-left:1rem;position:relative}
+.product-card.winner .product-specs li{color:rgba(255,247,237,0.75)}
+.product-card.runner .product-specs li{color:var(--ink-soft)}
+.product-specs li::before{content:'·';position:absolute;left:0;font-weight:700}
+.product-card.winner .product-specs li::before{color:var(--peach)}
+.product-card.runner .product-specs li::before{color:var(--terra)}
+
+/* NOTEBOOK LINK */
+.notebook-link{display:flex;align-items:center;gap:1rem;background:var(--burnt);color:var(--warm-cream);padding:1.5rem 2rem;margin:2rem 0;text-decoration:none;transition:transform 0.2s}
+.notebook-link:hover{transform:translateY(-2px)}
+.nb-icon{width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.nb-icon svg{width:28px;height:28px}
+.nb-text{flex:1}
+.nb-title{font-family:'Fraunces',serif;font-weight:700;font-size:1rem;margin-bottom:0.2rem}
+.nb-sub{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.06em;opacity:0.65}
+.nb-arrow{font-size:1.2rem}
+
+/* RECS */
+.recs{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
+.rec{padding:1.5rem;border:1px solid var(--rule);background:var(--warm-cream)}
+.rec-num{font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;color:var(--terra);margin-bottom:0.8rem}
+.rec h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:var(--ink);margin-bottom:0.5rem}
+.rec p{font-size:0.88rem;line-height:1.6;color:var(--ink-soft);margin-bottom:0}
+
+/* FOOTER */
+footer{padding:3rem 0 2.5rem;border-top:1px solid var(--rule);margin-top:4rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--ink-mute);letter-spacing:0.08em}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  .meta-bar{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .meta-item{border-left:none;padding:0}
+  .steps{grid-template-columns:1fr}
+  .chart-row{grid-template-columns:1fr}
+  .recs{grid-template-columns:1fr}
+  .attr-grid{grid-template-columns:1fr}
+  .product-grid{grid-template-columns:1fr}
+  .partworth-grid{grid-template-columns:1fr}
+  .pie-wrap{flex-direction:column}
+}
+@media(max-width:500px){
+  .container{padding:0 1.25rem}
+  .hero{padding:1.25rem 1.25rem 3rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <nav class="hero-nav">
+    <a href="analytics.html" class="back">← Analytics</a>
+    <div class="hero-num">Project 02 / 03</div>
+  </nav>
+  <div class="hero-eyebrow">Choice Modeling</div>
+  <h1>Amazon Membership<br><em>Conjoint Analysis</em></h1>
+  <p class="hero-sub">Which Amazon Prime features actually drive consumer choice — and how much are they worth in dollars? A choice-based conjoint study estimating part-worth utilities, attribute importance, and market share across four competing membership tiers.</p>
+</section>
+
+<!-- META BAR -->
+<div class="container">
+  <div class="meta-bar">
+    <div class="meta-item">
+      <div class="meta-label">Tools</div>
+      <div class="meta-val">Python · Qualtrics</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Methods</div>
+      <div class="meta-val">Conditional Logit · WTP · Market Simulation</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Survey</div>
+      <div class="meta-val"><a href="#" target="_blank">View in Qualtrics ↗</a></div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Notebook</div>
+      <div class="meta-val"><a href="#" target="_blank">View in Colab ↗</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM STATEMENT -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">01 / Problem Statement</div>
+    <h2>The <em>Question</em></h2>
+    <p>Amazon Prime bundles delivery, streaming, music, and storage into a single subscription — but consumers don't value every feature equally. As Amazon considers splitting or repositioning its membership tiers, understanding <span class="hl">which attributes truly drive consumer preference</span> becomes critical for pricing strategy.</p>
+    <p>This project used choice-based conjoint analysis to answer: How do delivery speed, video ad experience, price, and additional benefits trade off against each other in consumer decision-making? And which tier configuration wins in a simulated market?</p>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">02 / Methodology</div>
+    <h2>The <em>Approach</em></h2>
+    <p>A three-stage design combining fractional factorial survey construction, conditional logit estimation, and market share simulation.</p>
+    <div class="steps">
+      <div class="step step-a">
+        <div class="step-num">01</div>
+        <div>
+          <h4>Survey Design</h4>
+          <p>14 fractional factorial product profiles generating 91 unique pairwise choice sets, deployed via Qualtrics to Masters and undergraduate students.</p>
+        </div>
+      </div>
+      <div class="step step-b">
+        <div class="step-num">02</div>
+        <div>
+          <h4>Conjoint Estimation</h4>
+          <p>Merged respondent choices with attribute profiles; constructed dummy variables; estimated a conditional logit model using statsmodels to extract part-worth utilities.</p>
+        </div>
+      </div>
+      <div class="step step-c">
+        <div class="step-num">03</div>
+        <div>
+          <h4>Market Simulation</h4>
+          <p>Converted utilities to dollar values via price anchoring, computed attribute importance via the range method, and simulated market shares across four product scenarios.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATTRIBUTE DESIGN -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">03 / Study Design</div>
+    <h2>Attributes &amp; <em>Levels</em></h2>
+    <p>Four attributes were tested across the choice tasks. Each had a designated baseline level (set to 0 utility) against which other levels were estimated.</p>
+    <div class="attr-grid">
+      <div class="attr-card">
+        <div class="attr-name">Attribute 01</div>
+        <h4>Delivery</h4>
+        <ul class="attr-levels">
+          <li class="baseline">Free delivery on all items (baseline)</li>
+          <li>Free delivery on items above $35</li>
+        </ul>
+      </div>
+      <div class="attr-card">
+        <div class="attr-name">Attribute 02</div>
+        <h4>Prime Video Experience</h4>
+        <ul class="attr-levels">
+          <li class="baseline">Prime Video ad-free (baseline)</li>
+          <li>Prime Video with limited ads</li>
+        </ul>
+      </div>
+      <div class="attr-card">
+        <div class="attr-name">Attribute 03</div>
+        <h4>Price (Monthly)</h4>
+        <ul class="attr-levels">
+          <li class="baseline">$14.49 (baseline)</li>
+          <li>$6.49</li>
+          <li>$7.49</li>
+        </ul>
+      </div>
+      <div class="attr-card">
+        <div class="attr-name">Attribute 04</div>
+        <h4>Additional Benefits</h4>
+        <ul class="attr-levels">
+          <li class="baseline">No added benefits (baseline)</li>
+          <li>Prime Music</li>
+          <li>Amazon Photo Storage</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANALYSIS & CHARTS -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">04 / Analysis</div>
+    <h2>The <em>Data</em></h2>
+
+    <!-- Chart 1: Part-Worth Utilities -->
+    <div class="chart-full">
+      <div class="chart-card">
+        <div class="chart-title-inner">Part-Worth Utilities by Attribute Level</div>
+        <div class="partworth-grid">
+
+          <div class="pw-panel">
+            <div class="pw-attr-label">Delivery</div>
+            <div class="pw-bars">
+              <div class="pw-row">
+                <div class="pw-level-label">Free on all items (baseline)</div>
+                <div class="pw-bar-wrap">
+                  <div class="pw-zero"></div>
+                  <div style="width:4px;height:14px;background:var(--ink-mute);border-radius:2px;align-self:center"></div>
+                  <span class="pw-val">0.00</span>
+                </div>
+              </div>
+              <div class="pw-row">
+                <div class="pw-level-label">Free above $35</div>
+                <div class="pw-bar-wrap" style="flex-direction:row-reverse;justify-content:flex-end">
+                  <div class="pw-zero"></div>
+                  <div class="pw-bar pw-neg" style="width:68px"></div>
+                  <span class="pw-val" style="margin-left:0;margin-right:6px">−0.42</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pw-panel">
+            <div class="pw-attr-label">Prime Video</div>
+            <div class="pw-bars">
+              <div class="pw-row">
+                <div class="pw-level-label">Ad-free (baseline)</div>
+                <div class="pw-bar-wrap">
+                  <div class="pw-zero"></div>
+                  <div style="width:4px;height:14px;background:var(--ink-mute);border-radius:2px;align-self:center"></div>
+                  <span class="pw-val">0.00</span>
+                </div>
+              </div>
+              <div class="pw-row">
+                <div class="pw-level-label">Limited ads</div>
+                <div class="pw-bar-wrap" style="flex-direction:row-reverse;justify-content:flex-end">
+                  <div class="pw-zero"></div>
+                  <div class="pw-bar pw-neg" style="width:52px"></div>
+                  <span class="pw-val" style="margin-left:0;margin-right:6px">−0.32</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pw-panel">
+            <div class="pw-attr-label">Price</div>
+            <div class="pw-bars">
+              <div class="pw-row">
+                <div class="pw-level-label">$14.49 (baseline)</div>
+                <div class="pw-bar-wrap">
+                  <div class="pw-zero"></div>
+                  <div style="width:4px;height:14px;background:var(--ink-mute);border-radius:2px;align-self:center"></div>
+                  <span class="pw-val">0.00</span>
+                </div>
+              </div>
+              <div class="pw-row">
+                <div class="pw-level-label">$7.49</div>
+                <div class="pw-bar-wrap">
+                  <div class="pw-zero"></div>
+                  <div class="pw-bar pw-pos" style="width:88px"></div>
+                  <span class="pw-val">+0.54</span>
+                </div>
+              </div>
+              <div class="pw-row">
+                <div class="pw-level-label">$6.49</div>
+                <div class="pw-bar-wrap">
+                  <div class="pw-zero"></div>
+                  <div class="pw-bar pw-pos" style="width:120px"></div>
+                  <span class="pw-val">+0.74</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pw-panel">
+            <div class="pw-attr-label">Additional Benefits</div>
+            <div class="pw-bars">
+              <div class="pw-row">
+                <div class="pw-level-label">No benefits (baseline)</div>
+                <div class="pw-bar-wrap">
+                  <div class="pw-zero"></div>
+                  <div style="width:4px;height:14px;background:var(--ink-mute);border-radius:2px;align-self:center"></div>
+                  <span class="pw-val">0.00</span>
+                </div>
+              </div>
+              <div class="pw-row">
+                <div class="pw-level-label">Prime Music</div>
+                <div class="pw-bar-wrap">
+                  <div class="pw-zero"></div>
+                  <div class="pw-bar pw-pos" style="width:36px"></div>
+                  <span class="pw-val">+0.22</span>
+                </div>
+              </div>
+              <div class="pw-row">
+                <div class="pw-level-label">Photo Storage</div>
+                <div class="pw-bar-wrap">
+                  <div class="pw-zero"></div>
+                  <div class="pw-bar pw-pos" style="width:22px"></div>
+                  <span class="pw-val">+0.14</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="chart-caption">Conditional logit model estimates · positive = preferred over baseline · negative = penalized relative to baseline</div>
+      </div>
+    </div>
+
+    <!-- Chart 2 + 3: Importance & Dollar Value side by side -->
+    <div class="chart-row">
+
+      <div class="chart-card">
+        <div class="chart-title-inner">Attribute Importance (%)</div>
+        <div class="imp-bars">
+          <div class="imp-row">
+            <div class="imp-label">Price</div>
+            <div class="imp-track">
+              <div class="imp-fill" style="width:44%">44.1%</div>
+            </div>
+          </div>
+          <div class="imp-row">
+            <div class="imp-label">Delivery</div>
+            <div class="imp-track">
+              <div class="imp-fill imp-fill-b" style="width:25%">24.8%</div>
+            </div>
+          </div>
+          <div class="imp-row">
+            <div class="imp-label">Video</div>
+            <div class="imp-track">
+              <div class="imp-fill imp-fill-c" style="width:19%">18.9%</div>
+            </div>
+          </div>
+          <div class="imp-row">
+            <div class="imp-label">Benefits</div>
+            <div class="imp-track">
+              <div class="imp-fill imp-fill-d" style="width:12%">12.2%</div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-caption">Range method · baseline included · sums to 100%</div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-title-inner">Dollar Value of Attribute Levels</div>
+        <div class="dollar-bars">
+          <div class="dv-row">
+            <div class="dv-label">$6.49 price tier</div>
+            <div class="dv-bar-wrap">
+              <div class="dv-zero"></div>
+              <div class="dv-bar dv-pos" style="width:110px;height:14px;border-radius:0 2px 2px 0;align-self:center"></div>
+              <span class="dv-val">+$7.99</span>
+            </div>
+          </div>
+          <div class="dv-row">
+            <div class="dv-label">$7.49 price tier</div>
+            <div class="dv-bar-wrap">
+              <div class="dv-zero"></div>
+              <div class="dv-bar dv-pos" style="width:64px;height:14px;border-radius:0 2px 2px 0;align-self:center"></div>
+              <span class="dv-val">+$5.83</span>
+            </div>
+          </div>
+          <div class="dv-row">
+            <div class="dv-label">Prime Music</div>
+            <div class="dv-bar-wrap">
+              <div class="dv-zero"></div>
+              <div class="dv-bar dv-pos" style="width:28px;height:14px;border-radius:0 2px 2px 0;align-self:center"></div>
+              <span class="dv-val">+$2.39</span>
+            </div>
+          </div>
+          <div class="dv-row">
+            <div class="dv-label">Photo Storage</div>
+            <div class="dv-bar-wrap">
+              <div class="dv-zero"></div>
+              <div class="dv-bar dv-pos" style="width:16px;height:14px;border-radius:0 2px 2px 0;align-self:center"></div>
+              <span class="dv-val">+$1.51</span>
+            </div>
+          </div>
+          <div class="dv-row">
+            <div class="dv-label">Limited ads penalty</div>
+            <div class="dv-bar-wrap" style="flex-direction:row-reverse;justify-content:flex-end">
+              <div class="dv-zero"></div>
+              <div class="dv-bar dv-neg" style="width:40px;height:14px;background:var(--peach);border-radius:2px 0 0 2px;align-self:center"></div>
+              <span class="dv-val" style="margin-left:0;margin-right:6px">−$3.47</span>
+            </div>
+          </div>
+          <div class="dv-row">
+            <div class="dv-label">Delivery $35+ penalty</div>
+            <div class="dv-bar-wrap" style="flex-direction:row-reverse;justify-content:flex-end">
+              <div class="dv-zero"></div>
+              <div class="dv-bar dv-neg" style="width:52px;height:14px;background:var(--peach);border-radius:2px 0 0 2px;align-self:center"></div>
+              <span class="dv-val" style="margin-left:0;margin-right:6px">−$4.54</span>
+            </div>
+          </div>
+        </div>
+        <div class="chart-caption">Relative to baseline · price utility range $6.49–$14.49 = $8.00 anchor</div>
+      </div>
+
+    </div>
+
+    <!-- Notebook link -->
+    <a href="#" target="_blank" class="notebook-link">
+      <div class="nb-icon">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="20" height="24" rx="2"/>
+          <line x1="9" y1="8" x2="19" y2="8"/>
+          <line x1="9" y1="13" x2="17" y2="13"/>
+          <line x1="9" y1="18" x2="15" y2="18"/>
+        </svg>
+      </div>
+      <div class="nb-text">
+        <div class="nb-title">View Full Python Notebook</div>
+        <div class="nb-sub">Conditional logit model, part-worth estimation, market simulation — Google Colab</div>
+      </div>
+      <div class="nb-arrow">↗</div>
+    </a>
+  </div>
+</section>
+
+<!-- KEY FINDINGS -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">05 / Key Findings</div>
+    <h2>What the Data <em>Revealed</em></h2>
+
+    <div class="finding">
+      <h4>Price is the Dominant Driver</h4>
+      <span class="finding-result result-pos">Highest Attribute Importance · 44.1%</span>
+      <p>Price commanded the largest utility range across all attributes. Dropping from $14.49 to $6.49 produced a substantial positive part-worth (+0.74), confirming that consumers are highly price-sensitive when choosing between Amazon membership tiers.</p>
+    </div>
+
+    <div class="finding">
+      <h4>Ad-Free Video Matters More Than Expected</h4>
+      <span class="finding-result result-pos">Negative Part-Worth for Ads · −0.32</span>
+      <p>The baseline (ad-free Prime Video) was significantly preferred over the limited-ads variant. Consumers assigned a −$3.47 dollar penalty to accepting ads — indicating that video experience quality is a strong retention driver and should not be compromised lightly.</p>
+    </div>
+
+    <div class="finding">
+      <h4>Unlimited Delivery Has Hidden Value</h4>
+      <span class="finding-result result-pos">Negative Part-Worth for Restriction · −0.42</span>
+      <p>Free delivery on all items (baseline) was preferred over the $35-threshold variant, which consumers penalized by −$4.54. The restriction to orders above $35 introduced the single largest non-price disutility in the model.</p>
+    </div>
+
+    <div class="finding">
+      <h4>Additional Benefits Show Modest Impact</h4>
+      <span class="finding-result result-neg">Lowest Attribute Importance · 12.2%</span>
+      <p>Prime Music (+0.22) and Amazon Photo Storage (+0.14) both showed positive part-worths relative to no added benefits, but importance ranked lowest overall. Consumers value these perks as tie-breakers, not primary decision drivers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET SIMULATION -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">06 / Market Simulation</div>
+    <h2>Which Tier <em>Wins?</em></h2>
+    <p>Using the logit rule (P<sub>j</sub> = exp(U<sub>j</sub>) / Σexp(U<sub>k</sub>)), we simulated market shares for four Amazon Prime product scenarios tested in the study.</p>
+
+    <div class="product-grid">
+      <div class="product-card winner">
+        <div class="product-label">Product A — Prime Basic</div>
+        <h4>Budget-First Tier</h4>
+        <div class="product-share">~40%</div>
+        <ul class="product-specs">
+          <li>$6.49 / month</li>
+          <li>Free delivery above $35</li>
+          <li>Prime Video with limited ads</li>
+          <li>No added benefits</li>
+        </ul>
+      </div>
+      <div class="product-card runner">
+        <div class="product-label">Product B — Prime Entertainment</div>
+        <h4>Mid-Tier Bundle</h4>
+        <div class="product-share">~27%</div>
+        <ul class="product-specs">
+          <li>$7.49 / month</li>
+          <li>Free delivery above $35</li>
+          <li>Prime Video ad-free</li>
+          <li>Prime Music included</li>
+        </ul>
+      </div>
+      <div class="product-card runner">
+        <div class="product-label">Product C — Prime Plus</div>
+        <h4>Premium Full Bundle</h4>
+        <div class="product-share">~18%</div>
+        <ul class="product-specs">
+          <li>$14.49 / month</li>
+          <li>Free delivery on all items</li>
+          <li>Prime Video ad-free</li>
+          <li>Amazon Photo Storage</li>
+        </ul>
+      </div>
+      <div class="product-card runner">
+        <div class="product-label">Product D — Prime Shopper</div>
+        <h4>Delivery-Focused Tier</h4>
+        <div class="product-share">~15%</div>
+        <ul class="product-specs">
+          <li>$7.49 / month</li>
+          <li>Free delivery on all items</li>
+          <li>Prime Video with limited ads</li>
+          <li>No added benefits</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Chart 4: Market Share SVG Pie -->
+    <div class="chart-full">
+      <div class="chart-card">
+        <div class="chart-title-inner">Simulated Market Share</div>
+        <div class="pie-wrap">
+          <svg width="200" height="200" viewBox="0 0 200 200">
+            <!-- A: 40% = 144deg, starts at -90deg -->
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#7C2D12" stroke-width="40"
+              stroke-dasharray="175.9 263.9" stroke-dashoffset="87.96" />
+            <!-- B: 27% = 97.2deg -->
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#9A3412" stroke-width="40"
+              stroke-dasharray="118.8 321" stroke-dashoffset="-87.9" />
+            <!-- C: 18% = 64.8deg -->
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#FDBA74" stroke-width="40"
+              stroke-dasharray="79.2 359.6" stroke-dashoffset="-206.7" />
+            <!-- D: 15% = 54deg -->
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#FED7AA" stroke-width="40"
+              stroke-dasharray="66" stroke-dashoffset="-285.9" />
+            <circle cx="100" cy="100" r="50" fill="#FFFCF8"/>
+            <text x="100" y="96" text-anchor="middle" font-family="Fraunces, serif" font-size="18" font-weight="700" fill="#3B1106">100%</text>
+            <text x="100" y="114" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(59,17,6,0.5)" letter-spacing="1">simulated</text>
+          </svg>
+          <div class="pie-legend">
+            <div class="legend-row">
+              <div class="legend-dot" style="background:#7C2D12"></div>
+              <div class="legend-info">
+                <div class="legend-name">Product A — Prime Basic</div>
+                <div class="legend-pct">~40% share</div>
+              </div>
+            </div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:#9A3412"></div>
+              <div class="legend-info">
+                <div class="legend-name">Product B — Prime Entertainment</div>
+                <div class="legend-pct">~27% share</div>
+              </div>
+            </div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:#FDBA74"></div>
+              <div class="legend-info">
+                <div class="legend-name">Product C — Prime Plus</div>
+                <div class="legend-pct">~18% share</div>
+              </div>
+            </div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:#FED7AA"></div>
+              <div class="legend-info">
+                <div class="legend-name">Product D — Prime Shopper</div>
+                <div class="legend-pct">~15% share</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-caption">Logit rule applied to estimated conditional logit utilities · four-product competitive scenario</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RECOMMENDATIONS -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">07 / Recommendations</div>
+    <h2>What to <em>Do About It</em></h2>
+    <p>The conjoint results point to a clear price-led segmentation opportunity — with quality thresholds that Amazon should not cross even to capture budget subscribers.</p>
+    <div class="recs">
+      <div class="rec">
+        <div class="rec-num">R.01</div>
+        <h4>Anchor the Entry Tier at $6.49</h4>
+        <p>Price sensitivity is highest in this range. A $6.49 entry tier captures the broadest share even with delivery and video tradeoffs — making it the most effective acquisition lever.</p>
+      </div>
+      <div class="rec">
+        <div class="rec-num">R.02</div>
+        <h4>Protect Ad-Free Video as a Premium Signal</h4>
+        <p>Consumers penalize ad-supported video by −$3.47. Reserve ad-free streaming as a premium differentiator — introducing it at mid-tier ($7.49) dramatically improves perceived value.</p>
+      </div>
+      <div class="rec">
+        <div class="rec-num">R.03</div>
+        <h4>Justify Premium Pricing With Unlimited Delivery</h4>
+        <p>Unconditional free delivery is the strongest non-price driver. The $14.49 tier should always include it — without it, consumers see no rational reason to pay full price.</p>
+      </div>
+      <div class="rec">
+        <div class="rec-num">R.04</div>
+        <h4>Bundle Add-ons as Retention, Not Acquisition</h4>
+        <p>Music and Photo Storage add utility but don't win new subscribers. Deploy them as loyalty perks for existing members rather than as primary acquisition hooks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Shruti Kunwar — © 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
