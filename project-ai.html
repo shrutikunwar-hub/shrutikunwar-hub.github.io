@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI & Developer Satisfaction — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burg:#5D001E; --wine:#9A1750; --blush:#E3AFBC;
+  --grey:#E3E2DF; --grey-d:#C8C6C2; --grey-dd:#9E9B96;
+  --ink:#2A0A12; --paper:#EEECEA; --paper-w:#E8E5E1;
+  --rule:rgba(93,0,30,0.11);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.container{max-width:960px;margin:0 auto;padding:0 2.5rem}
+
+.hero{background:var(--burg)}
+.hero-nav{display:flex;justify-content:space-between;align-items:center;padding:1.8rem 2.5rem;border-bottom:1px solid rgba(227,175,188,0.15)}
+.back{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);text-decoration:none;padding:.52rem 1.1rem;border:1px solid rgba(227,175,188,0.3);border-radius:100px;transition:all .22s}
+.back:hover{background:var(--blush);color:var(--burg);border-color:var(--blush)}
+.hero-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.15em;color:rgba(227,175,188,0.35)}
+.hero-body{padding:3.5rem 2.5rem 5rem;max-width:960px;margin:0 auto}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--blush);display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--blush)}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.8rem,7vw,5.5rem);line-height:.92;letter-spacing:-.04em;color:var(--grey);margin-bottom:1.5rem}
+.hero h1 em{font-style:italic;font-weight:300;color:var(--blush)}
+.hero-sub{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(.95rem,1.8vw,1.2rem);line-height:1.6;color:rgba(227,175,188,0.6);max-width:660px}
+
+.meta-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--rule);padding:1.6rem 0;margin-bottom:4.5rem}
+.mi{padding:0 1.4rem;border-left:1px solid var(--rule)}.mi:first-child{padding-left:0;border-left:none}
+.mi-lbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey-dd);margin-bottom:.35rem}
+.mi-val{font-family:'Fraunces',serif;font-weight:600;font-size:.93rem;color:var(--ink)}
+.mi-val a{color:var(--wine);text-decoration:none;border-bottom:1px solid rgba(154,23,80,.28)}
+
+.section{margin-bottom:5rem}
+.sec-lbl{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--wine);display:flex;align-items:center;gap:.7rem;margin-bottom:1.3rem}
+.sec-lbl::before{content:'';width:16px;height:1px;background:var(--wine)}
+.section h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.85rem;letter-spacing:-.02em;color:var(--burg);margin-bottom:.9rem;line-height:1.1}
+.section h2 em{font-style:italic;font-weight:300;color:var(--wine)}
+.section p{font-size:.95rem;line-height:1.85;color:rgba(42,10,18,.65);margin-bottom:.85rem;max-width:720px}
+.section p:last-child{margin-bottom:0}
+.hl{font-family:'JetBrains Mono',monospace;font-size:.9em;color:var(--wine);font-weight:700}
+
+/* Paradox grid */
+.paradox{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.5rem 0}
+.px{background:var(--paper-w);padding:1.8rem 1.6rem}
+.px.dk{background:var(--burg)}
+.px-val{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.3rem,5vw,3.5rem);line-height:1;letter-spacing:-.04em;color:var(--wine);margin-bottom:.35rem}
+.px.dk .px-val{color:var(--blush)}
+.px-lbl{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-dd);margin-bottom:.5rem}
+.px.dk .px-lbl{color:rgba(227,175,188,.45)}
+.px-desc{font-size:.85rem;line-height:1.5;color:rgba(42,10,18,.55)}
+.px.dk .px-desc{color:rgba(227,175,188,.55)}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:1.4rem}
+.step{background:var(--paper-w);padding:1.8rem 1.5rem}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.18em;color:var(--wine);margin-bottom:.85rem}
+.step h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:var(--burg);margin-bottom:.4rem}
+.step p{font-size:.85rem;line-height:1.6;color:rgba(42,10,18,.6);margin:0}
+.step.dk{background:var(--burg)}.step.dk h4{color:var(--grey)}.step.dk p{color:rgba(227,175,188,.6)}.step.dk .step-num{color:var(--blush)}
+.step.md{background:var(--wine)}.step.md h4{color:var(--grey)}.step.md p{color:rgba(227,175,188,.6)}.step.md .step-num{color:rgba(227,175,188,.75)}
+
+/* Findings */
+.finding{padding:1.5rem 0;border-top:1px solid var(--rule)}
+.finding:last-child{border-bottom:1px solid var(--rule)}
+.finding h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:var(--burg);margin-bottom:.5rem}
+.badge{font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:.33rem .88rem;border-radius:100px;display:inline-block;margin-bottom:.6rem;font-weight:700}
+.b-burg{background:var(--burg);color:var(--blush)}
+.b-wine{background:var(--wine);color:var(--grey)}
+.b-neutral{background:var(--paper-w);color:var(--burg);border:1px solid var(--rule)}
+.finding p{font-size:.9rem;line-height:1.78;color:rgba(42,10,18,.62);max-width:700px}
+
+/* Insight */
+.insight{background:var(--burg);padding:3.8rem 3rem;margin:2rem 0;position:relative;overflow:hidden}
+.insight::before{content:'\201C';position:absolute;top:-2rem;left:1.2rem;font-family:'Fraunces',serif;font-size:15rem;color:var(--blush);opacity:.1;line-height:1;pointer-events:none}
+.ins-lbl{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blush);margin-bottom:1rem}
+.insight p{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.05rem,2vw,1.4rem);line-height:1.55;color:var(--grey);margin-bottom:.9rem;position:relative;z-index:1}
+.insight p em{font-style:italic;color:var(--blush)}
+.insight p strong{color:var(--blush);font-weight:700;font-style:italic}
+
+/* Stats */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.4rem 0}
+.stat-c{background:var(--paper-w);padding:1.8rem 1.4rem;text-align:center}
+.stat-c.dk{background:var(--burg)}
+.stat-val{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(1.9rem,4vw,2.8rem);letter-spacing:-.03em;line-height:1;color:var(--wine);margin-bottom:.35rem}
+.stat-c.dk .stat-val{color:var(--blush)}
+.stat-lbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey-dd)}
+.stat-c.dk .stat-lbl{color:rgba(227,175,188,.45)}
+
+/* Recs */
+.recs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:1.4rem}
+.rec{background:var(--paper-w);padding:1.8rem 1.5rem}
+.rec-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.18em;color:var(--wine);margin-bottom:.65rem}
+.rec h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;color:var(--burg);margin-bottom:.4rem}
+.rec p{font-size:.85rem;line-height:1.6;color:rgba(42,10,18,.6);margin:0}
+
+/* Notebook */
+.nb{display:flex;align-items:center;gap:1rem;background:var(--burg);padding:1.4rem 1.8rem;text-decoration:none;margin:1.5rem 0;transition:background .2s}
+.nb:hover{background:var(--wine)}
+.nb-icon{width:34px;height:34px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.nb-icon svg{width:22px;height:22px;stroke:var(--blush)}
+.nb-text{flex:1}
+.nb-title{font-family:'Fraunces',serif;font-weight:700;font-size:.95rem;color:var(--grey);margin-bottom:.12rem}
+.nb-sub{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:rgba(227,175,188,.4)}
+.nb-arrow{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--blush);opacity:.6}
+.nb:hover .nb-arrow{opacity:1}
+
+/* Delivs */
+.delivs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:1.4rem}
+.deliv{background:var(--paper-w);padding:1.2rem 1.3rem;transition:background .2s}
+.deliv:hover{background:var(--blush)}
+.deliv-num{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;color:var(--wine);margin-bottom:.4rem}
+.deliv-lbl{font-family:'Fraunces',serif;font-weight:600;font-size:.88rem;color:var(--burg);line-height:1.3}
+
+.toolkit{margin-top:1.4rem}
+.tag-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.85rem}
+.tag-rowlbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-dd);width:100%;margin-bottom:.28rem}
+.tag{font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;padding:.38rem .85rem;border:1px solid var(--rule);border-radius:100px;color:rgba(42,10,18,.65);background:transparent;transition:all .2s;cursor:default}
+.tag:hover{border-color:var(--wine);color:var(--wine)}
+.tag.accent{background:var(--burg);border-color:var(--burg);color:var(--blush)}
+.tag.pop{background:var(--wine);border-color:var(--wine);color:var(--grey);font-weight:600}
+
+footer{background:var(--burg);padding:3.5rem 0 2.5rem;margin-top:5rem}
+.foot-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.foot-brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.75rem;letter-spacing:-.02em;line-height:1.1;color:var(--grey)}
+.foot-brand em{font-style:italic;font-weight:300;color:var(--blush)}
+.foot-lbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--blush);opacity:.5;margin-bottom:.5rem}
+.foot-val{font-family:'Fraunces',serif;font-size:.9rem;color:var(--grey)}
+.foot-val a{color:var(--grey);text-decoration:none;border-bottom:1px solid rgba(227,175,188,.2)}
+.foot-val a:hover{border-color:var(--blush)}
+.foot-bottom{display:flex;justify-content:space-between;padding-top:1.8rem;border-top:1px solid rgba(227,175,188,.15);font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:rgba(227,175,188,.28)}
+
+@media(max-width:800px){
+  .container{padding:0 1.5rem}.hero-body{padding:2.5rem 1.5rem 3.5rem}
+  .meta-bar{grid-template-columns:1fr 1fr;gap:1.2rem}.mi{border-left:none;padding:0}
+  .paradox,.steps,.recs,.stat-row{grid-template-columns:1fr}
+  .delivs{grid-template-columns:1fr 1fr}.foot-inner{grid-template-columns:1fr;gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <nav class="hero-nav">
+    <a href="projects.html" class="back">← Selected Projects</a>
+    <div class="hero-num">Project 02 / 03</div>
+  </nav>
+  <div class="hero-body">
+    <div class="eyebrow">Predictive Analytics · MGMT 68700</div>
+    <h1>AI &amp; Developer<br><em>Satisfaction</em></h1>
+    <p class="hero-sub">Does adopting AI coding tools make developers happier — or does it create a new kind of anxiety? A predictive study using 49,000+ Stack Overflow responses, gradient boosted trees, and SHAP to find out.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="meta-bar">
+    <div class="mi"><div class="mi-lbl">Course</div><div class="mi-val">MGMT 68700 · Purdue</div></div>
+    <div class="mi"><div class="mi-lbl">Category</div><div class="mi-val">Predictive Analytics</div></div>
+    <div class="mi"><div class="mi-lbl">Data</div><div class="mi-val"><a href="https://survey.stackoverflow.co" target="_blank">Stack Overflow 2025 ↗</a></div></div>
+    <div class="mi"><div class="mi-lbl">Team</div><div class="mi-val">Pedroza · Camacho · Kunwar</div></div>
+  </div>
+
+  <section class="section">
+    <div class="sec-lbl">01 / The Paradox</div>
+    <h2>Adoption is up.<br><em>Confidence is not.</em></h2>
+    <p>In 2025, 84% of developers are using or planning to use AI coding tools. Companies are rolling out GitHub Copilot licenses and restructuring teams around the assumption that AI makes developers faster. But sentiment is moving in the opposite direction.</p>
+    <p><span class="hl">Only 3% of developers highly trust AI output.</span> More actively distrust it (46%) than trust it (33%). Experienced developers — those with 10+ years — are the most skeptical. The question: does mandatory AI adoption actually improve job satisfaction, or does it erode it?</p>
+    <div class="paradox">
+      <div class="px"><div class="px-val">84%</div><div class="px-lbl">Using or planning AI tools</div><div class="px-desc">Up from 76% the prior year. Adoption accelerating.</div></div>
+      <div class="px dk"><div class="px-val">3%</div><div class="px-lbl">Highly trust AI output</div><div class="px-desc">More actively distrust AI (46%) than trust it (33%).</div></div>
+      <div class="px dk"><div class="px-val">60%</div><div class="px-lbl">Favorable views of AI tools</div><div class="px-desc">Down from 70%+. Sentiment falling as adoption rises.</div></div>
+      <div class="px"><div class="px-val">24%</div><div class="px-lbl">Developers happy at work</div><div class="px-desc">Only 1 in 4 developers reports being genuinely satisfied.</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">02 / The Data</div>
+    <h2>49,000+ Responses.<br><em>42 Engineered Features.</em></h2>
+    <p>The Stack Overflow 2025 Annual Developer Survey — the longest-running developer survey in the world. After filtering to employed professionals with valid job satisfaction and AI usage responses, the working sample was ~32,000 observations. Class balance: 50.8% satisfied vs 49.2% — no resampling needed.</p>
+    <div class="steps" style="grid-template-columns:1fr 1fr">
+      <div class="step dk"><div class="step-num">Feature A</div><h4>AI Power User Flag</h4><p>Daily user + favorable sentiment + trusts output. The optimal AI adopter segment.</p></div>
+      <div class="step md"><div class="step-num">Feature B</div><h4>AI Skeptic Flag</h4><p>Daily use + distrust or unfavorable sentiment. The "forced adopter" — the segment that matters most.</p></div>
+      <div class="step"><div class="step-num">Feature C</div><h4>SeniorThreat Interaction</h4><p>Years of coding experience × AI threat perception. Became the 2nd most important GBT feature by SHAP value.</p></div>
+      <div class="step dk"><div class="step-num">Feature D</div><h4>Frustration Count</h4><p>Sum of AI frustrations selected — almost-right code, debugging time, context loss. Higher = more friction.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">03 / Modeling Approach</div>
+    <h2>Three Models.<br><em>One Winner.</em></h2>
+    <p>Target: Satisfied = 1 if job satisfaction falls in the "happy" range, 0 otherwise. Primary metric: AUC — handles class balance more robustly than accuracy.</p>
+    <div class="steps">
+      <div class="step dk"><div class="step-num">M1</div><h4>Logistic Regression</h4><p>Interpretable baseline. Coefficients show how AI adoption changes log-odds of satisfaction. Salary, experience, and role held constant. Interaction terms included.</p></div>
+      <div class="step md"><div class="step-num">M2 ★ Best</div><h4>Gradient Boosted Trees</h4><p>Captures nonlinear patterns. AI tools may help junior devs but hurt senior ones. Tuned via cross-validation. Best AUC across all robustness subgroups.</p></div>
+      <div class="step"><div class="step-num">M3</div><h4>SHAP Explainability</h4><p>Global beeswarm, local waterfall, and group comparisons. Answers "why" for every prediction — essential for managerial intervention.</p></div>
+    </div>
+    <a href="https://drive.google.com/file/d/1pi2aDcfzSugFZirfJYk4HyG5w2ZCmNP9/view?usp=sharing" target="_blank" class="nb">
+      <div class="nb-icon"><svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="20" height="24" rx="2"/><line x1="9" y1="8" x2="19" y2="8"/><line x1="9" y1="13" x2="17" y2="13"/><line x1="9" y1="18" x2="15" y2="18"/></svg></div>
+      <div class="nb-text"><div class="nb-title">View Full Python Notebook</div><div class="nb-sub">Logistic Regression · GBT · SHAP · Lift Charts — Google Drive</div></div>
+      <div class="nb-arrow">↗</div>
+    </a>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">04 / Model Performance</div>
+    <h2>The Model <em>Delivers.</em></h2>
+    <p>Without a model, HR has a 50.8% chance of identifying a satisfied developer — barely better than a coin flip. With GBT predictions, the top decile hits 75% and the top 3 deciles stay above 67%. The model gives people teams a reliable ranked list of who needs attention most.</p>
+    <div class="stat-row">
+      <div class="stat-c"><div class="stat-val">75%</div><div class="stat-lbl">Top decile hit rate</div></div>
+      <div class="stat-c dk"><div class="stat-val">0.61+</div><div class="stat-lbl">AUC across all subgroups</div></div>
+      <div class="stat-c"><div class="stat-val">67%+</div><div class="stat-lbl">Top 3 deciles</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">05 / Key Findings</div>
+    <h2>What the Data <em>Revealed</em></h2>
+    <div class="finding">
+      <h4>AI Usage Frequency Barely Predicts Satisfaction</h4>
+      <span class="badge b-neutral">1.5pt gap · Daily vs Never</span>
+      <p>Only a 1.5-point satisfaction difference between daily AI users (52.2%) and those who never use AI tools (50.7%). Frequency of use alone is essentially noise — completely changing the mandate debate.</p>
+    </div>
+    <div class="finding">
+      <h4>AI Threat Perception Outperforms Salary as a Predictor</h4>
+      <span class="badge b-wine">16.6pt gap · #1 dissatisfaction driver</span>
+      <p>Developers who perceive AI as a job threat report just 41.6% satisfaction vs 58.2% for those who don't. A 16.6-point gap that outperforms salary in the GBT model. This is what CTOs should be monitoring — not adoption rate.</p>
+    </div>
+    <div class="finding">
+      <h4>Frustration Accumulates — Every Point Matters</h4>
+      <span class="badge b-burg">62% → 38% as frustrations stack</span>
+      <p>Satisfaction drops nearly linearly from 62% at zero AI frustrations to 38% at five or more. Reducing friction matters more than increasing adoption rate.</p>
+    </div>
+    <div class="finding">
+      <h4>Power Users vs Skeptics — Same Tool, Different Outcome</h4>
+      <span class="badge b-wine">61.5% vs 44.2% · Both daily users</span>
+      <p>AI Power Users (daily use + trust + favorable sentiment) report 61.5% satisfaction. AI Skeptics (daily use + distrust) report just 44.2%. Being forced to use AI you distrust is measurably worse than not using it at all.</p>
+    </div>
+    <div class="finding">
+      <h4>The SeniorThreat Effect — Watching the Wrong Group</h4>
+      <span class="badge b-burg">2nd most important GBT feature</span>
+      <p>Senior developers (10+ years) are the happiest overall at 55% — but the interaction between seniority and AI threat perception is the 2nd most important GBT feature by SHAP value. The more expertise a developer has built, the more threatened they feel when AI encroaches on it. Organizations focus AI anxiety interventions on junior developers. The data says watch the seniors — they're the most expensive and difficult to replace.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">06 / The Central Insight</div>
+    <h2>The <em>Real</em> Finding</h2>
+    <div class="insight">
+      <div class="ins-lbl">Key Finding</div>
+      <p>AI usage frequency is <strong>nearly irrelevant</strong> to satisfaction. What matters is <em>how developers feel</em> about the AI — whether they trust it, whether they chose it, whether it respects their expertise.</p>
+      <p style="opacity:.82">Don't mandate AI. Understand it. The developers who feel threatened — especially your senior engineers — are your highest retention risk. <em>The model tells you who they are.</em></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">07 / Managerial Implications</div>
+    <h2>What to <em>Do About It</em></h2>
+    <div class="recs">
+      <div class="rec"><div class="rec-num">R.01 · CTOs &amp; VPs</div><h4>Don't Mandate. Understand.</h4><p>Forced adoption among skeptics actively lowers satisfaction. Before rolling out AI tools company-wide, understand whether developers trust the output — not just whether they're using it.</p></div>
+      <div class="rec"><div class="rec-num">R.02 · HR &amp; People Ops</div><h4>Watch Your Senior Engineers</h4><p>The SeniorThreat interaction is the canary. Run skip-levels specifically with 10+ year engineers about AI. Their threat perception is your most predictive dissatisfaction signal.</p></div>
+      <div class="rec"><div class="rec-num">R.03 · L&amp;D Teams</div><h4>Reduce Friction, Not Just Adoption</h4><p>Every additional AI frustration drops satisfaction. Focus on reducing almost-right code, debugging overhead, and context loss — not on increasing raw usage rate.</p></div>
+      <div class="rec"><div class="rec-num">R.04 · All Leaders</div><h4>Satisfaction Is Predictable</h4><p>The GBT model with SHAP gives you a ranked list of at-risk developers. Use it proactively — before they disengage or leave.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">08 / Robustness &amp; Limits</div>
+    <h2>Tested Everywhere.<br><em>Holds Up.</em></h2>
+    <p>Model tested across experience bands (early/mid/senior), geographies (US, Europe, India), developer roles (full-stack, back-end, DevOps, mobile), and restricted to ~80% of respondents who use AI — removing selection bias. All checks exceed AUC 0.60.</p>
+    <p>Limitations: cross-sectional survey — cannot establish causality. Salary excluded due to 25.6% missing. Self-reported responses. Findings appear global, not US-specific.</p>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">09 / Toolkit</div>
+    <h2>The <em>Methods</em></h2>
+    <div class="toolkit">
+      <div class="tag-row"><div class="tag-rowlbl">Modeling</div><span class="tag pop">Gradient Boosted Trees</span><span class="tag">Logistic Regression</span><span class="tag">Cross-Validation</span><span class="tag">AUC Evaluation</span></div>
+      <div class="tag-row"><div class="tag-rowlbl">Explainability</div><span class="tag accent">SHAP Global Beeswarm</span><span class="tag">SHAP Waterfall</span><span class="tag">Lift Charts</span><span class="tag">Decile Analysis</span></div>
+      <div class="tag-row"><div class="tag-rowlbl">Data</div><span class="tag">Python</span><span class="tag">Stack Overflow 2025</span><span class="tag">Feature Engineering</span><span class="tag">Interaction Terms</span></div>
+    </div>
+  </section>
+</div>
+
+<footer><div class="container">
+  <div class="foot-inner">
+    <div class="foot-brand">Let's build something <em>measurable.</em></div>
+    <div><div class="foot-lbl">Email</div><div class="foot-val"><a href="mailto:shrutikunwar029@gmail.com">shrutikunwar029@gmail.com</a></div></div>
+    <div><div class="foot-lbl">LinkedIn</div><div class="foot-val"><a href="https://www.linkedin.com/in/shrutikunwar" target="_blank">linkedin.com/in/shrutikunwar</a></div></div>
+  </div>
+  <div class="foot-bottom"><span>Shruti Kunwar</span><span>© 2026</span></div>
+</div></footer>
+</body>
+</html>

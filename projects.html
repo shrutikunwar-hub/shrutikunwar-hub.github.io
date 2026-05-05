@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selected Projects — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #5D001D;
+  --bg-d:    #480016;
+  --bg-l:    #720023;
+  --cream:   #F2E8D9;
+  --cream-d: #D9CCBA;
+  --cream-dd:#B8A992;
+  --rose:    #E3AFBC;
+  --rule:    rgba(242,232,217,0.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--cream);overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh}
+.container{max-width:1120px;margin:0 auto;padding:0 2.5rem}
+
+/* NAV */
+.topnav{display:flex;justify-content:space-between;align-items:center;padding:1.8rem 2.5rem;border-bottom:1px solid var(--rule)}
+.nav-brand{font-family:'Fraunces',serif;font-weight:700;font-size:1rem;letter-spacing:-0.01em;color:var(--cream)}
+.back{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);text-decoration:none;padding:0.52rem 1.1rem;border:1px solid var(--rule);border-radius:100px;transition:all .22s}
+.back:hover{background:var(--cream);color:var(--bg)}
+
+/* HERO */
+.hero{padding:3.5rem 0 3rem;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--rose);display:flex;align-items:center;gap:0.8rem;margin-bottom:1.4rem}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--rose)}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(3.5rem,9vw,7rem);line-height:0.92;letter-spacing:-0.04em;margin-bottom:1.6rem;color:var(--cream)}
+.hero h1 em{font-style:italic;font-weight:300;color:var(--cream-d)}
+.hero-sub{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(1rem,1.8vw,1.2rem);line-height:1.6;color:var(--cream-d);max-width:560px}
+
+/* TILES */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;padding:2.5rem 0 5rem}
+
+.tile{
+  padding:2rem 1.8rem;min-height:340px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  text-decoration:none;position:relative;overflow:hidden;
+  transition:transform .22s cubic-bezier(0.16,1,0.3,1),box-shadow .22s;
+}
+.tile:hover{transform:translateY(-4px);box-shadow:0 18px 48px rgba(0,0,0,0.3)}
+.tile-dk{background:var(--bg-d);color:var(--cream)}
+.tile-md{background:var(--bg-l);color:var(--cream)}
+.tile-lt{background:var(--cream);color:var(--bg)}
+
+.tile-top{display:flex;justify-content:space-between;align-items:flex-start}
+.tile-num{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.18em;font-weight:700}
+.tile-dk .tile-num,.tile-md .tile-num{color:var(--rose)}
+.tile-lt .tile-num{color:var(--bg)}
+.tile-arrow{font-size:1.3rem;line-height:1;transition:transform .22s;opacity:0.5}
+.tile-dk .tile-arrow,.tile-md .tile-arrow{color:var(--cream-d)}
+.tile-lt .tile-arrow{color:var(--bg)}
+.tile:hover .tile-arrow{transform:translate(4px,-4px);opacity:1}
+
+.tile-body{margin-top:auto}
+.tile-label{font-family:'JetBrains Mono',monospace;font-size:0.56rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.75rem}
+.tile-dk .tile-label,.tile-md .tile-label{color:var(--cream-dd)}
+.tile-lt .tile-label{color:rgba(93,0,29,0.5)}
+.tile-name{font-family:'Fraunces',serif;font-weight:700;font-size:1.6rem;line-height:1.05;letter-spacing:-0.02em;margin-bottom:0.65rem}
+.tile-dk .tile-name,.tile-md .tile-name{color:var(--cream)}
+.tile-lt .tile-name{color:var(--bg)}
+.tile-desc{font-family:'DM Sans',sans-serif;font-size:0.87rem;line-height:1.6;margin-bottom:1rem}
+.tile-dk .tile-desc,.tile-md .tile-desc{color:var(--cream-d)}
+.tile-lt .tile-desc{color:rgba(93,0,29,0.65)}
+.tile-tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-bottom:1rem}
+.tile-tag{font-family:'JetBrains Mono',monospace;font-size:0.54rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.25rem 0.6rem;border-radius:100px;border:0.5px solid currentColor}
+.tile-dk .tile-tag,.tile-md .tile-tag{color:var(--cream-dd)}
+.tile-lt .tile-tag{color:rgba(93,0,29,0.45)}
+.tile-cta{font-family:'JetBrains Mono',monospace;font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;display:flex;align-items:center;gap:0.45rem;font-weight:700;transition:gap .18s}
+.tile:hover .tile-cta{gap:0.7rem}
+.tile-dk .tile-cta,.tile-md .tile-cta{color:var(--cream)}
+.tile-lt .tile-cta{color:var(--bg)}
+
+/* placeholder tile */
+.tile-ph{background:transparent;border:1px dashed var(--rule);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:340px;padding:2rem;cursor:default}
+.tile-ph:hover{transform:none;box-shadow:none}
+.ph-num{font-family:'Fraunces',serif;font-weight:900;font-size:4rem;letter-spacing:-0.05em;line-height:1;color:rgba(242,232,217,0.08)}
+.ph-lbl{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(242,232,217,0.15);margin-top:0.5rem}
+
+/* FOOTER */
+footer{border-top:1px solid var(--rule);padding:3rem 0 2.5rem;background:var(--bg-d)}
+.foot-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.foot-brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.75rem;letter-spacing:-0.02em;line-height:1.1;color:var(--cream)}
+.foot-brand em{font-style:italic;font-weight:300;color:var(--cream-d)}
+.foot-lbl{font-family:'JetBrains Mono',monospace;font-size:0.56rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--cream-dd);margin-bottom:0.5rem}
+.foot-val{font-family:'Fraunces',serif;font-size:0.9rem;color:var(--cream-d)}
+.foot-val a{color:var(--cream-d);text-decoration:none;border-bottom:1px solid var(--rule)}
+.foot-val a:hover{color:var(--cream)}
+.foot-bottom{display:flex;justify-content:space-between;padding-top:1.8rem;border-top:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;color:var(--cream-dd);opacity:0.4}
+
+@media(max-width:900px){
+  .tiles{grid-template-columns:1fr 1fr}
+  .tile-ph{display:none}
+}
+@media(max-width:600px){
+  .container{padding:0 1.5rem}.topnav{padding:1.5rem}
+  .tiles{grid-template-columns:1fr}
+  .foot-inner{grid-template-columns:1fr;gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="nav-brand">Shruti Kunwar</div>
+  <a href="index.html" class="back">← Portfolio</a>
+</nav>
+
+<div class="container">
+
+  <section class="hero">
+    <div class="eyebrow">Case Studies · 2019 – 2025</div>
+    <h1>Selected <em>Projects.</em></h1>
+    <p class="hero-sub">End-to-end projects where fieldwork, data, and strategy converge into decisions that actually get used.</p>
+  </section>
+
+  <div class="tiles">
+
+    <!-- 01 -->
+    <a href="project-mahyco.html" class="tile tile-dk">
+      <div class="tile-top"><span class="tile-num">01</span><span class="tile-arrow">↗</span></div>
+      <div class="tile-body">
+        <div class="tile-label">Market Entry Strategy · Haryana</div>
+        <h3 class="tile-name">Mahyco Hybrid Rice</h3>
+        <p class="tile-desc">A 4-district reading of the hybrid paddy opportunity — 300 field interviews, state-level data, and a full 4P marketing mix specific enough to act on the next season.</p>
+        <div class="tile-tags">
+          <span class="tile-tag">Primary Survey</span>
+          <span class="tile-tag">Market Sizing</span>
+          <span class="tile-tag">SWOT</span>
+          <span class="tile-tag">4P Mix</span>
+        </div>
+        <div class="tile-cta">Read case study →</div>
+      </div>
+    </a>
+
+    <!-- 02 -->
+    <a href="project-ai.html" class="tile tile-md">
+      <div class="tile-top"><span class="tile-num">02</span><span class="tile-arrow">↗</span></div>
+      <div class="tile-body">
+        <div class="tile-label">Predictive Analytics · MGMT 68700</div>
+        <h3 class="tile-name">AI &amp; Developer Satisfaction</h3>
+        <p class="tile-desc">Does adopting AI coding tools make developers happier — or does it mask a growing anxiety? GBT + SHAP on 49,000+ Stack Overflow responses.</p>
+        <div class="tile-tags">
+          <span class="tile-tag">Python</span>
+          <span class="tile-tag">GBT</span>
+          <span class="tile-tag">SHAP</span>
+          <span class="tile-tag">Lift Charts</span>
+        </div>
+        <div class="tile-cta">Read case study →</div>
+      </div>
+    </a>
+
+    <!-- 03 placeholder -->
+    <div class="tile tile-ph">
+      <div class="ph-num">03</div>
+      <div class="ph-lbl">Coming Soon</div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="foot-inner">
+      <div class="foot-brand">Let's build something <em>measurable.</em></div>
+      <div><div class="foot-lbl">Email</div><div class="foot-val"><a href="mailto:shrutikunwar029@gmail.com">shrutikunwar029@gmail.com</a></div></div>
+      <div><div class="foot-lbl">LinkedIn</div><div class="foot-val"><a href="https://www.linkedin.com/in/shrutikunwar" target="_blank">linkedin.com/in/shrutikunwar</a></div></div>
+    </div>
+    <div class="foot-bottom"><span>Shruti Kunwar</span><span>© 2026</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

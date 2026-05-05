@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahyco · Hybrid Rice Haryana — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700;1,9..144,900&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --burg:#5D001E; --wine:#9A1750; --blush:#E3AFBC;
+  --grey:#E3E2DF; --grey-d:#C8C6C2; --grey-dd:#9E9B96;
+  --ink:#2A0A12; --paper:#EEECEA; --paper-w:#E8E5E1;
+  --rule:rgba(93,0,30,0.11);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.container{max-width:960px;margin:0 auto;padding:0 2.5rem}
+
+/* HERO — dark burgundy */
+.hero{background:var(--burg)}
+.hero-nav{display:flex;justify-content:space-between;align-items:center;padding:1.8rem 2.5rem;border-bottom:1px solid rgba(227,175,188,0.15)}
+.back{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);text-decoration:none;padding:.52rem 1.1rem;border:1px solid rgba(227,175,188,0.3);border-radius:100px;transition:all .22s}
+.back:hover{background:var(--blush);color:var(--burg);border-color:var(--blush)}
+.hero-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.15em;color:rgba(227,175,188,0.35)}
+.hero-body{padding:3.5rem 2.5rem 5rem;max-width:960px;margin:0 auto}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--blush);display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--blush)}
+.hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2.8rem,7vw,5.5rem);line-height:.92;letter-spacing:-.04em;color:var(--grey);margin-bottom:1.5rem}
+.hero h1 em{font-style:italic;font-weight:300;color:var(--blush)}
+.hero-sub{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(.95rem,1.8vw,1.2rem);line-height:1.6;color:rgba(227,175,188,0.6);max-width:640px}
+
+/* META BAR */
+.meta-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--rule);padding:1.6rem 0;margin-bottom:4.5rem}
+.mi{padding:0 1.4rem;border-left:1px solid var(--rule)}.mi:first-child{padding-left:0;border-left:none}
+.mi-lbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey-dd);margin-bottom:.35rem}
+.mi-val{font-family:'Fraunces',serif;font-weight:600;font-size:.93rem;color:var(--ink)}
+.mi-val a{color:var(--wine);text-decoration:none;border-bottom:1px solid rgba(154,23,80,.28)}
+
+/* SECTIONS */
+.section{margin-bottom:5rem}
+.sec-lbl{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--wine);display:flex;align-items:center;gap:.7rem;margin-bottom:1.3rem}
+.sec-lbl::before{content:'';width:16px;height:1px;background:var(--wine)}
+.section h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.85rem;letter-spacing:-.02em;color:var(--burg);margin-bottom:.9rem;line-height:1.1}
+.section h2 em{font-style:italic;font-weight:300;color:var(--wine)}
+.section p{font-size:.95rem;line-height:1.85;color:rgba(42,10,18,.65);margin-bottom:.85rem;max-width:720px}
+.section p:last-child{margin-bottom:0}
+.hl{font-family:'JetBrains Mono',monospace;font-size:.9em;color:var(--wine);font-weight:700}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:1.4rem}
+.step{background:var(--paper-w);padding:1.8rem 1.5rem}
+.step-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.18em;color:var(--wine);margin-bottom:.85rem}
+.step h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:var(--burg);margin-bottom:.4rem}
+.step p{font-size:.85rem;line-height:1.6;color:rgba(42,10,18,.6);margin:0}
+.step.dk{background:var(--burg)}.step.dk h4{color:var(--grey)}.step.dk p{color:rgba(227,175,188,.6)}.step.dk .step-num{color:var(--blush)}
+.step.md{background:var(--wine)}.step.md h4{color:var(--grey)}.step.md p{color:rgba(227,175,188,.6)}.step.md .step-num{color:rgba(227,175,188,.75)}
+
+/* DISTRICT GRID */
+.district-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin:1.5rem 0}
+.dist{background:var(--paper-w);padding:1.6rem 1.3rem}
+.dist.star{background:var(--burg)}
+.dist-name{font-family:'Fraunces',serif;font-weight:700;font-size:1rem;color:var(--burg);margin-bottom:.5rem}
+.dist.star .dist-name{color:var(--blush)}
+.dist-val{font-family:'Fraunces',serif;font-weight:900;font-size:2.1rem;letter-spacing:-.03em;line-height:1;color:var(--wine);margin-bottom:.3rem}
+.dist.star .dist-val{color:var(--blush)}
+.dist-lbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-dd)}
+.dist.star .dist-lbl{color:rgba(227,175,188,.5)}
+.dist-note{font-size:.8rem;color:rgba(42,10,18,.5);margin-top:.6rem;line-height:1.4}
+.dist.star .dist-note{color:rgba(227,175,188,.55)}
+
+/* INSIGHT */
+.insight{background:var(--burg);padding:3.8rem 3rem;margin:2rem 0;position:relative;overflow:hidden}
+.insight::before{content:'\201C';position:absolute;top:-2rem;left:1.2rem;font-family:'Fraunces',serif;font-size:15rem;color:var(--blush);opacity:.1;line-height:1;pointer-events:none}
+.ins-lbl{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blush);margin-bottom:1rem}
+.insight p{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.05rem,2vw,1.4rem);line-height:1.55;color:var(--grey);margin-bottom:.9rem;position:relative;z-index:1}
+.insight p em{font-style:italic;color:var(--blush)}
+.insight p strong{color:var(--blush);font-weight:700;font-style:italic}
+
+/* FINDINGS */
+.finding{padding:1.5rem 0;border-top:1px solid var(--rule)}
+.finding:last-child{border-bottom:1px solid var(--rule)}
+.finding h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.1rem;color:var(--burg);margin-bottom:.5rem}
+.badge{font-family:'JetBrains Mono',monospace;font-size:.7rem;padding:.33rem .88rem;border-radius:100px;display:inline-block;margin-bottom:.6rem;font-weight:700}
+.b-burg{background:var(--burg);color:var(--blush)}
+.b-wine{background:var(--wine);color:var(--grey)}
+.finding p{font-size:.9rem;line-height:1.78;color:rgba(42,10,18,.62);max-width:680px}
+
+/* RECS */
+.recs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:1.4rem}
+.rec{background:var(--paper-w);padding:1.8rem 1.5rem}
+.rec-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.18em;color:var(--wine);margin-bottom:.65rem}
+.rec h4{font-family:'Fraunces',serif;font-weight:700;font-size:1.05rem;color:var(--burg);margin-bottom:.4rem}
+.rec p{font-size:.85rem;line-height:1.6;color:rgba(42,10,18,.6);margin:0}
+
+/* DELIVS */
+.delivs{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:1.4rem}
+.deliv{background:var(--paper-w);padding:1.2rem 1.3rem;transition:background .2s}
+.deliv:hover{background:var(--blush)}
+.deliv-num{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;color:var(--wine);margin-bottom:.4rem}
+.deliv-lbl{font-family:'Fraunces',serif;font-weight:600;font-size:.88rem;color:var(--burg);line-height:1.3}
+
+/* TOOLKIT */
+.toolkit{margin-top:1.4rem}
+.tag-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.85rem}
+.tag-rowlbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--grey-dd);width:100%;margin-bottom:.28rem}
+.tag{font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;padding:.38rem .85rem;border:1px solid var(--rule);border-radius:100px;color:rgba(42,10,18,.65);background:transparent;transition:all .2s;cursor:default}
+.tag:hover{border-color:var(--wine);color:var(--wine)}
+.tag.accent{background:var(--burg);border-color:var(--burg);color:var(--blush)}
+.tag.pop{background:var(--wine);border-color:var(--wine);color:var(--grey);font-weight:600}
+
+footer{background:var(--burg);padding:3.5rem 0 2.5rem;margin-top:5rem}
+.foot-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.foot-brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.75rem;letter-spacing:-.02em;line-height:1.1;color:var(--grey)}
+.foot-brand em{font-style:italic;font-weight:300;color:var(--blush)}
+.foot-lbl{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--blush);opacity:.5;margin-bottom:.5rem}
+.foot-val{font-family:'Fraunces',serif;font-size:.9rem;color:var(--grey)}
+.foot-val a{color:var(--grey);text-decoration:none;border-bottom:1px solid rgba(227,175,188,.2)}
+.foot-val a:hover{border-color:var(--blush)}
+.foot-bottom{display:flex;justify-content:space-between;padding-top:1.8rem;border-top:1px solid rgba(227,175,188,.15);font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:rgba(227,175,188,.28)}
+
+@media(max-width:800px){
+  .container{padding:0 1.5rem}.hero-body{padding:2.5rem 1.5rem 3.5rem}
+  .meta-bar{grid-template-columns:1fr 1fr;gap:1.2rem}.mi{border-left:none;padding:0}
+  .steps,.recs{grid-template-columns:1fr}.district-grid{grid-template-columns:1fr 1fr}
+  .delivs{grid-template-columns:1fr 1fr}.foot-inner{grid-template-columns:1fr;gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <nav class="hero-nav">
+    <a href="projects.html" class="back">← Selected Projects</a>
+    <div class="hero-num">Project 01 / 03</div>
+  </nav>
+  <div class="hero-body">
+    <div class="eyebrow">Market Entry Strategy · Primary Research</div>
+    <h1>Mahyco<br>Hybrid Rice,<br><em>Haryana</em></h1>
+    <p class="hero-sub">A 4-district reading of the hybrid paddy opportunity — 300 field interviews, state-level data, and a full 4P strategy specific enough to act on the next season.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="meta-bar">
+    <div class="mi"><div class="mi-lbl">Client</div><div class="mi-val"><a href="https://www.mahyco.com/" target="_blank">Mahyco Pvt. Ltd. ↗</a></div></div>
+    <div class="mi"><div class="mi-lbl">Category</div><div class="mi-val">Market Entry Strategy</div></div>
+    <div class="mi"><div class="mi-lbl">Region</div><div class="mi-val">Haryana, India</div></div>
+    <div class="mi"><div class="mi-lbl">Timeline</div><div class="mi-val">12 weeks · MBA 2019</div></div>
+  </div>
+
+  <section class="section">
+    <div class="sec-lbl">01 / Problem Statement</div>
+    <h2>The <em>Question</em></h2>
+    <p>Mahyco needed to understand the hybrid paddy landscape across four Haryana districts — a region with highly variable adoption and entrenched market leaders. The brief: quantify opportunity, map competition, and deliver a go-to-market recommendation actionable within a single growing season.</p>
+    <p>The core question: <span class="hl">Which districts represent the real entry opportunity — and what does it take to win farmers' and dealers' trust in each?</span></p>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">02 / Methodology</div>
+    <h2>The <em>Approach</em></h2>
+    <p>Three-stage research design combining structured primary fieldwork across all four districts with secondary data triangulation from government agriculture records.</p>
+    <div class="steps">
+      <div class="step dk"><div class="step-num">01</div><h4>Farmer Surveys</h4><p>60 farmer interviews per district — stratified by land-holding size (marginal, small, medium, large) with random village selection within each stratum.</p></div>
+      <div class="step md"><div class="step-num">02</div><h4>Dealer Surveys</h4><p>15 dealer interviews per district — clustered by geography across key retail hubs. Captured margins, brand relationships, and recommendation patterns.</p></div>
+      <div class="step"><div class="step-num">03</div><h4>Secondary Research</h4><p>Triangulated with Kisan Bhawan Panchkula records, Haryana Agriculture Department data, and Indiastat / Agristat national databases.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">03 / Market Landscape</div>
+    <h2>The Four <em>Districts</em></h2>
+    <p>Each district told a different story — different adoption rates, acreage profiles, and competitive dynamics. The most obvious target turned out to be the wrong one.</p>
+    <div class="district-grid">
+      <div class="dist"><div class="dist-name">Ambala</div><div class="dist-val">64.5%</div><div class="dist-lbl">Hybridization Rate</div><div class="dist-note">Near-saturated. High competition, limited white space.</div></div>
+      <div class="dist"><div class="dist-name">Kurukshetra</div><div class="dist-val">48.2%</div><div class="dist-lbl">Hybridization Rate</div><div class="dist-note">Moderate adoption. Mid-tier opportunity with established competition.</div></div>
+      <div class="dist"><div class="dist-name">Yamunanagar</div><div class="dist-val">31.0%</div><div class="dist-lbl">Hybridization Rate</div><div class="dist-note">Lower adoption. Growing market with room to establish brand.</div></div>
+      <div class="dist star"><div class="dist-name">Kaithal ★</div><div class="dist-val">7.9%</div><div class="dist-lbl">Hybridization Rate</div><div class="dist-note">166,300 ha paddy acreage — largest district. Lowest penetration. The real opportunity.</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">04 / Key Insight</div>
+    <h2>Where the <em>Opportunity</em> Was</h2>
+    <div class="insight">
+      <div class="ins-lbl">The Finding</div>
+      <p>Ambala was <strong>nearly saturated</strong> at <em>64.5%</em> hybridization — the obvious target. Kaithal, the district with the <strong>largest paddy acreage at 166,300 hectares</strong>, sat at just <em>7.9%</em>.</p>
+      <p style="opacity:.82">The biggest opportunity wasn't where the market was loudest. It was where the market hadn't started yet.</p>
+    </div>
+    <p style="margin-top:1.5rem">High yield drove <span class="hl">63–81%</span> of adoption decisions across all four districts. Lodging was the #1 barrier everywhere. Company-driven initiatives drove <span class="hl">62–70%</span> of farmers' shift to hybrids — making owned channel strategy more important than advertising.</p>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">05 / Key Findings</div>
+    <h2>What the Data <em>Revealed</em></h2>
+    <div class="finding">
+      <h4>Yield Is the Primary Purchase Driver</h4>
+      <span class="badge b-wine">63–81% across districts</span>
+      <p>Across all four districts, yield performance was the dominant factor in a farmer's decision to switch to hybrid paddy. Messages leading with yield outperform those leading with price or brand heritage.</p>
+    </div>
+    <div class="finding">
+      <h4>Lodging Is the Universal Barrier</h4>
+      <span class="badge b-burg">Top barrier · All 4 districts</span>
+      <p>Lodging — stem weakness causing plants to fall — was cited as the #1 reason farmers hesitated to adopt hybrids. Varieties with demonstrated lodging resistance should anchor the product strategy.</p>
+    </div>
+    <div class="finding">
+      <h4>Market Leaders Hold Structural Moats</h4>
+      <span class="badge b-wine">60%+ share in each district</span>
+      <p>Existing players dominated with more than 60% share in every district, largely through entrenched dealer relationships and farmer trust built over multiple seasons. Entry requires a channel-first, demonstration-led approach.</p>
+    </div>
+    <div class="finding">
+      <h4>Company Demos Drive Conversion</h4>
+      <span class="badge b-burg">62–70% of hybrid adopters</span>
+      <p>The majority of farmers who switched to hybrid paddy cited company-organized field demonstrations and farmer influencer networks as the conversion trigger — not advertising.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">06 / Recommendations</div>
+    <h2>What to <em>Do About It</em></h2>
+    <p>District-specific recommendations built around the 4P framework — tailored to each market's stage of hybrid adoption.</p>
+    <div class="recs">
+      <div class="rec"><div class="rec-num">R.01</div><h4>Lead with Kaithal</h4><p>Allocate primary market development resources to Kaithal — 166,300 hectares at 7.9% hybridization offers the largest greenfield opportunity with fewest entrenched competitors.</p></div>
+      <div class="rec"><div class="rec-num">R.02</div><h4>Demonstration-First Strategy</h4><p>Invest in field days, crop demonstrations, and farmer influencer networks. 62–70% of hybrid adopters cited company demos as their conversion trigger — not advertising.</p></div>
+      <div class="rec"><div class="rec-num">R.03</div><h4>Lead with Lodging Resistance</h4><p>Position Mahyco's hybrid varieties around lodging resistance and yield performance — the two universal concerns across every farmer segment and district studied.</p></div>
+      <div class="rec"><div class="rec-num">R.04</div><h4>Dealer Partnership in Ambala</h4><p>In near-saturated Ambala, dealer margin incentives and partnership — rather than farmer-facing campaigns — are the most efficient path to incremental share gain.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">07 / Deliverables</div>
+    <h2>The <em>Output</em></h2>
+    <div class="delivs">
+      <div class="deliv"><div class="deliv-num">D.01</div><div class="deliv-lbl">Market Sizing &amp; Acreage Model</div></div>
+      <div class="deliv"><div class="deliv-num">D.02</div><div class="deliv-lbl">Customer Segmentation</div></div>
+      <div class="deliv"><div class="deliv-num">D.03</div><div class="deliv-lbl">Adoption Curve Analysis</div></div>
+      <div class="deliv"><div class="deliv-num">D.04</div><div class="deliv-lbl">Competitive Mapping</div></div>
+      <div class="deliv"><div class="deliv-num">D.05</div><div class="deliv-lbl">Channel &amp; Margin Analysis</div></div>
+      <div class="deliv"><div class="deliv-num">D.06</div><div class="deliv-lbl">4P Strategy per District</div></div>
+      <div class="deliv"><div class="deliv-num">D.07</div><div class="deliv-lbl">SWOT Analysis</div></div>
+      <div class="deliv"><div class="deliv-num">D.08</div><div class="deliv-lbl">STP Recommendation</div></div>
+      <div class="deliv"><div class="deliv-num">D.09</div><div class="deliv-lbl">Entry Strategy &amp; Roadmap</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-lbl">08 / Toolkit</div>
+    <h2>The <em>Methods</em></h2>
+    <div class="toolkit">
+      <div class="tag-row"><div class="tag-rowlbl">Research</div><span class="tag accent">Primary Survey</span><span class="tag">Stratified Sampling</span><span class="tag">Cluster Analysis</span><span class="tag">Judgmental Sampling</span></div>
+      <div class="tag-row"><div class="tag-rowlbl">Strategy</div><span class="tag pop">Market Sizing</span><span class="tag">SWOT Analysis</span><span class="tag">4P Marketing Mix</span><span class="tag">Competitive Mapping</span></div>
+      <div class="tag-row"><div class="tag-rowlbl">Frameworks</div><span class="tag">STP Framework</span><span class="tag">NPS Analysis</span><span class="tag">Channel Analysis</span><span class="tag">Adoption Curve</span></div>
+    </div>
+  </section>
+</div>
+
+<footer><div class="container">
+  <div class="foot-inner">
+    <div class="foot-brand">Let's build something <em>measurable.</em></div>
+    <div><div class="foot-lbl">Email</div><div class="foot-val"><a href="mailto:shrutikunwar029@gmail.com">shrutikunwar029@gmail.com</a></div></div>
+    <div><div class="foot-lbl">LinkedIn</div><div class="foot-val"><a href="https://www.linkedin.com/in/shrutikunwar" target="_blank">linkedin.com/in/shrutikunwar</a></div></div>
+  </div>
+  <div class="foot-bottom"><span>Shruti Kunwar</span><span>© 2026</span></div>
+</div></footer>
+</body>
+</html>
