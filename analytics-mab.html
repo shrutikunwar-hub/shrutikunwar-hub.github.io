@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Optimization (MAB) — Shruti Kunwar</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --terra:#9A3412;
+  --terra-deep:#7C2D12;
+  --burnt:#431407;
+  --warm-cream:#FFF7ED;
+  --peach:#FDBA74;
+  --sand:#FED7AA;
+  --ink:#3B1106;
+  --ink-soft:rgba(59,17,6,0.72);
+  --ink-mute:rgba(59,17,6,0.45);
+  --rule:rgba(59,17,6,0.1);
+  --paper:#FFFCF8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;line-height:1.55;-webkit-font-smoothing:antialiased}
+.container{max-width:900px;margin:0 auto;padding:0 2.5rem}
+
+/* ═══ HERO ═══ */
+.hero{
+  background:var(--sand);color:var(--ink);
+  padding:1.5rem 2.5rem 4rem;
+}
+.hero-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:3rem;
+}
+.back{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;
+  padding:0.6rem 1.2rem;
+  border:1px solid rgba(59,17,6,0.3);
+  border-radius:100px;
+  transition:all 0.25s;
+}
+.back:hover{background:var(--terra);color:var(--warm-cream);border-color:var(--terra)}
+.hero-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.15em;
+  color:rgba(59,17,6,0.4);
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--terra);margin-bottom:1rem;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--terra)}
+.hero h1{
+  font-family:'Fraunces',serif;
+  font-weight:900;
+  font-size:clamp(2.5rem,7vw,4.5rem);
+  line-height:0.95;letter-spacing:-0.04em;
+  margin-bottom:1.5rem;
+  color:var(--terra-deep);
+}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--terra)}
+.hero-sub{
+  font-family:'Fraunces',serif;font-weight:400;
+  font-size:clamp(1rem,2vw,1.3rem);
+  line-height:1.5;
+  color:rgba(59,17,6,0.75);
+  max-width:650px;
+}
+
+/* ═══ META BAR ═══ */
+.meta-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border-bottom:1px solid var(--rule);
+  padding:1.8rem 0;
+  margin-bottom:4rem;
+}
+.meta-item{padding:0 1.5rem;border-left:1px solid var(--rule)}
+.meta-item:first-child{padding-left:0;border-left:none}
+.meta-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--ink-mute);margin-bottom:0.4rem;
+}
+.meta-val{
+  font-family:'Fraunces',serif;
+  font-weight:600;font-size:0.95rem;
+  color:var(--ink);
+}
+.meta-val a{
+  color:var(--terra);text-decoration:none;
+  border-bottom:1px solid var(--terra);
+  transition:all 0.2s;
+}
+.meta-val a:hover{color:var(--terra-deep)}
+
+/* ═══ SECTION SYSTEM ═══ */
+.section{margin-bottom:4rem}
+.section-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--terra);
+  margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.section-label::before{content:'';width:20px;height:1px;background:var(--terra)}
+.section h2{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:1.8rem;letter-spacing:-0.02em;
+  color:var(--ink);margin-bottom:1rem;
+  line-height:1.1;
+}
+.section h2 em{font-style:italic;font-weight:400;color:var(--terra)}
+.section p{
+  font-size:0.95rem;line-height:1.85;
+  color:var(--ink-soft);margin-bottom:1rem;
+  max-width:750px;
+}
+.section p:last-child{margin-bottom:0}
+
+.hl{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.9rem;color:var(--terra);
+  font-weight:700;
+}
+
+/* ═══ METHODOLOGY STEPS ═══ */
+.steps{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0.5rem;margin-top:1.5rem;
+}
+.step{
+  padding:1.8rem 1.5rem;
+  min-height:160px;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+}
+.step-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.65rem;letter-spacing:0.18em;
+  margin-bottom:1rem;
+}
+.step h4{
+  font-family:'Fraunces',serif;
+  font-weight:700;font-size:1.1rem;
+  letter-spacing:-0.01em;margin-bottom:0.4rem;
+}
+.step p{
+  font-size:0.85rem;line-height:1.55;
+  opacity:0.8;margin-bottom:0;
+  color:inherit;
+}
+.step-a{background:var(--terra-deep);color:var(--warm-cream)}
+.step-a .step-num{color:var(--peach)}
+.step-b{background:var(--terra);color:var(--warm-cream)}
+.step-b .step-num{color:var(--sand)}
+.step-c{background:var(--sand);color:var(--ink)}
+.step-c .step-num{color:var(--terra)}
+
+/* ═══ ALG COMPARISON TABLE ═══ */
+.alg-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0.5rem;
+  margin:1.5rem 0;
+}
+.alg-card{
+  padding:1.8rem 1.5rem;
+  border:1px solid var(--rule);
+  background:var(--warm-cream);
+  position:relative;
+}
+.alg-card.best{
+  border-color:var(--terra);
+  background:var(--terra);
+  color:var(--warm-cream);
+}
+.alg-badge{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;
+  padding:0.25rem 0.7rem;
+  border-radius:100px;
+  display:inline-block;
+  margin-bottom:0.8rem;
+  background:var(--peach);
+  color:var(--terra-deep);
+  font-weight:700;
+}
+.alg-card.best .alg-badge{background:var(--sand);color:var(--terra-deep)}
+.alg-name{
+  font-family:'Fraunces',serif;
+  font-weight:700;
+  font-size:1.25rem;
+  letter-spacing:-0.02em;
+  margin-bottom:0.5rem;
+  color:var(--ink);
+}
+.alg-card.best .alg-name{color:var(--warm-cream)}
+.alg-desc{
+  font-size:0.85rem;
+  line-height:1.6;
+  color:var(--ink-soft);
+  margin-bottom:1rem;
+}
+.alg-card.best .alg-desc{color:rgba(255,247,237,0.8)}
+.alg-stat{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;
+  color:var(--ink-mute);
+}
+.alg-card.best .alg-stat{color:rgba(255,247,237,0.55)}
+
+/* ═══ RESULTS TABLE ═══ */
+.results-table{
+  width:100%;
+  border-collapse:collapse;
+  margin:1.5rem 0;
+  font-size:0.88rem;
+}
+.results-table thead tr{
+  background:var(--terra-deep);
+  color:var(--warm-cream);
+}
+.results-table thead th{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.62rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  padding:0.9rem 1.2rem;
+  text-align:left;
+  font-weight:500;
+}
+.results-table tbody tr{
+  border-bottom:1px solid var(--rule);
+}
+.results-table tbody tr:nth-child(even){
+  background:var(--warm-cream);
+}
+.results-table tbody td{
+  padding:0.85rem 1.2rem;
+  color:var(--ink-soft);
+  font-family:'DM Sans',sans-serif;
+}
+.results-table tbody td:first-child{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  color:var(--ink);
+}
+.results-table .highlight-row td{
+  color:var(--terra);
+  font-weight:700;
+}
+.results-table .highlight-row td:first-child{
+  color:var(--terra-deep);
+}
+
+/* ═══ PROFIT CALLOUT ═══ */
+.profit-callout{
+  background:var(--terra-deep);
+  color:var(--warm-cream);
+  padding:2rem 2.5rem;
+  margin:2rem 0;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:0;
+}
+.profit-stat{
+  text-align:center;
+  padding:0 1.5rem;
+  border-right:1px solid rgba(255,247,237,0.15);
+}
+.profit-stat:last-child{border-right:none}
+.profit-val{
+  font-family:'Fraunces',serif;
+  font-weight:900;
+  font-size:2rem;
+  letter-spacing:-0.03em;
+  line-height:1;
+  margin-bottom:0.4rem;
+}
+.profit-val.accent{color:var(--peach)}
+.profit-lbl{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.6rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:rgba(255,247,237,0.45);
+}
+
+/* ═══ CHART DISPLAY ═══ */
+.chart-full{margin:2rem 0}
+.chart-card{
+  background:var(--warm-cream);
+  border:1px solid var(--rule);
+  padding:1.5rem;
+  text-align:center;
+}
+.chart-card img{
+  width:100%;max-width:100%;
+  height:auto;margin-bottom:1rem;
+}
+.chart-caption{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;letter-spacing:0.08em;
+  color:var(--ink-mute);
+  text-align:center;
+}
+
+/* ═══ CHART PLACEHOLDER ═══ */
+.chart-placeholder{
+  background:var(--warm-cream);
+  border:1px solid var(--rule);
+  padding:3rem 1.5rem;
+  text-align:center;
+  margin:2rem 0;
+}
+.chart-placeholder svg{
+  width:100%;
+  max-width:640px;
+  height:280px;
+}
+
+/* ═══ FINDINGS ═══ */
+.finding{
+  padding:1.5rem 0;
+  border-top:1px solid var(--rule);
+}
+.finding:last-child{border-bottom:1px solid var(--rule)}
+.finding h4{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:1.15rem;color:var(--ink);
+  margin-bottom:0.5rem;
+}
+.finding-result{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.78rem;
+  padding:0.4rem 0.9rem;
+  border-radius:100px;
+  display:inline-block;
+  margin-bottom:0.6rem;
+  font-weight:700;
+}
+.result-win{background:var(--terra);color:var(--warm-cream)}
+.result-mid{background:var(--sand);color:var(--terra-deep)}
+.result-note{background:var(--warm-cream);color:var(--ink);border:1px solid var(--rule)}
+.finding p{
+  font-size:0.92rem;line-height:1.75;
+  color:var(--ink-soft);max-width:700px;
+}
+
+/* ═══ NOTEBOOK LINK ═══ */
+.notebook-link{
+  display:flex;align-items:center;gap:1rem;
+  background:var(--burnt);color:var(--warm-cream);
+  padding:1.5rem 2rem;
+  margin:2rem 0;
+  text-decoration:none;
+  transition:transform 0.2s;
+}
+.notebook-link:hover{transform:translateY(-2px)}
+.nb-icon{width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.nb-icon svg{width:28px;height:28px}
+.nb-text{flex:1}
+.nb-title{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:1rem;margin-bottom:0.2rem;
+}
+.nb-sub{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.65rem;letter-spacing:0.08em;
+  color:rgba(255,247,237,0.5);
+}
+.nb-arrow{
+  font-family:'Fraunces',serif;
+  font-size:1.4rem;opacity:0.6;
+}
+.notebook-link:hover .nb-arrow{opacity:1}
+
+/* ═══ RECOMMENDATIONS ═══ */
+.recs{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.5rem;margin-top:1.5rem;
+}
+.rec{
+  padding:1.5rem;
+  border:1px solid var(--rule);
+  background:var(--warm-cream);
+}
+.rec-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.65rem;letter-spacing:0.18em;
+  color:var(--terra);margin-bottom:0.8rem;
+}
+.rec h4{
+  font-family:'Fraunces',serif;font-weight:700;
+  font-size:1.1rem;color:var(--ink);
+  margin-bottom:0.5rem;
+}
+.rec p{
+  font-size:0.88rem;line-height:1.6;
+  color:var(--ink-soft);margin-bottom:0;
+}
+
+/* ═══ INLINE PRICE TABLE ═══ */
+.price-table{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:0;
+  margin:1.5rem 0;
+  border:1px solid var(--rule);
+  overflow:hidden;
+}
+.pt-header{
+  background:var(--terra-deep);
+  color:var(--warm-cream);
+  padding:0.7rem 0.8rem;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.62rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  text-align:center;
+}
+.pt-cell{
+  padding:0.75rem 0.8rem;
+  font-family:'DM Sans',sans-serif;
+  font-size:0.88rem;
+  text-align:center;
+  border-top:1px solid var(--rule);
+  color:var(--ink-soft);
+}
+.pt-cell.label{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  color:var(--ink);
+  text-align:left;
+  padding-left:1rem;
+}
+.pt-cell.optimal{
+  background:var(--terra);
+  color:var(--warm-cream);
+  font-weight:700;
+  font-family:'JetBrains Mono',monospace;
+}
+.pt-cell.even{background:var(--warm-cream)}
+
+/* ═══ FOOTER ═══ */
+footer{
+  padding:3rem 0 2.5rem;
+  border-top:1px solid var(--rule);
+  margin-top:4rem;
+  text-align:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.68rem;color:var(--ink-mute);
+  letter-spacing:0.08em;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:800px){
+  .meta-bar{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .meta-item{border-left:none;padding:0}
+  .steps{grid-template-columns:1fr}
+  .alg-grid{grid-template-columns:1fr}
+  .recs{grid-template-columns:1fr}
+  .profit-callout{grid-template-columns:1fr;gap:1.5rem}
+  .profit-stat{border-right:none;border-bottom:1px solid rgba(255,247,237,0.15);padding-bottom:1rem}
+  .profit-stat:last-child{border-bottom:none}
+  .price-table{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:500px){
+  .container{padding:0 1.25rem}
+  .hero{padding:1.25rem 1.25rem 3rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <nav class="hero-nav">
+    <a href="analytics.html" class="back">← Analytics</a>
+    <div class="hero-num">Project 03 / 03</div>
+  </nav>
+  <div class="hero-eyebrow">Reinforcement Learning</div>
+  <h1>Pricing Optimization<br><em>(MAB)</em></h1>
+  <p class="hero-sub">Can an algorithm learn the right price on its own? Using Multi-Armed Bandit and Reinforcement Learning methods — Epsilon-Greedy, UCB, Thompson Sampling — to dynamically maximize revenue across two real pricing scenarios.</p>
+</section>
+
+<!-- ═══ META BAR ═══ -->
+<div class="container">
+  <div class="meta-bar">
+    <div class="meta-item">
+      <div class="meta-label">Language</div>
+      <div class="meta-val">Python</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Methods</div>
+      <div class="meta-val">MAB · Contextual MAB · RL (Q-Learning)</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Algorithms</div>
+      <div class="meta-val">ε-Greedy · UCB · Thompson Sampling</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Notebook</div>
+      <div class="meta-val"><a href="https://drive.google.com/file/d/1pi2aDcfzSugFZirfJYk4HyG5w2ZCmNP9/view?usp=sharing" target="_blank">View in Colab ↗</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PROBLEM STATEMENT ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">01 / Problem Statement</div>
+    <h2>The <em>Question</em></h2>
+    <p>Static pricing leaves money on the table. Whether it's a grocery store deciding between three price points for an item, or a concert venue dynamically adjusting ticket prices as the show date approaches — the question is the same: <span class="hl">how does a pricing agent learn the optimal price from experience, without knowing demand in advance?</span></p>
+    <p>This project tackled two distinct but related challenges. First, a Multi-Armed Bandit experiment testing three pricing arms (ε-Greedy, with and without contextual signals like weather). Second, a Reinforcement Learning model where ticket prices adapt dynamically based on how many days remain before a concert — learning from willingness-to-pay data across 10,000 simulated visitors.</p>
+  </div>
+</section>
+
+<!-- ═══ METHODOLOGY ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">02 / Methodology</div>
+    <h2>The <em>Approach</em></h2>
+    <p>Two experiments, three algorithms, and a key question running through both: does adding information (context, state) meaningfully improve pricing decisions?</p>
+
+    <div class="steps">
+      <div class="step step-a">
+        <div class="step-num">01</div>
+        <div>
+          <h4>MAB Setup</h4>
+          <p>T=1000 rounds, K=3 price arms ($1.59, $1.79, $1.99), ε=0.1, N=5. Profit data read from <em>ObserveProfit_contextual.xlsx</em>.</p>
+        </div>
+      </div>
+      <div class="step step-b">
+        <div class="step-num">02</div>
+        <div>
+          <h4>Contextual MAB</h4>
+          <p>Same setup, but the algorithm also reads <em>ObserveContext.xlsx</em> — market context including a binary rainy-day signal that shifts optimal pricing.</p>
+        </div>
+      </div>
+      <div class="step step-c">
+        <div class="step-num">03</div>
+        <div>
+          <h4>RL Q-Learning</h4>
+          <p>S=5 states (days before concert), C=10,000 visitors, 3 price arms ($40, $60, $80), δ=0.99 discount factor. Learns a Q-table via Bellman updates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ALGORITHMS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">03 / Algorithms</div>
+    <h2>How the Agents <em>Decide</em></h2>
+    <p>Three exploration-exploitation strategies were implemented and compared. Each balances uncertainty differently.</p>
+
+    <div class="alg-grid">
+      <div class="alg-card">
+        <div class="alg-badge">Core Algorithm</div>
+        <div class="alg-name">ε-Greedy</div>
+        <div class="alg-desc">Exploits the best known arm 90% of the time, explores randomly the other 10%. Simple, interpretable, and the backbone of both MAB and contextual MAB experiments.</div>
+        <div class="alg-stat">ε = 0.1 · Explore rate: 10%</div>
+      </div>
+      <div class="alg-card">
+        <div class="alg-badge">Optimistic</div>
+        <div class="alg-name">UCB</div>
+        <div class="alg-desc">Upper Confidence Bound adds an exploration bonus inversely proportional to how often an arm has been tried. Naturally explores under-tested arms without a fixed epsilon.</div>
+        <div class="alg-stat">Confidence bonus · No tuning needed</div>
+      </div>
+      <div class="alg-card best">
+        <div class="alg-badge">Bayesian</div>
+        <div class="alg-name">Thompson Sampling</div>
+        <div class="alg-desc">Maintains a probability distribution over expected rewards and samples from it. Adapts exploration based on uncertainty — tends to outperform in practice with limited data.</div>
+        <div class="alg-stat">Beta posterior · Probability matching</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EXPERIMENT 1: MAB ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">04 / Experiment 1 — MAB vs Contextual MAB</div>
+    <h2>Does <em>Context</em> Change Pricing?</h2>
+    <p>The non-contextual MAB agent has no information about market conditions — it simply tracks which price has generated the most profit. The contextual MAB agent also reads a rainy/not-rainy market signal, allowing the algorithm to fit separate reward models for each condition.</p>
+
+    <div class="profit-callout">
+      <div class="profit-stat">
+        <div class="profit-val">$640.36</div>
+        <div class="profit-lbl">Standard MAB Profit</div>
+      </div>
+      <div class="profit-stat">
+        <div class="profit-val accent">$724.38</div>
+        <div class="profit-lbl">Contextual MAB Profit</div>
+      </div>
+      <div class="profit-stat">
+        <div class="profit-val accent">+$84.03</div>
+        <div class="profit-lbl">Incremental Gain from Context</div>
+      </div>
+    </div>
+
+    <p>The incremental profit from adding context was <span class="hl">$84.03 over 1,000 rounds</span> — a 13.1% improvement. But the more revealing finding is in which arms were played:</p>
+
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>Arm</th>
+          <th>Price</th>
+          <th>Standard MAB % Played</th>
+          <th>Contextual MAB % Played</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td>Arm 1</td>
+          <td>$1.59</td>
+          <td>91.4%</td>
+          <td>50.6%</td>
+        </tr>
+        <tr>
+          <td>Arm 2</td>
+          <td>$1.79</td>
+          <td>3.7%</td>
+          <td>4.1%</td>
+        </tr>
+        <tr>
+          <td>Arm 3</td>
+          <td>$1.99</td>
+          <td>4.9%</td>
+          <td>45.8%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Without context, the algorithm locked onto $1.59 almost exclusively — it appeared to be the safest bet across all conditions. With context, the agent learned that $1.99 is often optimal in rainy conditions when demand is less elastic, splitting arm selection nearly 50/50 between the low and high price points. Context didn't just improve profit marginally — it fundamentally changed which price the algorithm chose to use.</p>
+
+    <!-- Notebook link -->
+    <a href="https://drive.google.com/file/d/1pi2aDcfzSugFZirfJYk4HyG5w2ZCmNP9/view?usp=sharing" target="_blank" class="notebook-link">
+      <div class="nb-icon">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="20" height="24" rx="2"/>
+          <line x1="9" y1="8" x2="19" y2="8"/>
+          <line x1="9" y1="13" x2="17" y2="13"/>
+          <line x1="9" y1="18" x2="15" y2="18"/>
+        </svg>
+      </div>
+      <div class="nb-text">
+        <div class="nb-title">View Full Python Notebook</div>
+        <div class="nb-sub">MAB, Contextual MAB & RL code — Google Colab</div>
+      </div>
+      <div class="nb-arrow">↗</div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ EXPERIMENT 2: RL ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">05 / Experiment 2 — RL Dynamic Pricing</div>
+    <h2>How Should Prices <em>Evolve</em> Over Time?</h2>
+    <p>Concert tickets are perishable goods — an unsold ticket on the day of the show is worth zero. The RL agent learns a Q-table mapping each state (days before the concert) to the optimal price, trading off margin against conversion probability.</p>
+
+    <!-- Inline SVG chart representing the optimal price vs state -->
+    <div class="chart-placeholder">
+      <div class="chart-caption" style="margin-bottom:1rem;">Optimal Dynamic Policy: Price vs State (Days Before Concert)</div>
+      <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" font-family="'JetBrains Mono', monospace">
+        <!-- Grid lines -->
+        <line x1="80" y1="20" x2="80" y2="210" stroke="#F5E6D3" stroke-width="1"/>
+        <line x1="80" y1="210" x2="600" y2="210" stroke="#F5E6D3" stroke-width="1"/>
+        <line x1="80" y1="155" x2="600" y2="155" stroke="#F5E6D3" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="80" y1="100" x2="600" y2="100" stroke="#F5E6D3" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="80" y1="45" x2="600" y2="45" stroke="#F5E6D3" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <!-- Y-axis labels -->
+        <text x="72" y="214" font-size="11" fill="#9A3412" text-anchor="end">$40</text>
+        <text x="72" y="159" font-size="11" fill="#9A3412" text-anchor="end">$60</text>
+        <text x="72" y="104" font-size="11" fill="#9A3412" text-anchor="end">$80</text>
+        <text x="72" y="49" font-size="11" fill="#9A3412" text-anchor="end">$100</text>
+
+        <!-- X-axis labels -->
+        <text x="155" y="228" font-size="11" fill="#7C2D12" text-anchor="middle">1</text>
+        <text x="245" y="228" font-size="11" fill="#7C2D12" text-anchor="middle">2</text>
+        <text x="335" y="228" font-size="11" fill="#7C2D12" text-anchor="middle">3</text>
+        <text x="425" y="228" font-size="11" fill="#7C2D12" text-anchor="middle">4</text>
+        <text x="515" y="228" font-size="11" fill="#7C2D12" text-anchor="middle">5</text>
+        <text x="335" y="248" font-size="10" fill="#9A3412" text-anchor="middle">State s (days before concert)</text>
+
+        <!-- Optimal price line: s=1→$40, s=2→$40, s=3→$60, s=4→$60, s=5→$60 -->
+        <!-- $40 = y=210, $60 = y=155 -->
+        <polyline
+          points="155,210 245,210 335,155 425,155 515,155"
+          fill="none"
+          stroke="#9A3412"
+          stroke-width="2.5"
+          stroke-linejoin="round"
+        />
+
+        <!-- Data points -->
+        <circle cx="155" cy="210" r="6" fill="#9A3412"/>
+        <circle cx="245" cy="210" r="6" fill="#9A3412"/>
+        <circle cx="335" cy="155" r="6" fill="#9A3412"/>
+        <circle cx="425" cy="155" r="6" fill="#9A3412"/>
+        <circle cx="515" cy="155" r="6" fill="#9A3412"/>
+
+        <!-- Annotations -->
+        <text x="155" y="197" font-size="10" fill="#7C2D12" text-anchor="middle" font-weight="700">$40</text>
+        <text x="245" y="197" font-size="10" fill="#7C2D12" text-anchor="middle" font-weight="700">$40</text>
+        <text x="335" y="142" font-size="10" fill="#7C2D12" text-anchor="middle" font-weight="700">$60</text>
+        <text x="425" y="142" font-size="10" fill="#7C2D12" text-anchor="middle" font-weight="700">$60</text>
+        <text x="515" y="142" font-size="10" fill="#7C2D12" text-anchor="middle" font-weight="700">$60</text>
+
+        <!-- Zone labels -->
+        <text x="200" y="175" font-size="9" fill="#9A3412" text-anchor="middle" opacity="0.6">Last 2 days</text>
+        <text x="200" y="185" font-size="9" fill="#9A3412" text-anchor="middle" opacity="0.6">→ Sell now</text>
+        <text x="425" y="175" font-size="9" fill="#9A3412" text-anchor="middle" opacity="0.6">3–5 days out</text>
+        <text x="425" y="185" font-size="9" fill="#9A3412" text-anchor="middle" opacity="0.6">→ Hold margin</text>
+      </svg>
+      <div class="chart-caption">Q-learning derived optimal policy — price drops from $60 → $40 in the final 2 days before showtime (Seed = 42)</div>
+    </div>
+
+    <p>The Q-table converged to a clear two-phase strategy: <span class="hl">charge $60 with 3–5 days remaining; drop to $40 in the final 2 days</span>. This isn't just a coincidence of the data — it reflects fundamental economic forces.</p>
+
+    <!-- Price state table -->
+    <div class="price-table">
+      <div class="pt-header">State (days left)</div>
+      <div class="pt-header">5</div>
+      <div class="pt-header">4</div>
+      <div class="pt-header">3</div>
+      <div class="pt-header">2 &amp; 1</div>
+      <div class="pt-cell label">Optimal Price</div>
+      <div class="pt-cell even">$60</div>
+      <div class="pt-cell">$60</div>
+      <div class="pt-cell even">$60</div>
+      <div class="pt-cell optimal">$40 ↓</div>
+      <div class="pt-cell label">Strategy</div>
+      <div class="pt-cell even" colspan="3" style="grid-column:span 3">Hold for margin — future selling opportunities still available</div>
+      <div class="pt-cell optimal">Prioritize conversion — ticket perishes at s=0</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ KEY FINDINGS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">06 / Key Findings</div>
+    <h2>What the Models <em>Revealed</em></h2>
+
+    <div class="finding">
+      <h4>Context Unlocks a Hidden Pricing Strategy</h4>
+      <span class="finding-result result-win">+13.1% Profit Gain</span>
+      <p>The standard MAB agent converged on $1.59 for 91.4% of rounds — an apparently safe choice. But it was leaving money on the table during high-demand conditions. The contextual agent discovered that $1.99 is optimal when the market signal is rainy, shifting arm selection dramatically and generating $84.03 in additional profit across 1,000 rounds.</p>
+    </div>
+
+    <div class="finding">
+      <h4>Perishability Changes Everything Near the Deadline</h4>
+      <span class="finding-result result-mid">State-Dependent Pricing</span>
+      <p>The RL model confirmed that pricing for a perishable good isn't static — it's a function of remaining time. With 3+ days to go, $60 is optimal because the option value of future selling opportunities justifies holding out. With 1–2 days remaining, the cost of not selling outweighs the margin benefit, so the model drops to $40 to maximize conversion probability.</p>
+    </div>
+
+    <div class="finding">
+      <h4>Discount Factor Encodes Urgency</h4>
+      <span class="finding-result result-note">δ = 0.99</span>
+      <p>Even with a discount factor close to 1 (meaning the model values future rewards nearly as much as immediate ones), the Bellman update still creates urgency as the deadline approaches — because fewer future periods remain. The model "knows" that a dollar earned in state 5 is worth slightly less than one earned in state 1, reinforcing the price-drop pattern near showtime.</p>
+    </div>
+
+    <div class="finding">
+      <h4>Exploration Strategy Matters Less Than Information</h4>
+      <span class="finding-result result-mid">Algorithm ≠ Edge</span>
+      <p>Across both experiments, the biggest performance difference didn't come from switching algorithms (ε-Greedy vs Thompson vs UCB) — it came from adding contextual information. A simple ε-Greedy agent with context outperformed a non-contextual agent regardless of how sophisticated its exploration strategy was. Information quality dominates algorithmic sophistication.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RECOMMENDATIONS ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">07 / Business Implications</div>
+    <h2>What to <em>Do About It</em></h2>
+    <p>These findings translate directly into actionable pricing principles for real-world applications — from retail and SaaS to events and hospitality.</p>
+
+    <div class="recs">
+      <div class="rec">
+        <div class="rec-num">R.01</div>
+        <h4>Invest in Contextual Signals First</h4>
+        <p>Before optimizing the exploration algorithm, identify what market signals (day of week, weather, demand proxies, inventory level) might shift the optimal price. The contextual MAB result shows a 13% lift from a single binary signal — real-world context can be far richer.</p>
+      </div>
+      <div class="rec">
+        <div class="rec-num">R.02</div>
+        <h4>Price Perishables Dynamically Near Expiry</h4>
+        <p>Hotels, airlines, event venues, and food retailers should all implement state-dependent pricing that automatically discounts as the perishability deadline approaches. A static markdown schedule is better than nothing — but a learned Q-table adapts to actual demand patterns.</p>
+      </div>
+      <div class="rec">
+        <div class="rec-num">R.03</div>
+        <h4>Start with ε-Greedy; Upgrade Thoughtfully</h4>
+        <p>Thompson Sampling and UCB require more infrastructure and calibration. For a new pricing system, ε-Greedy provides a solid, interpretable baseline. Upgrade to Bayesian methods once demand distributions are better understood and the business can validate model uncertainty estimates.</p>
+      </div>
+      <div class="rec">
+        <div class="rec-num">R.04</div>
+        <h4>Run Experiments Continuously</h4>
+        <p>The exploration rate (ε=0.1) ensures the model never fully stops learning. In production, this translates to always keeping a small percentage of traffic on non-greedy prices — protecting against demand shifts that would otherwise leave a static policy stranded on an outdated optimum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Shruti Kunwar — © 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
